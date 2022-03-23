@@ -1,0 +1,13 @@
+[class*=div__icon_check] {
+  border-radius: 12px;
+  background: rgba($color: #45CA72, $alpha: 1.0);
+  padding: 0;
+  margin: 0;
+
+  background-image: url(/src/static/icon/check.svg);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+
+  width: 24px;
+  height: 24px;
+}

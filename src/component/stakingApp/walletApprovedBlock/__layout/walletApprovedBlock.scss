@@ -1,0 +1,15 @@
+.stakingApp-walletApprovedBlock {
+  display: grid;
+  grid-auto-flow: column;
+
+  justify-content: start;
+
+  column-gap: 12px;
+  padding: 12px 16px;
+
+  width: fit-content;
+}
+
+.walletApprovedBlock-div {
+  align-self: center;
+}

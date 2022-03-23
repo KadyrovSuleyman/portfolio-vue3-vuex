@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import NavButton from '../../../src/component/navButton/index.vue';
+import NavButton from '../../../src/component/navButton/navButton.vue';
 
 it('test navButton', () => {
   const wrapper = mount(NavButton, {

@@ -1,0 +1,17 @@
+.walletBlock-walletInfoBlock {
+  display: grid;
+  grid-auto-flow: column;
+
+  align-items: center;
+
+  padding: 8px;
+  column-gap: 8px;
+}
+
+.walletInfoBlock-span {
+  padding: 0 4px;
+}
+
+.walletInfoBlock-button {
+  margin-right: 8px;
+}

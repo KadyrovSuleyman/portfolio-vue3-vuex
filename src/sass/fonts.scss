@@ -1,27 +1,2 @@
-@font-face {
-  font-family: 'Noto Sans';
-  src: url('../static/fonts/Noto-Sans/NotoSans-Regular.ttf') format('ttf');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Noto Sans';
-  src: url('../static/fonts/Noto-Sans/NotoSans-Bold.ttf') format('ttf');
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Noto Sans';
-  src: url('../static/fonts/Noto-Sans/NotoSans-Italic.ttf') format('ttf');
-  font-weight: normal;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Noto Sans';
-  src: url('../static/fonts/Noto-Sans/NotoSans-BoldItalic.ttf') format('ttf');
-  font-weight: bold;
-  font-style: italic;
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap');
