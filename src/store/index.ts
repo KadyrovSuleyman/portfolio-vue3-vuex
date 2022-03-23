@@ -1,7 +1,7 @@
 import { createLogger, createStore } from 'vuex';
 import types from './mutation-types';
 
-const debug = process.env.NODE_ENV !== 'production';
+// const debug = process.env.NODE_ENV !== 'production';
 
 export default createStore({
   state: {
