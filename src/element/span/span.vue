@@ -13,12 +13,6 @@ export default defineComponent({
 
   data() {
     return {
-      modificators: {
-        ...this.$props.mods,
-        color: this.$props.color,
-        header: this.$props.header,
-        font: this.$props.font,
-      },
       addMods,
     };
   },
@@ -26,7 +20,12 @@ export default defineComponent({
 </script>
 
 <template>
-  <span :class="addMods(className, modificators)">
+  <span :class="addMods(className, {
+        ...$props.mods,
+        color: $props.color,
+        header: $props.header,
+        font: $props.font,
+      })">
     <slot></slot>
   </span>
 </template>

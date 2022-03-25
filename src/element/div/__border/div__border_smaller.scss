@@ -1,0 +1,9 @@
+@import '/src/sass/variables/border-radiuses.scss';
+
+[class*=div__border_smaller],
+[class*=Div__border_smaller],
+[class*=Block__border_smaller]
+{
+  border-radius: $border-radius-smaller;
+  border-width: 0;
+}

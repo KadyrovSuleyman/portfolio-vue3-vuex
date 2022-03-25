@@ -1,0 +1,6 @@
+@import '/src/sass/variables/border-radiuses.scss';
+
+[class*=button__border_medium], [class*=Button__border_medium] {
+  border-radius: $border-radius-medium;
+  border-width: 0;
+}

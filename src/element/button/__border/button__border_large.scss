@@ -1,0 +1,6 @@
+@import '/src/sass/variables/border-radiuses.scss';
+
+[class*=button__border_large], [class*=Button__border_large] {
+  border-radius: $border-radius-large;
+  border-width: 0;
+}

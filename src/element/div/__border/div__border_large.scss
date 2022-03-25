@@ -1,0 +1,9 @@
+@import '/src/sass/variables/border-radiuses.scss';
+
+[class*=div__border_large],
+[class*=Div__border_large],
+[class*=Block__border_large]
+{
+  border-radius: $border-radius-large;
+  border-width: 0;
+}

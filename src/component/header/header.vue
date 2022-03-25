@@ -4,6 +4,9 @@ import NavPanel from './navPanel/navPanel.vue';
 import WalletBlock from './walletBlock/walletBlock.vue';
 
 export default defineComponent({
+  props: {
+    isAuthorized: Boolean,
+  },
   setup() {
     return {};
   },
@@ -14,7 +17,7 @@ export default defineComponent({
 <template>
   <header class="app-header">
     <NavPanel />
-    <WalletBlock :isAuthorized="true"/>
+    <WalletBlock :isAuthorized="isAuthorized"/>
   </header>
 </template>
 

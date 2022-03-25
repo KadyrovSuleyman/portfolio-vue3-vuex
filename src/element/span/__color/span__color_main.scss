@@ -1,0 +1,5 @@
+@import '/src/sass/variables/colors.scss';
+
+[class*=span__color_main], [class*=Span__color_main] {
+  color: rgba($color: $color-text-main, $alpha: 1.0);
+}

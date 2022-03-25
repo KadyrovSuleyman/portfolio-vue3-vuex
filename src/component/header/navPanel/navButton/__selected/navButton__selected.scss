@@ -1,5 +1,7 @@
+@import '/src/sass/variables/colors.scss';
+
 .navButton-link__selected {
-  color: rgba($color: #DA554A, $alpha: 1.0);
+  color: rgba($color: $color-text-red, $alpha: 1.0);
   font-weight: 700;
 }
 

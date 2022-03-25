@@ -1,8 +1,14 @@
 @import './__font/button.scss';
-@import './__border/button.scss';
 
-@import './__color/button__color_primary.scss';
+@import './__border/button.scss';
+@import './__border/button__border_small.scss';
+@import './__border/button__border_smaller.scss';
+@import './__border/button__border_medium.scss';
+@import './__border/button__border_large.scss';
+
+@import './__color/button__color_main.scss';
 @import './__color/button__color_secondary.scss';
+@import './__color/button__color_gray-dark.scss';
 
 @import './__icon/button__icon_copy.scss';
 @import './__icon/button__icon_coin.scss';

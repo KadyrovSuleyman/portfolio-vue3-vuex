@@ -1,0 +1,6 @@
+@import '/src/sass/variables/colors.scss';
+
+[class*=button__color_main], [class*=Button__color_main] {
+  background-color: rgba($color: $color-main, $alpha: 1.0);
+  color: rgba($color: $color-white, $alpha: 1.0);
+}

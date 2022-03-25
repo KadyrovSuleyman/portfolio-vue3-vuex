@@ -12,10 +12,6 @@ export default defineComponent({
 
   data() {
     return {
-      modificators: {
-        ...this.$props.mods,
-        color: this.$props.color,
-      },
       addMods,
     };
   },
@@ -24,7 +20,10 @@ export default defineComponent({
 
 <template>
   <a
-    :class="addMods(className, modificators)"
+    :class="addMods(className, {
+        ...$props.mods,
+        color: $props.color,
+      })"
     :href="href"
   >
     <slot></slot>

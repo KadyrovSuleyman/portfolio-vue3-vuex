@@ -1,4 +1,4 @@
-[class*=button__color_secondary] {
+[class*=button__color_secondary], [class*=Button__color_secondary] {
   background-color: rgba($color: #FFFFFF, $alpha: 1.0);
   color: rgba($color: #000000, $alpha: 1.0);
 }

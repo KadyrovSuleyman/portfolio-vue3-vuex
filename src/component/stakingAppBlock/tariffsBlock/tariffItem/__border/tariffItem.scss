@@ -1,0 +1,7 @@
+@import '/src/sass/variables/border-radiuses.scss';
+
+.tariffsBlock-tariffItem {
+  border-radius: $border-radius-large;
+  border-width: 1px;
+  border-style: solid;
+}

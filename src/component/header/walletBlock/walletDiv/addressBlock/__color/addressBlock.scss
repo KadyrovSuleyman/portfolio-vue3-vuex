@@ -1,0 +1,6 @@
+@import '/src/sass/variables/colors.scss';
+
+.walletDiv-addressBlock {
+  background-color: rgba($color: $color-main, $alpha: 0.2);
+  color: rgba($color: $color-yellow-dark, $alpha: 1.0);
+}

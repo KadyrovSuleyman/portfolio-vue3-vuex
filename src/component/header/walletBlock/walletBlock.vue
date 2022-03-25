@@ -1,8 +1,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Div from '@/element/div/div.vue';
-import WalletInfoBlock from './walletInfoBlock/walletInfoBlock.vue';
 import ConnectBlock from './connectBlock/connectBlock.vue';
+import WalletDiv from './walletDiv/walletDiv.vue';
 
 export default defineComponent({
   props: {
@@ -11,13 +11,13 @@ export default defineComponent({
   setup() {
     return {};
   },
-  components: { WalletInfoBlock, Div, ConnectBlock },
+  components: { Div, ConnectBlock, WalletDiv },
 });
 </script>
 
 <template>
   <Div :className="'header-walletBlock'">
-    <WalletInfoBlock v-if="isAuthorized"/>
+    <WalletDiv v-if="isAuthorized"/>
     <ConnectBlock v-else />
   </Div>
 </template>

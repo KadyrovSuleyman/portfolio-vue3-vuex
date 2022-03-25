@@ -2,17 +2,22 @@
 import { defineComponent } from 'vue';
 import Div from '@/element/div/div.vue';
 import Header from './header/header.vue';
-import StakingApp from './stakingApp/stakingApp.vue';
+import StakingAppBlock from './stakingAppBlock/stakingAppBlock.vue';
 
 export default defineComponent({
-  components: { Header, StakingApp, Div },
+  data() {
+    return {
+      isAuthorized: true,
+    };
+  },
+  components: { Header, StakingAppBlock, Div },
 });
 </script>
 
 <template>
-  <Header />
+  <Header :isAuthorized="isAuthorized"/>
   <Div :className="'app-headerBorder'" />
-  <StakingApp :isAuthorized="false"/>
+  <StakingAppBlock :isAuthorized="isAuthorized"/>
 </template>
 
 <style>

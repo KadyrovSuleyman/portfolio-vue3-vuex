@@ -7,16 +7,12 @@ export default defineComponent({
     className: String,
     color: String,
     icon: String,
+    border: String,
     mods: Object,
   },
 
   data() {
     return {
-      modificators: {
-        ...this.$props.mods,
-        color: this.$props.color,
-        icon: this.$props.icon,
-      },
       addMods,
     };
   },
@@ -24,7 +20,13 @@ export default defineComponent({
 </script>
 
 <template>
-  <button :class="addMods(className, modificators)">
+  <button :class="addMods(className, {
+    ...$props.mods,
+    color: $props.color,
+    icon: $props.icon,
+    border: $props.border,
+  })">
+
     <slot></slot>
   </button>
 </template>
