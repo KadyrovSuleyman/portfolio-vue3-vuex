@@ -7,7 +7,7 @@ import StakingAppBlock from './stakingAppBlock/stakingAppBlock.vue';
 export default defineComponent({
   data() {
     return {
-      isAuthorized: true,
+      isAuthorized: false,
     };
   },
   components: { Header, StakingAppBlock, Div },

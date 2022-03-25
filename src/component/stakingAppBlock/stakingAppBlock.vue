@@ -2,6 +2,7 @@
 import { defineComponent } from 'vue';
 import Div from '@/element/div/div.vue';
 import Span from '@/element/span/span.vue';
+import Button from '@/element/button/button.vue';
 import WalletApprovedBlock from './walletApprovedBlock/walletApprovedBlock.vue';
 import TariffsBlock from './tariffsBlock/tariffsBlock.vue';
 import CalculatorBlock from './calculatorBlock/calculatorBlock.vue';
@@ -21,6 +22,7 @@ export default defineComponent({
     TariffsBlock,
     CalculatorBlock,
     ActionsBlock,
+    Button,
   },
 });
 </script>
@@ -33,7 +35,13 @@ export default defineComponent({
     <WalletApprovedBlock v-if="isAuthorized"/>
     <TariffsBlock />
     <CalculatorBlock :isAuthorized="isAuthorized"/>
-    <ActionsBlock />
+    <ActionsBlock :state="'Waitinga'"/>
+
+    <Button :className="'stakingAppBlock-viewContractButton'" :color="'white'" :border="'smaller'">
+      <Span :className="'viewContractButton-span'">
+        View contract
+      </Span>
+    </Button>
   </Div>
 </template>
 

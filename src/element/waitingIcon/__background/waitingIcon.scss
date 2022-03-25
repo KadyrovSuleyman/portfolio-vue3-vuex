@@ -1,0 +1,14 @@
+[class*=waitingIcon] > .fill,
+[class*=WaitingIcon] > .fill
+{
+  background-image: url(/src/static/icon/waiting_fill.svg);
+  background-repeat: no-repeat;
+}
+
+[class*=waitingIcon] > .active,
+[class*=WaitingIcon] > .active
+{
+  background-image: url(/src/static/icon/waiting_active.svg);
+  background-position: 100%;
+  background-repeat: no-repeat;
+}
