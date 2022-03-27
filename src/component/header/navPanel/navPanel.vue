@@ -13,12 +13,12 @@ export default defineComponent({
 
 <template>
   <Div :className="'header-navPanel'">
-      <NavButton :msg="'Stacking'" :selected="true"/>
-      <NavButton :msg="'Bridge'" />
-      <NavButton :msg="'SHO'" />
+      <NavButton :selected="true">Stacking</NavButton>
+      <NavButton>Bridge</NavButton>
+      <NavButton>SHO</NavButton>
   </Div>
 </template>
 
 <style lang="scss">
-  @import './style.scss';
+  @use '.' as *;
 </style>

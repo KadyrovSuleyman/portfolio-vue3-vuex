@@ -1,8 +1,8 @@
 <script lang="ts">
 /* eslint-disable vuejs-accessibility/mouse-events-have-key-events */
 import { defineComponent } from 'vue';
-import Div from '@/element/div/div.vue';
-import Span from '@/element/span/span.vue';
+import Div from '@/element-rework/div/index.vue';
+import Span from '@/element-rework/span/index.vue';
 import Tip from './tip/tip.vue';
 
 export default defineComponent({
@@ -24,14 +24,14 @@ export default defineComponent({
       this.isTipVisible = false;
     },
   },
-  components: { Div, Span, Tip },
+  components: { Tip, Div, Span },
 });
 </script>
 
 <template>
   <Div :className="'tariffsBlock-tariffItem'">
     <Tip v-if="isTipVisible"/>
-    <Span :className="'tariffItem-period_span'" :color="'main'">
+    <Span :className="'tariffItem-period_span'">
       {{ period }}
     </Span>
     <Div :className="'tariffItem-apy_div'">
@@ -49,5 +49,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-  @import './style.scss';
+  @use '.' as *;
 </style>

@@ -1,0 +1,12 @@
+@use 'variables/color' as *;
+@use 'sass:map';
+
+* {
+  color: map-get($map: $color, $key: text-main)
+}
+
+@each $name, $value in $color {
+  [class*=__color_#{$name}] {
+    color: $value;
+  }
+}

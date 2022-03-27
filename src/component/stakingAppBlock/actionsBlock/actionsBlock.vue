@@ -2,7 +2,7 @@
 import { defineComponent } from 'vue';
 import Div from '@/element/div/div.vue';
 import Span from '@/element/span/span.vue';
-import Button from '@/element/button/button.vue';
+// import Button from '@/element/button/index.vue';
 import WaitingIcon from '../../../element/waitingIcon/waitingIcon.vue';
 
 export default defineComponent({
@@ -21,7 +21,7 @@ export default defineComponent({
   components: {
     Div,
     Span,
-    Button,
+    // Button,
     WaitingIcon,
   },
 });

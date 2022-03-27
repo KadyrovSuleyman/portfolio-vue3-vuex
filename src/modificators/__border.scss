@@ -1,0 +1,7 @@
+@use 'variables/border-radius' as border;
+
+@each $name, $radius in border.$radius {
+  [class*=__border_#{$name}] {
+    border-radius: $radius;
+  }
+}

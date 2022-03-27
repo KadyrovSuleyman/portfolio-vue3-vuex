@@ -1,8 +1,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Div from '@/element/div/div.vue';
-import Span from '@/element/span/span.vue';
-import Button from '@/element/button/button.vue';
+import Div from '@/element-rework/div/index.vue';
+import Span from '@/element-rework/span/index.vue';
+import Button from '@/element-rework/button/index.vue';
 import WalletApprovedBlock from './walletApprovedBlock/walletApprovedBlock.vue';
 import TariffsBlock from './tariffsBlock/tariffsBlock.vue';
 import CalculatorBlock from './calculatorBlock/calculatorBlock.vue';
@@ -16,12 +16,12 @@ export default defineComponent({
     return {};
   },
   components: {
-    Div,
-    Span,
     WalletApprovedBlock,
     TariffsBlock,
     CalculatorBlock,
     ActionsBlock,
+    Div,
+    Span,
     Button,
   },
 });
@@ -29,7 +29,7 @@ export default defineComponent({
 
 <template>
   <Div :className="'app-stakingAppBlock'" :border="'large'">
-    <Span :className="'stakingAppBlock-span'" :header="true" :color="'main'">
+    <Span :className="'stakingAppBlock-span'" :mods="{ header: true }" >
       Staking App
     </Span>
     <WalletApprovedBlock v-if="isAuthorized"/>
@@ -46,5 +46,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-  @import './style.scss';
+  @use '.' as *;
 </style>

@@ -1,8 +1,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Div from '@/element/div/div.vue';
-import ConnectBlock from './connectBlock/connectBlock.vue';
+import Div from '@/element-rework/div/index.vue';
 import WalletDiv from './walletDiv/walletDiv.vue';
+import ConnectBlock from './connectBlock/connectBlock.vue';
 
 export default defineComponent({
   props: {
@@ -11,7 +11,7 @@ export default defineComponent({
   setup() {
     return {};
   },
-  components: { Div, ConnectBlock, WalletDiv },
+  components: { Div, WalletDiv, ConnectBlock },
 });
 </script>
 
@@ -23,5 +23,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-  @import './style.scss';
+  @use '.' as *;
 </style>

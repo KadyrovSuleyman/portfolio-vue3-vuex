@@ -1,8 +1,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Div from '@/element/div/div.vue';
-import Header from './header/header.vue';
+import Div from '@/element-rework/div/index.vue';
 import StakingAppBlock from './stakingAppBlock/stakingAppBlock.vue';
+import Header from './header/header.vue';
 
 export default defineComponent({
   data() {
@@ -10,7 +10,11 @@ export default defineComponent({
       isAuthorized: false,
     };
   },
-  components: { Header, StakingAppBlock, Div },
+  components: {
+    StakingAppBlock,
+    Div,
+    Header,
+  },
 });
 </script>
 
@@ -20,6 +24,7 @@ export default defineComponent({
   <StakingAppBlock :isAuthorized="isAuthorized"/>
 </template>
 
-<style>
-@import './style.scss';
+<style lang="scss">
+  @use '.' as *;
+  @use '@/modificators' as *;
 </style>

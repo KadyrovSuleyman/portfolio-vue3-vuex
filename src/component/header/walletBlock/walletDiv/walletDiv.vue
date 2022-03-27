@@ -1,8 +1,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Div from '@/element/div/div.vue';
-import Span from '@/element/span/span.vue';
-import Button from '@/element/button/button.vue';
+import Div from '@/element-rework/div/index.vue';
+import Button from '@/element-rework/button/index.vue';
+import Span from '@/element-rework/span/index.vue';
 import AddressBlock from './addressBlock/addressBlock.vue';
 
 export default defineComponent({
@@ -10,15 +10,22 @@ export default defineComponent({
     return {};
   },
   components: {
-    AddressBlock, Div, Span, Button,
+    Div,
+    Button,
+    Span,
+    AddressBlock,
   },
 });
 </script>
 
 <template>
-  <Div :className="'walletBlock-walletDiv'" :border="'smaller'">
+  <Div
+    :className="'walletBlock-walletDiv'"
+    :border="'smaller'"
+    :background="'white'"
+  >
     <AddressBlock />
-    <Span :className="'walletDiv-span'" :color="'main'">
+    <Span :className="'walletDiv-span'">
       0.029 BUSD
     </Span>
     <Button :className="'walletDiv-button'" :icon="'coin'" />
@@ -27,5 +34,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-  @import './style.scss';
+  @use '.' as *;
 </style>

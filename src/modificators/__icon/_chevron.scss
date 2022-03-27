@@ -1,0 +1,12 @@
+[class*=__icon_chevron] {
+  border-radius: 0;
+  background: none;
+
+  background-image: url(/src/static/icon/chevron.svg);
+  background-repeat: no-repeat;
+
+  width: 12px;
+  height: 6.55px;
+
+  cursor: pointer;
+}

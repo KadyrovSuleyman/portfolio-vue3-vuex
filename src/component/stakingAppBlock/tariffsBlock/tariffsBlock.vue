@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Div from '@/element/div/div.vue';
+import Div from '@/element-rework/div/index.vue';
 import TariffItem from './tariffItem/tariffItem.vue';
 
 export default defineComponent({
@@ -20,5 +20,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-  @import './style.scss';
+  @use '.' as *;
 </style>

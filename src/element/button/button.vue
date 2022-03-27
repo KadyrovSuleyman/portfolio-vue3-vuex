@@ -5,6 +5,7 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   props: {
     className: String,
+    background: String,
     color: String,
     icon: String,
     border: String,
@@ -25,6 +26,7 @@ export default defineComponent({
     color: $props.color,
     icon: $props.icon,
     border: $props.border,
+    background: $props.background,
   })">
 
     <slot></slot>
@@ -32,5 +34,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-  @import './style.scss';
+  @use '../../modificators';
 </style>

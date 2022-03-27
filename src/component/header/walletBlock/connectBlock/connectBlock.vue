@@ -1,13 +1,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Button from '@/element/button/button.vue';
-import Div from '@/element/div/div.vue';
+import Div from '@/element-rework/div/index.vue';
+import Button from '@/element-rework/button/index.vue';
 
 export default defineComponent({
   setup() {
     return {};
   },
-  components: { Button, Div },
+  components: { Div, Button },
 });
 </script>
 
@@ -15,7 +15,8 @@ export default defineComponent({
   <Div :className="'walletBlock-connectBlock'">
     <Button
       :className="'connectBlock-button'"
-      :color="'secondary'"
+      :background="'white'"
+      :border="'smaller'"
     >
       Connect wallet
     </Button>
@@ -23,5 +24,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-  @import './style.scss';
+  @use '.' as *;
 </style>

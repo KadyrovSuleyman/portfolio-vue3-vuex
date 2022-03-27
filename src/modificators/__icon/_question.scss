@@ -1,0 +1,14 @@
+[class*=__icon_question] {
+  border-radius: 0px;
+
+  background-image: url(/src/static/icon/question_gray.svg);
+  background-repeat: no-repeat;
+
+  width: 22px;
+  height: 22px;
+}
+
+[class*=div__icon_question]:hover {
+  @extend [class*=div__icon_question];
+  background-image: url(/src/static/icon/question_red.svg);
+}

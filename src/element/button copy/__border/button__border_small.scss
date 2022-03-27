@@ -1,0 +1,5 @@
+@import '/src/sass/variables/border-radiuses.scss';
+
+[class*=button__border_small], [class*=Button__border_small] {
+  border-radius: $border-radius-small;
+}

@@ -1,0 +1,10 @@
+@use '/src/modificators/variables/color' as *;
+@use 'sass:map';
+
+$background-color: map-get($map: $color, $key: 'error');
+
+.navButton-rectangle {
+  height: 4px;
+  background-color: rgba($color: $background-color, $alpha: 1.0);
+  visibility: hidden;
+}

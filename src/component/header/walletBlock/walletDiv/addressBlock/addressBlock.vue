@@ -1,32 +1,27 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Button from '@/element/button/button.vue';
-import Span from '@/element/span/span.vue';
-import Div from '@/element/div/div.vue';
+import Div from '@/element-rework/div/index.vue';
+import Span from '@/element-rework/span/index.vue';
+import Button from '@/element-rework/button/index.vue';
 
 export default defineComponent({
   setup() {
     return {};
   },
-  components: { Button, Span, Div },
+  components: { Div, Span, Button },
 });
 </script>
 
 <template>
   <Div :className="'walletDiv-addressBlock'" :border="'small'">
-    <Span
-      :class-name="'addressBlock-span'"
-      :color="'yellow-dark'"
-    >
+    <Span :className="'addressBlock-span'" :color="'yellow-dark'">
       0хCb99...8EBb
     </Span>
-    <Button
-      :class-name="'addressBlock-button'"
-      :icon="'copy'"
-    />
+    <Button :className="'addressBlock-button'" :icon="'copy'" />
   </Div>
+
 </template>
 
 <style lang="scss">
-  @import './style.scss';
+  @use '.' as *;
 </style>
