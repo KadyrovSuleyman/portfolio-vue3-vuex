@@ -1,0 +1,6 @@
+@use '/src/modificators/variables/color' as *;
+
+.app-headerBorder {
+  height: 1px;
+  background-color: rgba($color: $white, $alpha: 1.0);
+}

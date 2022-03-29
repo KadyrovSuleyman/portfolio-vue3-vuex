@@ -1,0 +1,14 @@
+@use '/src/modificators/__font/-family/montserrat' as font-family;
+@use '/src/element/span/__type/default' as span;
+
+.stakingAppBlock-header {
+  @include span.default;
+  @include font-family.montserrat;
+
+  font-style: normal;
+  font-weight: 800;
+  font-size: 44px;
+  line-height: 56px;
+
+  letter-spacing: 0.06em;
+}

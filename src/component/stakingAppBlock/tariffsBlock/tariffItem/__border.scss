@@ -1,0 +1,8 @@
+@use '/src/modificators/variables/border-radius' as *;
+@use './variables' as *;
+
+.#{$parent}-tariffItem {
+  border-radius: $large;
+  border-width: 1px;
+  border-style: solid;
+}

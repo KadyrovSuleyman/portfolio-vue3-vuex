@@ -1,0 +1,5 @@
+@use '/src/modificators/__icon/check' as *;
+
+.walletApprovedBlock-div {
+  @include icon-check;
+}

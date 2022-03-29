@@ -1,0 +1,12 @@
+@use './variables' as *;
+@use '/src/modificators/variables/border-radius' as *;
+
+.#{$parent}-stakingAppBlock {
+  border-radius: $large;
+}
+
+.stakingAppBlock-viewContractButton {
+  border-width: 1px;
+  border-radius: $smaller;
+  border-style: solid;
+}

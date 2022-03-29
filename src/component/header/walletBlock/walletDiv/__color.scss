@@ -1,0 +1,6 @@
+@use '/src/modificators/variables/color' as *;
+@use './variables' as *;
+
+.#{$parent}-walletDiv {
+  background-color: rgba($color: $white, $alpha: 1.0);
+}

@@ -1,0 +1,11 @@
+@use '/src/modificators/variables/color' as *;
+@use './variables' as *;
+
+.#{$parent}-stakingAppBlock {
+  background-color: rgba($color: $white, $alpha: 1.0);
+}
+
+.stakingAppBlock-viewContractButton {
+  background-color: rgba($color: $white, $alpha: 1.0);
+  border-color: $blue-light;
+}

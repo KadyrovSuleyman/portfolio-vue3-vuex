@@ -1,0 +1,5 @@
+@use '/src/modificators/variables/border-radius' as *;
+
+.connectBlock-button {
+  border-radius: $smaller;
+}

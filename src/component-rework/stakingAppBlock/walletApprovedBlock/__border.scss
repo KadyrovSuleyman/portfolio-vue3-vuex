@@ -1,6 +1,0 @@
-@use '/src/modificators-rework/variables/border-radius' as *;
-@use './variables' as *;
-
-.#{$parent}-walletApprovedBlock {
-  border-radius: $medium;
-}

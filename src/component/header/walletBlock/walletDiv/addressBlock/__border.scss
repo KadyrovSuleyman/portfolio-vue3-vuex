@@ -1,0 +1,6 @@
+@use '/src/modificators/variables/border-radius' as *;
+@use './variables' as *;
+
+.#{$parent}-addressBlock {
+  border-radius: $small;
+}

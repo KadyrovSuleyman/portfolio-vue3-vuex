@@ -1,0 +1,5 @@
+@use '/src/modificators/variables/color' as *;
+
+.connectBlock-button {
+  background-color: rgba($color: $white, $alpha: 1.0);
+}

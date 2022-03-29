@@ -1,0 +1,5 @@
+@use '/src/modificators/variables/color' as *;
+
+body {
+  background-color: rgba($color: $background-color, $alpha: 0.15)
+}

@@ -1,0 +1,10 @@
+@use './variables.scss' as *;
+@use '/src/modificators/variables/color' as *;
+
+.#{$parent}-infoBlock {
+  background-color: rgba($color: #EFF3F8, $alpha: 1.0);
+}
+
+.infoBlock-span {
+  color: $text-subtext;
+}

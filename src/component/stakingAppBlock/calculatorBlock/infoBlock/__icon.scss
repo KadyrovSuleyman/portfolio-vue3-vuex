@@ -1,0 +1,5 @@
+@use '/src/modificators/__icon/warning' as *;
+
+.infoBlock-div__icon_warning {
+  @include icon-warning;
+}

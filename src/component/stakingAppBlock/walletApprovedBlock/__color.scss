@@ -1,0 +1,10 @@
+@use '/src/modificators/variables/color' as *;
+@use './variables' as *;
+
+.#{$parent}-walletApprovedBlock {
+  background-color: rgba($color: $gray-light, $alpha: 1.0);
+}
+
+.walletApprovedBlock-span {
+  color: rgba($color: $text-subtext, $alpha: 1.0);
+}

@@ -1,0 +1,10 @@
+@use '/src/modificators/variables/color' as *;
+@use './variables' as *;
+
+.#{$parent}-addressBlock {
+  background-color: rgba($main, 0.2);
+}
+
+.addressBlock-span {
+  color: rgba($yellow-dark, 1.0);
+}

@@ -1,0 +1,15 @@
+@use '/src/modificators/variables/color' as *;
+
+.tip-span {
+  color: $white;
+}
+
+.tip-div {
+  background-color: rgba($color: $tip-background, $alpha: 1);
+}
+
+.tip-triangle {
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid rgba($color: $tip-background, $alpha: 1);
+}
