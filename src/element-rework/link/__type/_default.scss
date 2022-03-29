@@ -1,0 +1,8 @@
+@use '/src/modificators-rework/__font' as font;
+@use '/src/modificators-rework/variables/color' as *;
+
+[class*=link] {
+  @include font.default;
+
+  color: rgba($color: $text-main, $alpha: 1.0);
+}

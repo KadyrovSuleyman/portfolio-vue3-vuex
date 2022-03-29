@@ -1,0 +1,10 @@
+@use '/src/modificators-rework/__icon/coin' as *;
+@use '/src/modificators-rework/__icon/chevron' as *;
+
+.walletDiv-button__icon_coin {
+  @include icon_coin
+}
+
+.walletDiv-button__icon_chevron {
+  @include icon_chevron
+}

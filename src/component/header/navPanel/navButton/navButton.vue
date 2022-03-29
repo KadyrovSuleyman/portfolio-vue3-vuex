@@ -1,8 +1,8 @@
 <script lang="ts">
 import { addMods } from '@/module/bem/index';
 import { defineComponent } from 'vue';
-import Div from '@/element-rework/div/index.vue';
-import Link from '@/element-rework/link/index.vue';
+import Div from '@/element-rework/div/div.vue';
+import Link from '@/element-rework/link/link.vue';
 
 export default defineComponent({
   props: {

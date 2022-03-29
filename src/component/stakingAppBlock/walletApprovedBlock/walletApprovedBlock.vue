@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Div from '@/element-rework/div/index.vue';
-import Span from '@/element-rework/span/index.vue';
+import Div from '@/element-rework/div/div.vue';
+import Span from '@/element-rework/span/span.vue';
 
 export default defineComponent({
   setup() {

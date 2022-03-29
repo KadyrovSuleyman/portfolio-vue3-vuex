@@ -1,0 +1,17 @@
+.app-header {
+  height: 83px;
+
+  display: grid;
+  align-items: stretch;
+  justify-content: end;
+
+  column-gap: 57px;
+}
+
+.header-navPanel {
+  grid-column: 1 / 2;
+}
+
+.header-walletBlock {
+  grid-column: 2 / 3;
+}

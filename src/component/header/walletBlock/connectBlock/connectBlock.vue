@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Div from '@/element-rework/div/index.vue';
-import Button from '@/element-rework/button/index.vue';
+import Div from '@/element-rework/div/div.vue';
+import Button from '@/element-rework/button/button.vue';
 
 export default defineComponent({
   setup() {

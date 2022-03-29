@@ -1,8 +1,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Div from '@/element-rework/div/index.vue';
-import Button from '@/element-rework/button/index.vue';
-import Span from '@/element-rework/span/index.vue';
+import Div from '@/element-rework/div/div.vue';
+import Button from '@/element-rework/button/button.vue';
+import Span from '@/element-rework/span/span.vue';
 import AddressBlock from './addressBlock/addressBlock.vue';
 
 export default defineComponent({

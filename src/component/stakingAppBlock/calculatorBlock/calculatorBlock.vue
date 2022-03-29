@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Div from '@/element-rework/div/index.vue';
+import Div from '@/element-rework/div/div.vue';
 import Calculator from './calculator/calculator.vue';
 import InfoBlock from './infoBlock/infoBlock.vue';
 

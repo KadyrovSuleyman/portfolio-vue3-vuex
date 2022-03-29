@@ -1,0 +1,5 @@
+@use '/src/modificators-rework/variables/border-radius' as *;
+
+.walletBlock-walletDiv {
+  border-radius: $smaller;
+}

@@ -1,0 +1,9 @@
+@use '/src/modificators/variables/color' as *;
+@use 'sass:map';
+
+$color-white: map-get($map: $color, $key: white);
+
+.app-headerBorder {
+  height: 1px;
+  background-color: rgba($color: $color-white, $alpha: 1.0);
+}

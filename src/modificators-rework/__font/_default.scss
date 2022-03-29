@@ -1,0 +1,16 @@
+@use './-family' as family;
+@use './-weight' as weight;
+
+@mixin default {
+  // font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
+  @include family.noto-sans;
+
+  // font-weight: 400;
+  @include weight.regular;
+
+  font-style: normal;
+  font-size: 1rem;
+
+  line-height: 20px;
+  text-decoration: none;
+}

@@ -1,8 +1,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Div from '@/element-rework/div/index.vue';
-import Span from '@/element-rework/span/index.vue';
-import Button from '@/element-rework/button/index.vue';
+import Div from '@/element-rework/div/div.vue';
+import Span from '@/element-rework/span/span.vue';
+import Button from '@/element-rework/button/button.vue';
 
 export default defineComponent({
   setup() {

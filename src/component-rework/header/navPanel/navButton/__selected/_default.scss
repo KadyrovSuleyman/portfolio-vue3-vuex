@@ -1,0 +1,7 @@
+@use '/src/modificators-rework/variables/color' as *;
+
+.navButton-rectangle {
+  height: 4px;
+  background-color: rgba($color: $error, $alpha: 1.0);
+  visibility: hidden;
+}

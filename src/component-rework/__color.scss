@@ -1,0 +1,8 @@
+@use '/src/modificators/variables/color' as *;
+@use 'sass:map';
+
+$background-color: map-get($map: $color, $key: 'background-color');
+
+body {
+  background-color: $background-color;
+}

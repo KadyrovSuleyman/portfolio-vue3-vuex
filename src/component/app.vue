@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Div from '@/element-rework/div/index.vue';
+import Div from '@/element-rework/div/div.vue';
 import StakingAppBlock from './stakingAppBlock/stakingAppBlock.vue';
 import Header from './header/header.vue';
 

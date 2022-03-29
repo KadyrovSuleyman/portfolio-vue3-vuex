@@ -1,0 +1,46 @@
+<script lang="ts">
+import { formateClassName } from '@/module/bem/index';
+import { defineComponent } from 'vue';
+
+import propsObj from '../propsObj';
+
+export default defineComponent({
+  props: {
+    ...propsObj,
+    mods: Object,
+    className: String,
+    block: String,
+    elem: String,
+  },
+
+  data() {
+    console.log(this);
+
+    const {
+      mods, className, block, elem, ...filtredProps
+    } = this.$props;
+
+    return {
+      formateClassName,
+      filtredProps,
+      blockName: this.$props.block,
+      elementName: this.$props.elem || 'link',
+      URL: this.$props.href || '#',
+    };
+  },
+});
+</script>
+
+<template>
+  <a :href="URL" :class="formateClassName(blockName, elementName, {
+    ...filtredProps,
+    ...$props.mods,
+  })">
+
+    <slot></slot>
+  </a>
+</template>
+
+<style lang="scss">
+  @use '__type' as *;
+</style>

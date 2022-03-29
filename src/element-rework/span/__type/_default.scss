@@ -1,0 +1,10 @@
+@use '/src/modificators-rework/__font' as font;
+@use '/src/modificators-rework/variables/color' as *;
+
+[class*=span] {
+  @include font.default;
+
+  cursor: default;
+
+  color: rgba($color: $text-main, $alpha: 1.0);
+}

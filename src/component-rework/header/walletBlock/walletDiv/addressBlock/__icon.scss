@@ -1,0 +1,5 @@
+@use '/src/modificators-rework/__icon/copy' as *;
+
+.addressBlock-button {
+  @include icon-copy
+}

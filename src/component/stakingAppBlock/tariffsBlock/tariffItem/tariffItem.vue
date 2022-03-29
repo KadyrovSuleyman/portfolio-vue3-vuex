@@ -1,8 +1,8 @@
 <script lang="ts">
 /* eslint-disable vuejs-accessibility/mouse-events-have-key-events */
 import { defineComponent } from 'vue';
-import Div from '@/element-rework/div/index.vue';
-import Span from '@/element-rework/span/index.vue';
+import Div from '@/element-rework/div/div.vue';
+import Span from '@/element-rework/span/span.vue';
 import Tip from './tip/tip.vue';
 
 export default defineComponent({

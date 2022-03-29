@@ -1,35 +1,35 @@
 <script lang="ts">
-import { addMods } from '@/module/bem/index';
+import { formateClassName } from '@/module/bem/index';
 import { defineComponent } from 'vue';
 
 import propsObj from '../propsObj';
-import typeMap from './__type';
 
 export default defineComponent({
   props: {
     ...propsObj,
     mods: Object,
     className: String,
+    block: String,
+    elem: String,
   },
 
   data() {
     const {
-      mods, className, href, ...filtredProps
+      mods, className, href, block, elem, ...filtredProps
     } = this.$props;
 
-    const { type } = this.$props;
     return {
-      addMods,
+      formateClassName,
       filtredProps,
-      typeProps: type ? typeMap[type] : typeMap.default,
+      blockName: this.$props.block,
+      elementName: this.$props.elem || 'span',
     };
   },
 });
 </script>
 
 <template>
-  <span :class="addMods(className, {
-    ...typeProps,
+  <span :class="formateClassName(blockName, elementName, {
     ...filtredProps,
     ...$props.mods,
   })">
@@ -37,3 +37,7 @@ export default defineComponent({
     <slot></slot>
   </span>
 </template>
+
+<style lang="scss">
+  @use '__type' as *;
+</style>
