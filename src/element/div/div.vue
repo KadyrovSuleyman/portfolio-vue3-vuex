@@ -1,4 +1,6 @@
 <script lang="ts">
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { formateClassName } from '@/module/bem/index';
 import { defineComponent } from 'vue';
 
