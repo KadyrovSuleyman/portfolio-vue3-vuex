@@ -1,7 +1,0 @@
-@import '/src/sass/variables/colors.scss';
-
-[class*=button__color_white], [class*=Button__color_white] {
-  background-color: rgba($color: $color-white, $alpha: 1.0);
-  color: rgba($color: $color-text-main, $alpha: 1.0);
-  border-color: $color-blue-light;
-}

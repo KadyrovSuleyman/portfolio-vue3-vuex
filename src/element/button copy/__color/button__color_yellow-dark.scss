@@ -1,6 +1,0 @@
-@import '/src/sass/variables/colors.scss';
-
-[class*=button__color_yellow-dark], [class*=Button__color_yellow-dark] {
-  background-color: rgba($color: $color-yellow-dark, $alpha: 1.0);
-  color: rgba($color: $color-white, $alpha: 1.0);
-}

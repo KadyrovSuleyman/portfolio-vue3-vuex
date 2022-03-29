@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Div from '@/element/div/div.vue';
+import Div from '@/element-rework/div/index.vue';
 import NavButton from './navButton/navButton.vue';
 
 export default defineComponent({

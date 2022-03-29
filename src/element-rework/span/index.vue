@@ -21,7 +21,7 @@ export default defineComponent({
     return {
       addMods,
       filtredProps,
-      typeProps: type ? typeMap[type] : {},
+      typeProps: type ? typeMap[type] : typeMap.default,
     };
   },
 });

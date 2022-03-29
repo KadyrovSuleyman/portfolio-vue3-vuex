@@ -8,6 +8,7 @@ const propsObj = {
   href: String,
   font: String,
   fontWeight: String,
+  cursor: String,
 };
 
 export default propsObj;

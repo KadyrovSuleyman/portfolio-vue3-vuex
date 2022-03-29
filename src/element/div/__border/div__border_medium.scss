@@ -1,8 +1,0 @@
-@import '/src/sass/variables/border-radiuses.scss';
-
-[class*=div__border_medium],
-[class*=Div__border_medium],
-[class*=Block__border_medium]
-{
-  border-radius: $border-radius-medium;
-}

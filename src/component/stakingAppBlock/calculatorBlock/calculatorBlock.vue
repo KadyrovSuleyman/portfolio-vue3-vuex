@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Div from '@/element/div/div.vue';
+import Div from '@/element-rework/div/index.vue';
 import Calculator from './calculator/calculator.vue';
 import InfoBlock from './infoBlock/infoBlock.vue';
 
@@ -12,9 +12,9 @@ export default defineComponent({
     return {};
   },
   components: {
-    Div,
     Calculator,
     InfoBlock,
+    Div,
   },
 });
 </script>
@@ -29,5 +29,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-  @import './style.scss';
+  @use '.' as *;
 </style>

@@ -22,7 +22,7 @@ export default defineComponent({
 
 <template>
   <Div :className="'navPanel-navButton'" :mods="mods">
-    <Link :className="'navButton-link'" :href="'#'" :mods="mods">
+    <Link :className="'navButton-link'" :href="'#'" :mods="mods" :cursor="'pointer'">
       <slot></slot>
     </Link>
     <Div :className="'navButton-rectangle'" :mods="mods" />

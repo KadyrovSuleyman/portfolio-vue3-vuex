@@ -13,7 +13,7 @@ export default defineComponent({
 
 <template>
   <Div :className="'stakingAppBlock-walletApprovedBlock'" :border="'medium'">
-    <Span :className="'walletApprovedBlock-span'" :color="'subtext'">
+    <Span :className="'walletApprovedBlock-span'" :color="'text-subtext'" :cursor="'default'">
       Wallet approved
     </Span>
     <Div :className="'walletApprovedBlock-div'" :icon="'check'"/>

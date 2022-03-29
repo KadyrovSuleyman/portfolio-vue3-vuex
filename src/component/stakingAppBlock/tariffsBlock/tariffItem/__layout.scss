@@ -1,7 +1,7 @@
 .tariffsBlock-tariffItem {
   display: grid;
 
-  width: 331px;
+  width: 331px - 2 * 28px;
 
   row-gap: 8px;
   padding: 20px 28px;

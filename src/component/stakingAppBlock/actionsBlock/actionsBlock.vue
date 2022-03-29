@@ -1,9 +1,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Div from '@/element/div/div.vue';
-import Span from '@/element/span/span.vue';
-// import Button from '@/element/button/index.vue';
-import WaitingIcon from '../../../element/waitingIcon/waitingIcon.vue';
+import Div from '@/element-rework/div/index.vue';
+import Button from '@/element-rework/button/index.vue';
+import Span from '@/element-rework/span/index.vue';
 
 export default defineComponent({
   props: {
@@ -20,9 +19,8 @@ export default defineComponent({
   },
   components: {
     Div,
+    Button,
     Span,
-    // Button,
-    WaitingIcon,
   },
 });
 </script>
@@ -37,10 +35,10 @@ export default defineComponent({
     </Button>
 
     <Button :className="'actionBlock-mainButton'" :color="color">
-      <WaitingIcon
+      <!-- <WaitingIcon
         v-if="text === 'Waiting'"
         :className="'mainButton-waitingIcon'"
-      />
+      /> -->
       <Span :className="'mainButton-span'">
         {{ text }}
       </Span>
@@ -56,5 +54,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-  @import './style.scss';
+  @use '.' as *;
 </style>

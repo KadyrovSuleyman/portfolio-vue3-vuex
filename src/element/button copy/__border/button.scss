@@ -1,7 +1,0 @@
-@import '/src/sass/variables/border-radiuses.scss';
-
-[class*=button], [class*=Button] {
-  border-radius: $border-radius-smaller;
-  border-width: 0;
-  border-style: solid;
-}

@@ -2,6 +2,7 @@
 @use 'sass:map';
 
 $background-color: map-get($map: $color, $key: 'gray-light');
+$-font-color: map-get($map: $color, $key: 'text-subtext');
 
 .stakingAppBlock-walletApprovedBlock {
   background-color: rgba($color: $background-color, $alpha: 1.0);

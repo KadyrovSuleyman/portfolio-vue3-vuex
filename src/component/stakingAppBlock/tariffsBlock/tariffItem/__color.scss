@@ -1,4 +1,23 @@
+@use '/src/modificators/variables/color' as *;
+@use 'sass:map';
+
+$-period-color: map-get($map: $color, $key: 'text-main');
+$-apy-color: map-get($map: $color, $key: 'text-red');
+$-amount-color: map-get($map: $color, $key: 'text-subtext');
+
 .tariffsBlock-tariffItem {
   background-color: rgba($color: #FFFFFF, $alpha: 1.0);
   border-color: rgba($color: #DFEBF5, $alpha: 1.0);
+}
+
+.tariffItem-period_span {
+  color: $-period-color;
+}
+
+.tariffItem-apy_span {
+  color: $-apy-color;
+}
+
+.tariffItem-amount_span {
+  color: $-amount-color;
 }

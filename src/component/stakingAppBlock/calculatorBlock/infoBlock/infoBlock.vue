@@ -1,12 +1,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Div from '@/element/div/div.vue';
-import Span from '@/element/span/span.vue';
+import Span from '@/element-rework/span/index.vue';
+import Div from '@/element-rework/div/index.vue';
 
 export default defineComponent({
   components: {
-    Div,
     Span,
+    Div,
   },
 });
 </script>
@@ -14,12 +14,12 @@ export default defineComponent({
 <template>
   <Div :className="'infoBlock-div'" :border="'medium'">
     <Div :className="'infoBlock-icon_div'" :icon="'warning'"/>
-    <Span :className="'infoBlock-span'" :color="'subtext'">
+    <Span :className="'infoBlock-span'" :color="'text-subtext'">
       <slot></slot>
     </Span>
   </Div>
 </template>
 
 <style lang="scss">
-  @import './style.scss';
+  @use '.' as *;
 </style>
