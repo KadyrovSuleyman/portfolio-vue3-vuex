@@ -1,0 +1,18 @@
+@use '/src/element-rework/button/__type/default' as button;
+@use '/src/modificators-rework/variables/border-radius' as *;
+
+.actionsBlock-timeButton {
+  @include button.default;
+  border-radius: $smaller;
+}
+
+.actionsBlock-mainButton {
+  @include button.default;
+  border-radius: $smaller;
+}
+
+.actionsBlock-unstakeButton {
+  @include button.default;
+  border-radius: $smaller;
+  border-width: 1px;
+}

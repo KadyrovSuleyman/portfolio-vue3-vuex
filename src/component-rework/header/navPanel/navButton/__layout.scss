@@ -1,4 +1,6 @@
-.navPanel-navButton {
+@use './variables' as *;
+
+.#{$parent}-navButton {
   display: grid;
 }
 

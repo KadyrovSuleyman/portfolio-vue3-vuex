@@ -40,4 +40,8 @@ export default defineComponent({
 
 <style lang="scss">
   @use '__type' as *;
+
+  [class*=span] {
+    @include default;
+  }
 </style>

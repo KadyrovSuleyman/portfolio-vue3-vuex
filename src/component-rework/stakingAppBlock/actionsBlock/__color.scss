@@ -1,0 +1,26 @@
+@use '/src/modificators-rework/variables/color' as *;
+
+.actionsBlock-timeButton {
+  background-color: rgba($color: $gray-dark, $alpha: 1.0)
+}
+.timeButton-span {
+  color: rgba($color: $white, $alpha: 1.0);
+}
+
+.actionsBlock-mainButton {
+  background-color: rgba($color: $main, $alpha: 1.0)
+}
+.actionsBlock-mainButton__waiting {
+  background-color: rgba($color: $yellow-dark, $alpha: 1.0)
+}
+.mainButton-span {
+  color: rgba($color: $white, $alpha: 1.0);
+}
+
+.actionsBlock-unstakeButton {
+  background-color: rgba($color: $white, $alpha: 1.0);
+  border-color: rgba($color: $blue-light, $alpha: 1.0);
+}
+.unstakeButton-span {
+  color: rgba($color: $text-main, $alpha: 1.0);
+}

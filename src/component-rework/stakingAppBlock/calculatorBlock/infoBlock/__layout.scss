@@ -1,0 +1,12 @@
+@use './variables' as *;
+
+.#{$parent}-infoBlock {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.infoBlock-div {
+  margin: 20.36px;
+}

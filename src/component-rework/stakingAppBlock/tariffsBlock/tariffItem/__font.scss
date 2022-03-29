@@ -1,0 +1,35 @@
+@use '/src/modificators-rework/__font/default' as font;
+@use '/src/modificators-rework/__font/-family/montserrat' as font-family;
+
+.tariffItem-period {
+  @include font.default;
+
+  font-weight: 600;
+  font-size: 36px;
+
+  line-height: 44px;
+
+  cursor: default;
+}
+
+.tariffItem-apy {
+  @include font.default;
+  @include font-family.montserrat;
+
+  font-weight: 600;
+  font-size: 20px;
+
+  line-height: 28px;
+  letter-spacing: 0.02em;
+
+  cursor: default;
+}
+
+.tariffItem-amount {
+  @include font.default;
+  font-size: 20px;
+
+  line-height: 32px;
+
+  cursor: default;
+}

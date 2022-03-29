@@ -1,0 +1,12 @@
+@use './variables' as *;
+
+.#{$parent}-waitingIcon > .fill {
+  background-image: url(/src/static/icon/waiting_fill.svg);
+  background-repeat: no-repeat;
+}
+
+.#{$parent}-waitingIcon > .active {
+  background-image: url(/src/static/icon/waiting_active.svg);
+  background-position: 100%;
+  background-repeat: no-repeat;
+}

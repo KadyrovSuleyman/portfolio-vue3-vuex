@@ -1,4 +1,6 @@
-.header-walletBlock {
+@use './variables' as *;
+
+.#{$parent}-walletBlock {
   display: grid;
   align-self: center;
 }

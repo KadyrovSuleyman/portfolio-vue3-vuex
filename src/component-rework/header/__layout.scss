@@ -1,4 +1,6 @@
-.app-header {
+@use './variables' as *;
+
+.#{$parent}-header {
   height: 83px;
 
   display: grid;

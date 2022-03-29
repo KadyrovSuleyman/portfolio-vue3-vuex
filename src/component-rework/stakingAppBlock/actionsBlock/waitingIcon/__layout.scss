@@ -1,0 +1,17 @@
+@use './variables' as *;
+
+.#{$parent}-waitingIcon,
+.#{$parent}-waitingIcon
+{
+  display: grid;
+}
+
+.#{$parent}-waitingIcon > .fill {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+}
+
+.#{$parent}-waitingIcon > .active {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+}

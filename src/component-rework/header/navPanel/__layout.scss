@@ -1,4 +1,6 @@
-.header-navPanel {
+@use './variables' as *;
+
+.#{$parent}-navPanel {
   display: grid;
   justify-content: space-between;
 

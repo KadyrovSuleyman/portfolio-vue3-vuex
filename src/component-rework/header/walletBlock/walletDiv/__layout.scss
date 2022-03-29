@@ -1,4 +1,6 @@
-.walletBlock-walletDiv {
+@use './variables' as *;
+
+.#{$parent}-walletDiv {
   display: grid;
   grid-auto-flow: column;
 

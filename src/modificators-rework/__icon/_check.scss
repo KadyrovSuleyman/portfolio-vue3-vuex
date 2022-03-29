@@ -2,7 +2,7 @@
 
 @mixin icon-check {
   border-radius: 12px;
-  background: rgba($-color, $alpha: 1.0);
+  background: rgba($green, $alpha: 1.0);
 
   background-image: url(/src/static/icon/check.svg);
   background-position: 50% 48%;

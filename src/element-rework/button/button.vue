@@ -40,4 +40,8 @@ export default defineComponent({
 
 <style lang="scss">
   @use '__type' as *;
+
+  [class*=button] {
+    @include default;
+  }
 </style>

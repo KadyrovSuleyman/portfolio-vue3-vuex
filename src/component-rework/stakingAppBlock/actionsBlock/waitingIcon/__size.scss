@@ -1,0 +1,14 @@
+@use './variables' as *;
+
+.#{$parent}-waitingIcon > .fill,
+.#{$parent}-waitingIcon > .active
+{
+  background-size:contain
+}
+
+.#{$parent}-waitingIcon,
+.#{$parent}-waitingIcon
+{
+  width: 34px;
+  height: 34px;
+}

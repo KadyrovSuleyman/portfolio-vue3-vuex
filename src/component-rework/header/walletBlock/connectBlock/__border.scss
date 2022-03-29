@@ -1,3 +1,5 @@
+@use '/src/modificators-rework/variables/border-radius' as *;
+
 .connectBlock-button {
-  padding: 14px 25px;
+  border-radius: $smaller;
 }

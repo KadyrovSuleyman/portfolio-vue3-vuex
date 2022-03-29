@@ -43,4 +43,8 @@ export default defineComponent({
 
 <style lang="scss">
   @use '__type' as *;
+
+  [class*=link] {
+    @include default;
+  }
 </style>

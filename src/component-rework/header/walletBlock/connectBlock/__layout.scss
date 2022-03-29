@@ -1,4 +1,6 @@
-.walletBlock-connectBlock {
+@use './variables' as *;
+
+.#{$parent}-connectBlock {
   display: grid;
 }
 

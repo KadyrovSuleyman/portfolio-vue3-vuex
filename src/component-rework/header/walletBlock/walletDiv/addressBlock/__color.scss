@@ -1,6 +1,7 @@
 @use '/src/modificators-rework/variables/color' as *;
+@use './variables' as *;
 
-.walletDiv-addressBlock {
+.#{$parent}-addressBlock {
   background-color: rgba($main, 0.2);
 }
 

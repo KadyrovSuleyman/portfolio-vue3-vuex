@@ -1,0 +1,40 @@
+@use './variables' as *;
+
+.#{$parent}-tariffItem {
+  display: grid;
+
+  width: 331px - 2 * 28px;
+
+  row-gap: 8px;
+  padding: 20px 28px;
+}
+
+.tariffItem-tip {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+}
+
+.tariffItem-period {
+  margin-top: 4px;
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+}
+
+.tariffItem-apyDiv {
+  display: grid;
+
+  grid-auto-flow: column;
+
+  justify-content: start;
+  align-items: center;
+
+  column-gap: 9.18px;
+
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+}
+
+.tariffItem-amount {
+  grid-row: 3 / 4;
+  grid-column: 1 / 2;
+}

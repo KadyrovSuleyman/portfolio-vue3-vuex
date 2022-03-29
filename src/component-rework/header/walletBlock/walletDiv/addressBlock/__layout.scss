@@ -1,4 +1,6 @@
-.walletDiv-addressBlock {
+@use './variables' as *;
+
+.#{$parent}-addressBlock {
   display: grid;
 
   justify-content: start;

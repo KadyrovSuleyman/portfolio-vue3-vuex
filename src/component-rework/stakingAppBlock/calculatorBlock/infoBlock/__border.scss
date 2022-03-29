@@ -1,0 +1,6 @@
+@use '/src/modificators-rework/variables/border-radius' as *;
+@use './variables' as *;
+
+.#{$parent}-infoBlock {
+  border-radius: $medium;
+}

@@ -1,7 +1,7 @@
 @use '/src/modificators-rework/__font' as font;
 @use '/src/modificators-rework/variables/color' as *;
 
-[class*=span] {
+@mixin default {
   @include font.default;
 
   cursor: default;

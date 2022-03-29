@@ -8,7 +8,6 @@
   height: 22px;
 }
 
-[class*=div__icon_question]:hover {
-  @extend [class*=div__icon_question];
+@mixin icon-question-hover {
   background-image: url(/src/static/icon/question_red.svg);
 }
