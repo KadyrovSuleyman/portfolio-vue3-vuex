@@ -1,7 +1,0 @@
-@use 'variables/color' as *;
-
-@each $name, $value in $color {
-  [class*=__background_#{$name}] {
-    background-color: $value;
-  }
-}
