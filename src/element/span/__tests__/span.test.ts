@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils';
 import Span from '@/element/span/span.vue';
+import { createStore } from 'vuex';
 
 let wrapper = mount(Span, {});
 wrapper.unmount();
@@ -104,10 +105,54 @@ describe('span formates classes correctly', () => {
 
 it('slots', () => {
   wrapper = mount(Span, {
-    slots: {
-      default: 'test text',
+    // slots: {
+    //   default: 'test text',
+    // },
+    props: {
+      msg: 'test text',
     },
   });
 
   expect(wrapper.html()).toBe('<span class="span">test text</span>');
+});
+
+it('props from store', async () => {
+  const store = createStore({
+    state: {
+      msg: 'before',
+    },
+    mutations: {
+      change: (state) => { state.msg = 'after'; },
+    },
+    actions: {
+      act: ({ commit }) => { commit('change'); },
+    },
+  });
+
+  wrapper = mount(Span, {
+    global: {
+      provide: {
+        store,
+      },
+    },
+    // slots: {
+    //   default: store.state.msg,
+    // },
+    props: {
+      msg: store.state.msg,
+    },
+  });
+
+  const div = wrapper.get('span');
+  expect(div).not.toBeNull();
+  expect(div.html()).toBe('<span class="span">before</span>');
+
+  store.commit('change');
+  store.dispatch('act');
+  await wrapper.vm.$nextTick();
+
+  expect(div).not.toBeNull();
+  expect(store.state.msg).toBe('after');
+
+  expect(div.html()).toBe('<span class="span">after</span>');
 });

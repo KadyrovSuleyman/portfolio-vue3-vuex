@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { formateClassName } from '@/module/bem/index';
-import { defineProps, reactive } from 'vue';
+import { reactive } from 'vue';
 
 import ModsI from '../ModsI';
 
@@ -14,6 +14,7 @@ interface PropsI extends ModsI {
   URL?: string,
   onClick?: (payload: MouseEvent) => void,
 }
+// eslint-disable-next-line no-undef
 const props = defineProps<PropsI>();
 
 const {

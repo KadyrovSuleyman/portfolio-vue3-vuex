@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { formateClassName } from '@/module/bem/index';
-import { defineProps, reactive } from 'vue';
+import { reactive } from 'vue';
 
 import ModsI from '../ModsI';
 
@@ -10,11 +10,14 @@ interface PropsI extends ModsI {
   block?: string,
   elem?: string,
   mods?: Record<string, unknown>,
+
+  msg?: string,
 }
+// eslint-disable-next-line no-undef
 const props = defineProps<PropsI>();
 
 const {
-  mods: _mods, block: _block, elem: _elem, ...filtredProps
+  msg, mods, block, elem, ...filtredProps
 } = reactive(props);
 
 </script>
@@ -24,8 +27,7 @@ const {
     ...filtredProps,
     ...mods,
   })">
-
-    <slot></slot>
+    {{ msg }}
   </span>
 </template>
 

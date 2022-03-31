@@ -5,7 +5,7 @@ import types from './mutation-types';
 
 export default createStore({
   state: {
-    count: 1,
+    count: 0,
   },
   getters: {
   },
