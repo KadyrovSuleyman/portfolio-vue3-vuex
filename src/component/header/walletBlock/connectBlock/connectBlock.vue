@@ -1,28 +1,30 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+
+import { reactive } from 'vue';
 import Div from '@/element/div/div.vue';
 import Button from '@/element/button/button.vue';
 
-export default defineComponent({
-  props: {
-    block: String,
-    elem: String,
+interface PropsI {
+  block?: string,
+  elem?: string,
+  mods?: Record<string, unknown>,
 
-    onclick: Function,
-  },
-  data() {
-    return {
-      parentName: this.$props.block,
-      name: this.$props.elem || 'connectBlock',
-    };
-  },
-  components: { Div, Button },
+  onClick?: (payload: MouseEvent) => void,
+}
+// eslint-disable-next-line no-undef
+const props = defineProps<PropsI>();
+const {
+  block, elem, mods, onClick,
+} = reactive({
+  ...props,
+  elem: props.elem || 'connectBlock',
 });
+
 </script>
 
 <template>
-  <Div :block="parentName" :elem="name">
-    <Button :block="name" @click="onclick">
+  <Div :block="block" :elem="elem" :mods="mods">
+    <Button :block="elem" @click="onClick" :mods="mods">
       Connect wallet
     </Button>
   </Div>
