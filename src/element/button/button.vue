@@ -1,31 +1,31 @@
 <script setup lang="ts">
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { formateClassName } from '@/module/bem/index';
+import { formateClassName, ModsT } from '@/module/bem/index';
 import { defineProps, reactive } from 'vue';
 
-import ModsI from '../propsObj';
+import ModsI from '../ModsI';
 
 interface PropsI extends ModsI {
   block?: string,
   elem?: string,
-  mods?: Record<string, undefined>,
+  mods?: Record<string, unknown>,
 
-  onclick?:(payload: MouseEvent) => void,
+  onClick?:(payload: MouseEvent) => void,
 }
 const props = defineProps<PropsI>();
 
 const {
-  mods: _mods, block: _block, elem: _elem, onclick: _onclick, ...filtredProps
+  mods, block, elem, onClick, ...filtredProps
 } = reactive(props);
 
 </script>
 
 <template>
-  <button :class="formateClassName(block, elem || 'button', {
+  <button @click="onClick" :class="formateClassName(block, elem || 'button', {
     ...filtredProps,
     ...mods,
-  })" @click="onclick">
+  })">
 
     <slot></slot>
   </button>

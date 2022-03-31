@@ -4,12 +4,12 @@
 import { formateClassName } from '@/module/bem/index';
 import { defineProps, reactive } from 'vue';
 
-import ModsI from '../propsObj';
+import ModsI from '../ModsI';
 
 interface PropsI extends ModsI {
   block?: string,
   elem?: string,
-  mods?: Record<string, undefined>,
+  mods?: Record<string, unknown>,
 }
 const props = defineProps<PropsI>();
 

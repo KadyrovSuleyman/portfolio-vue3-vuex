@@ -115,7 +115,7 @@ it('click trigger', () => {
 
   wrapper = mount(Button, {
     props: {
-      onclick: store.commit.bind('click'),
+      onClick: store.commit.bind('click'),
     },
   });
 

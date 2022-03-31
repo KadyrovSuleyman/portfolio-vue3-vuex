@@ -4,25 +4,26 @@
 import { formateClassName } from '@/module/bem/index';
 import { defineProps, reactive } from 'vue';
 
-import ModsI from '../propsObj';
+import ModsI from '../ModsI';
 
 interface PropsI extends ModsI {
   block?: string,
   elem?: string,
-  mods?: Record<string, undefined>,
+  mods?: Record<string, unknown>,
 
   URL?: string,
+  onClick?: (payload: MouseEvent) => void,
 }
 const props = defineProps<PropsI>();
 
 const {
-  mods: _mods, block: _block, elem: _elem, ...filtredProps
+  mods: _mods, block: _block, elem: _elem, onClick: _onClick, ...filtredProps
 } = reactive(props);
 
 </script>
 
 <template>
-  <a :href="URL || '#'" :class="formateClassName(block, elem || 'link', {
+  <a :href="URL || '#'" @click="onClick" :class="formateClassName(block, elem || 'link', {
     ...filtredProps,
     ...mods,
   })">
