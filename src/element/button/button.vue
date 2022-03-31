@@ -1,40 +1,45 @@
-<script lang="ts">
+<script setup lang="ts">
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { formateClassName } from '@/module/bem/index';
-import { defineComponent } from 'vue';
+import { defineProps, reactive } from 'vue';
 
 import propsObj from '../propsObj';
 
-export default defineComponent({
-  props: {
-    ...propsObj,
-    mods: Object,
-    className: String,
-    block: String,
-    elem: String,
-  },
+interface propsObjj {
+  type?: string,
 
-  data() {
-    const {
-      mods, className, href, block, elem, ...filtredProps
-    } = this.$props;
+  background?: string,
+  color?: string,
+  icon?: string,
+  border?: string,
+  href?: string,
+  font?: string,
+  fontWeight?: string,
+  cursor?: string,
+}
 
-    return {
-      formateClassName,
-      filtredProps,
-      blockName: this.$props.block,
-      elementName: this.$props.elem || 'button',
-    };
-  },
-});
+interface PropsI extends propsObjj {
+  block?: string,
+  elem?: string,
+  mods?: Record<string, undefined>,
+
+  onclick?:(payload: MouseEvent) => void,
+}
+
+const props = defineProps<PropsI>();
+
+const {
+  mods: _mods, block: _block, elem: _elem, onclick: _onclick, ...filtredProps
+} = reactive(props);
+
 </script>
 
 <template>
-  <button :class="formateClassName(blockName, elementName, {
+  <button :class="formateClassName(block, elem || 'button', {
     ...filtredProps,
-    ...$props.mods,
-  })">
+    ...mods,
+  })" @click="onclick">
 
     <slot></slot>
   </button>

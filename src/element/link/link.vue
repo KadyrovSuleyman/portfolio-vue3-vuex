@@ -10,7 +10,6 @@ export default defineComponent({
   props: {
     ...propsObj,
     mods: Object,
-    className: String,
     block: String,
     elem: String,
   },
@@ -19,7 +18,7 @@ export default defineComponent({
     console.log(this);
 
     const {
-      mods, className, block, elem, ...filtredProps
+      mods, block, elem, ...filtredProps
     } = this.$props;
 
     return {

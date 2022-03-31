@@ -10,14 +10,13 @@ export default defineComponent({
   props: {
     ...propsObj,
     mods: Object,
-    className: String,
     block: String,
     elem: String,
   },
 
   data() {
     const {
-      mods, className, href, block, elem, ...filtredProps
+      mods, href, block, elem, ...filtredProps
     } = this.$props;
 
     return {
