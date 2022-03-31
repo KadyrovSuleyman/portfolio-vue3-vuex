@@ -1,14 +1,14 @@
-const propsObj = {
-  type: String,
+interface ModsI {
+  type?: string,
 
-  background: String,
-  color: String,
-  icon: String,
-  border: String,
-  href: String,
-  font: String,
-  fontWeight: String,
-  cursor: String,
-};
+  background?: string,
+  color?: string,
+  icon?: string,
+  border?: string,
+  href?: string,
+  font?: string,
+  fontWeight?: string,
+  cursor?: string,
+}
 
-export default propsObj;
+export default ModsI;

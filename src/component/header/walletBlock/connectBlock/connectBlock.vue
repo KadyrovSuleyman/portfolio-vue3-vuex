@@ -7,6 +7,8 @@ export default defineComponent({
   props: {
     block: String,
     elem: String,
+
+    onclick: Function,
   },
   data() {
     return {
@@ -20,7 +22,7 @@ export default defineComponent({
 
 <template>
   <Div :block="parentName" :elem="name">
-    <Button :block="name">
+    <Button :block="name" @click="onclick">
       Connect wallet
     </Button>
   </Div>

@@ -21,7 +21,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <Header :block="name" :isAuthorized="true"/>
+  <Header :block="name" :isAuthorized="false"/>
   <Div :block="name" :elem="'headerBorder'" />
   <StakingAppBlock :block="name" :isAuthorized="false" />
 </template>

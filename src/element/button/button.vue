@@ -4,29 +4,15 @@
 import { formateClassName } from '@/module/bem/index';
 import { defineProps, reactive } from 'vue';
 
-import propsObj from '../propsObj';
+import ModsI from '../propsObj';
 
-interface propsObjj {
-  type?: string,
-
-  background?: string,
-  color?: string,
-  icon?: string,
-  border?: string,
-  href?: string,
-  font?: string,
-  fontWeight?: string,
-  cursor?: string,
-}
-
-interface PropsI extends propsObjj {
+interface PropsI extends ModsI {
   block?: string,
   elem?: string,
   mods?: Record<string, undefined>,
 
   onclick?:(payload: MouseEvent) => void,
 }
-
 const props = defineProps<PropsI>();
 
 const {

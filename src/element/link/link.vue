@@ -1,41 +1,30 @@
-<script lang="ts">
+<script setup lang="ts">
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { formateClassName } from '@/module/bem/index';
-import { defineComponent } from 'vue';
+import { defineProps, reactive } from 'vue';
 
-import propsObj from '../propsObj';
+import ModsI from '../propsObj';
 
-export default defineComponent({
-  props: {
-    ...propsObj,
-    mods: Object,
-    block: String,
-    elem: String,
-  },
+interface PropsI extends ModsI {
+  block?: string,
+  elem?: string,
+  mods?: Record<string, undefined>,
 
-  data() {
-    console.log(this);
+  URL?: string,
+}
+const props = defineProps<PropsI>();
 
-    const {
-      mods, block, elem, ...filtredProps
-    } = this.$props;
+const {
+  mods: _mods, block: _block, elem: _elem, ...filtredProps
+} = reactive(props);
 
-    return {
-      formateClassName,
-      filtredProps,
-      blockName: this.$props.block,
-      elementName: this.$props.elem || 'link',
-      URL: this.$props.href || '#',
-    };
-  },
-});
 </script>
 
 <template>
-  <a :href="URL" :class="formateClassName(blockName, elementName, {
+  <a :href="URL || '#'" :class="formateClassName(block, elem || 'link', {
     ...filtredProps,
-    ...$props.mods,
+    ...mods,
   })">
 
     <slot></slot>

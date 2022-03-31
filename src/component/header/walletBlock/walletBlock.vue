@@ -15,16 +15,25 @@ export default defineComponent({
     return {
       parentName: this.$props.block,
       name: this.$props.elem || 'walletBlock',
+
+      isA: this.$props.isAuthorized,
     };
   },
   components: { Div, WalletDiv, ConnectBlock },
+
+  methods: {
+    con() {
+      console.log('af');
+      this.isA = !this.isA;
+    },
+  },
 });
 </script>
 
 <template>
   <Div :block="parentName" :elem="name">
-    <WalletDiv :block="name" v-if="isAuthorized"/>
-    <ConnectBlock :block="name" v-else />
+    <WalletDiv :block="name" v-if="isA"/>
+    <ConnectBlock :block="name" :onclick="con" v-else />
   </Div>
 </template>
 

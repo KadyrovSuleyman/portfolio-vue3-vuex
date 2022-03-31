@@ -127,3 +127,36 @@ it('click trigger', () => {
   button.trigger('click');
   expect(store.state.count).toBe(2);
 });
+
+// it('props', () => {
+//   const Div = {
+//     props: [],
+
+//     setup() {
+//       const isSelected = ref('false');
+//       const select = () => {
+//         isSelected.value = 'true';
+//         console.log(isSelected.value);
+//       };
+
+//       return {
+//         isSelected,
+//         select,
+//       };
+//     },
+//     components: {
+//       Button,
+//     },
+
+//     template: `
+//       <div class='root'>
+//         <Button :typee="isSelected" :onclick="select" :mods="{ selected: isSelected }" />
+//       </div>
+//     `,
+//   };
+
+//   const wr = mount(Div);
+//   wr.find('button').trigger('click');
+
+//   expect(wr.element).toBeNull();
+// });
