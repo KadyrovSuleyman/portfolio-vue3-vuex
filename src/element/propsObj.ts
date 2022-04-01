@@ -3,7 +3,7 @@ const propsObj = {
   elem: String,
   mods: {
     type: Object,
-    default: (): Record<string, unknown> => ({}),
+    default: () => ({}),
   },
 
   type: String,

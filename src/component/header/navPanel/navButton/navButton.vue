@@ -1,36 +1,41 @@
-<script lang="ts">
-import { formateClassName } from '@/module/bem/index';
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+
+import { computed } from 'vue';
 import Div from '@/element/div/div.vue';
 import Link from '@/element/link/link.vue';
+import propsObj from '@/element/propsObj';
 
-export default defineComponent({
-  props: {
-    selected: Boolean,
-    block: String,
-    elem: String,
-  },
-  data() {
-    return {
-      mods: {
-        selected: this.$props.selected,
-      },
-      formateClassName,
+type OnClickHandlerT = (payload: MouseEvent) => void;
+// eslint-disable-next-line no-undef
+const props = defineProps({
+  ...propsObj,
 
-      parentName: this.$props.block,
-      name: this.$props.elem || 'navButton',
-    };
+  URL: String,
+  selected: Boolean,
+  onClick: {
+    type: Function,
+    default: (): OnClickHandlerT => () => ({}),
   },
-  components: { Div, Link },
 });
+const comp = computed(() => ({
+  elem: props.elem || 'navButton',
+  selectedMod: { selected: props.selected || props.mods?.selected },
+}));
+
 </script>
 
 <template>
-  <Div :block="parentName" :elem="name" :mods="mods">
-    <Link :block="name" :mods="mods">
+  <Div :block="props.block" :elem="comp.elem"
+    :mods="{ selected: comp.selectedMod, ...props.mods }">
+
+    <Link :URL="URL" :block="comp.elem"
+      :mods="comp.selectedMod"
+      :onClick="props.onClick">
       <slot></slot>
     </Link>
-    <Div :block="name" :elem="'rectangle'" :mods="mods" />
+
+    <Div :block="comp.elem" :elem="'rectangle'"
+      :mods="comp.selectedMod" />
   </Div>
 </template>
 

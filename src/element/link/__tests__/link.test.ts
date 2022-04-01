@@ -103,6 +103,19 @@ describe('link formates classes correctly', () => {
   });
 });
 
+it('link generates', () => {
+  wrapper = mount(Link);
+  expect(wrapper.find('a').attributes('href')).toBe('#');
+  wrapper.unmount();
+
+  wrapper = mount(Link, {
+    props: {
+      URL: '/test',
+    },
+  });
+  expect(wrapper.find('a').attributes('href')).toBe('/test');
+});
+
 it('click trigger', () => {
   const store = createStore({
     state: {
