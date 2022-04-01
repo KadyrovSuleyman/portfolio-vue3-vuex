@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { computed, ref } from 'vue';
-import { createStore } from 'vuex';
+import { createStore, Store } from 'vuex';
 import WalletDiv from '../walletDiv.vue';
 
 let wrapper = mount(WalletDiv, { global: { plugins: [createStore({})] } });
@@ -61,66 +61,80 @@ it('watchs props changes', async () => {
   wr.unmount();
 });
 
-it('works with outer store: 1', async () => {
-  const store = createStore({
-    state: {
-      address: 'first-address',
-      balance: 'first-balance',
-    },
-    mutations: {
-      changeAddress: (state) => { state.address = 'second-address'; },
-      changeBalance: (state) => { state.balance = 'second-balance'; },
-    },
-  });
-
-  wrapper = mount(WalletDiv, {
-    global: {
-      plugins: [store],
-    },
-  });
-
-  expect(wrapper.find('.addressBlock-span').text()).toBe('first-address');
-  expect(wrapper.find('.walletDiv-span').text()).toBe('first-balance');
-
-  store.commit('changeAddress');
-  await wrapper.vm.$nextTick();
-  expect(wrapper.find('.addressBlock-span').text()).toBe('second-address');
-  expect(wrapper.find('.walletDiv-span').text()).toBe('first-balance');
-
-  store.commit('changeBalance');
-  await wrapper.vm.$nextTick();
-  expect(wrapper.find('.addressBlock-span').text()).toBe('second-address');
-  expect(wrapper.find('.walletDiv-span').text()).toBe('second-balance');
+jest.mock('../adapter', () => {
+  const vue = jest.requireActual('vue');
+  return {
+    __esModule: true,
+    default: (store: Store<any>) => ({
+      address: vue.computed(() => store.state.address),
+      balance: vue.computed(() => store.state.balance),
+    }),
+  };
 });
 
-it('works with outer store: 2', async () => {
-  const store = createStore({
-    state: {
-      address: 'first-address',
-      balance: 'first-balance',
-    },
-    mutations: {
-      changeAddress: (state) => { state.address = 'second-address'; },
-      changeBalance: (state) => { state.balance = 'second-balance'; },
-    },
+// =========================================
+describe('outer store', () => {
+  it('changeAddress -> changeBalance', async () => {
+    const store = createStore({
+      state: {
+        address: 'first-address',
+        balance: 'first-balance',
+      },
+      mutations: {
+        changeAddress: (state) => { state.address = 'second-address'; },
+        changeBalance: (state) => { state.balance = 'second-balance'; },
+      },
+    });
+
+    wrapper = mount(WalletDiv, {
+      global: {
+        plugins: [store],
+      },
+    });
+
+    expect(wrapper.find('.addressBlock-span').text()).toBe('first-address');
+    expect(wrapper.find('.walletDiv-span').text()).toBe('first-balance');
+
+    store.commit('changeAddress');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find('.addressBlock-span').text()).toBe('second-address');
+    expect(wrapper.find('.walletDiv-span').text()).toBe('first-balance');
+
+    store.commit('changeBalance');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find('.addressBlock-span').text()).toBe('second-address');
+    expect(wrapper.find('.walletDiv-span').text()).toBe('second-balance');
   });
 
-  wrapper = mount(WalletDiv, {
-    global: {
-      plugins: [store],
-    },
+  it('changeBalance -> changeAddress', async () => {
+    const store = createStore({
+      state: {
+        address: 'first-address',
+        balance: 'first-balance',
+      },
+      mutations: {
+        changeAddress: (state) => { state.address = 'second-address'; },
+        changeBalance: (state) => { state.balance = 'second-balance'; },
+      },
+    });
+
+    wrapper = mount(WalletDiv, {
+      global: {
+        plugins: [store],
+      },
+    });
+
+    expect(wrapper.find('.addressBlock-span').text()).toBe('first-address');
+    expect(wrapper.find('.walletDiv-span').text()).toBe('first-balance');
+
+    store.commit('changeBalance');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find('.addressBlock-span').text()).toBe('first-address');
+    expect(wrapper.find('.walletDiv-span').text()).toBe('second-balance');
+
+    store.commit('changeAddress');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find('.addressBlock-span').text()).toBe('second-address');
+    expect(wrapper.find('.walletDiv-span').text()).toBe('second-balance');
   });
-
-  expect(wrapper.find('.addressBlock-span').text()).toBe('first-address');
-  expect(wrapper.find('.walletDiv-span').text()).toBe('first-balance');
-
-  store.commit('changeBalance');
-  await wrapper.vm.$nextTick();
-  expect(wrapper.find('.addressBlock-span').text()).toBe('first-address');
-  expect(wrapper.find('.walletDiv-span').text()).toBe('second-balance');
-
-  store.commit('changeAddress');
-  await wrapper.vm.$nextTick();
-  expect(wrapper.find('.addressBlock-span').text()).toBe('second-address');
-  expect(wrapper.find('.walletDiv-span').text()).toBe('second-balance');
 });
