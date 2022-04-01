@@ -1,39 +1,28 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+
+import { computed } from 'vue';
 import Div from '@/element/div/div.vue';
+import propsObj from '@/element/propsObj';
+import { useStore } from 'vuex';
 import WalletDiv from './walletDiv/walletDiv.vue';
 import ConnectBlock from './connectBlock/connectBlock.vue';
+import adapt from './adapter';
 
-export default defineComponent({
-  props: {
-    isAuthorized: Boolean,
+// eslint-disable-next-line no-undef
+const props = defineProps({ ...propsObj });
+const comp = computed(() => ({ elem: props.elem || 'walletBlock' }));
 
-    block: String,
-    elem: String,
-  },
-  data() {
-    return {
-      parentName: this.$props.block,
-      name: this.$props.elem || 'walletBlock',
+const store = useStore();
+const { isWalletConnect } = adapt(store);
 
-      isA: this.$props.isAuthorized,
-    };
-  },
-  components: { Div, WalletDiv, ConnectBlock },
+const todo = () => { console.warn('called connect to wallet'); };
 
-  methods: {
-    con() {
-      console.log('af');
-      this.isA = !this.isA;
-    },
-  },
-});
 </script>
 
 <template>
-  <Div :block="parentName" :elem="name">
-    <WalletDiv :block="name" v-if="isA"/>
-    <ConnectBlock :block="name" :onclick="con" v-else />
+  <Div :block="props.block" :elem="comp.elem" :mods="props.mods">
+    <WalletDiv :block="comp.elem" v-if="isWalletConnect" />
+    <ConnectBlock :block="comp.elem" :onclick="todo" v-else/>
   </Div>
 </template>
 

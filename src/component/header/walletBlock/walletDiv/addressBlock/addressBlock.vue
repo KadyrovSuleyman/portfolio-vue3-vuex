@@ -26,7 +26,7 @@ const comp = computed(() => ({ elem: props.elem || 'addressBlock' }));
     <Span :block="comp.elem">
       <slot></slot>
     </Span>
-    <Button :block="comp.elem" :icon="'copy'" @click="props.onClick"/>
+    <Button :block="comp.elem" :icon="'copy'" @click="onClick"/>
   </Div>
 </template>
 

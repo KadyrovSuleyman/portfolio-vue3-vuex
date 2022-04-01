@@ -3,14 +3,14 @@ import { computed, ref } from 'vue';
 import { createStore } from 'vuex';
 import WalletDiv from '../walletDiv.vue';
 
-let wrapper = mount(WalletDiv);
+let wrapper = mount(WalletDiv, { global: { plugins: [createStore({})] } });
 wrapper.unmount();
 afterEach(() => {
   wrapper.unmount();
 });
 
 it('connectBlock renders', () => {
-  wrapper = mount(WalletDiv);
+  wrapper = mount(WalletDiv, { global: { plugins: [createStore({})] } });
 
   expect(wrapper.find('div').classes()).toEqual(['walletDiv']);
   expect(wrapper.find('.walletDiv-addressBlock').classes()).toEqual(['walletDiv-addressBlock']);
@@ -49,7 +49,7 @@ it('watchs props changes', async () => {
       </div>
     `,
   };
-  const wr = mount(Div);
+  const wr = mount(Div, { global: { plugins: [createStore({})] } });
   expect(wr.find('.walletDiv').classes()).toEqual(['walletDiv']);
 
   await wr.find('.test-btn').trigger('click');
@@ -61,27 +61,66 @@ it('watchs props changes', async () => {
   wr.unmount();
 });
 
-// it('click sends data to outer store', async () => {
-//   const store = createStore({
-//     state: {
-//       clicked: false,
-//     },
-//     mutations: {
-//       click: (state) => { state.clicked = true; },
-//     },
-//   });
+it('works with outer store: 1', async () => {
+  const store = createStore({
+    state: {
+      address: 'first-address',
+      balance: 'first-balance',
+    },
+    mutations: {
+      changeAddress: (state) => { state.address = 'second-address'; },
+      changeBalance: (state) => { state.balance = 'second-balance'; },
+    },
+  });
 
-//   wrapper = mount(AddressBlock, {
-//     global: {
-//       plugins: [store],
-//     },
-//     props: {
-//       onClick: store.commit.bind('click'),
-//     },
-//   });
+  wrapper = mount(WalletDiv, {
+    global: {
+      plugins: [store],
+    },
+  });
 
-//   expect(store.state.clicked).toBeFalsy();
+  expect(wrapper.find('.addressBlock-span').text()).toBe('first-address');
+  expect(wrapper.find('.walletDiv-span').text()).toBe('first-balance');
 
-//   await wrapper.find('button').trigger('click');
-//   expect(store.state.clicked).toBeTruthy();
-// });
+  store.commit('changeAddress');
+  await wrapper.vm.$nextTick();
+  expect(wrapper.find('.addressBlock-span').text()).toBe('second-address');
+  expect(wrapper.find('.walletDiv-span').text()).toBe('first-balance');
+
+  store.commit('changeBalance');
+  await wrapper.vm.$nextTick();
+  expect(wrapper.find('.addressBlock-span').text()).toBe('second-address');
+  expect(wrapper.find('.walletDiv-span').text()).toBe('second-balance');
+});
+
+it('works with outer store: 2', async () => {
+  const store = createStore({
+    state: {
+      address: 'first-address',
+      balance: 'first-balance',
+    },
+    mutations: {
+      changeAddress: (state) => { state.address = 'second-address'; },
+      changeBalance: (state) => { state.balance = 'second-balance'; },
+    },
+  });
+
+  wrapper = mount(WalletDiv, {
+    global: {
+      plugins: [store],
+    },
+  });
+
+  expect(wrapper.find('.addressBlock-span').text()).toBe('first-address');
+  expect(wrapper.find('.walletDiv-span').text()).toBe('first-balance');
+
+  store.commit('changeBalance');
+  await wrapper.vm.$nextTick();
+  expect(wrapper.find('.addressBlock-span').text()).toBe('first-address');
+  expect(wrapper.find('.walletDiv-span').text()).toBe('second-balance');
+
+  store.commit('changeAddress');
+  await wrapper.vm.$nextTick();
+  expect(wrapper.find('.addressBlock-span').text()).toBe('second-address');
+  expect(wrapper.find('.walletDiv-span').text()).toBe('second-balance');
+});
