@@ -7,25 +7,6 @@ import Span from '@/element/span/span.vue';
 import Header from './header/header.vue';
 import StakingAppBlock from './stakingAppBlock/stakingAppBlock.vue';
 
-// export default defineComponent({
-//   data() {
-//     return {
-//       name: 'app',
-
-//       isAuthorized: false,
-
-//       msg: this.$store.state.count,
-//       click: this.$store.commit('INCREMENT'),
-//     };
-//   },
-//   components: {
-//     Header,
-//     Div,
-//     StakingAppBlock,
-//     Button,
-//   },
-// });
-
 const name = 'app';
 const isAuthorized = false;
 

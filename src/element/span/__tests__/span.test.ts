@@ -1,6 +1,5 @@
 import { mount } from '@vue/test-utils';
 import Span from '@/element/span/span.vue';
-import { createStore, useStore } from 'vuex';
 import { ref } from 'vue';
 
 let wrapper = mount(Span, {});
@@ -149,4 +148,6 @@ it('props changes correctly', async () => {
 
   await button.trigger('click');
   expect(span.html()).toBe('<span class="span">after</span>');
+
+  wr.unmount();
 });

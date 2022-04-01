@@ -27,7 +27,7 @@ export default defineComponent({
 
 <template>
   <Div :block="parentName" :elem="name" >
-    <AddressBlock :block="name"/>
+    <AddressBlock :block="name">zxc</AddressBlock>
     <Span :block="name">
       0.029 BUSD
     </Span>

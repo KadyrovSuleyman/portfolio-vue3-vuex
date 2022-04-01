@@ -163,4 +163,6 @@ it('props', async () => {
 
   await wr.find('button').trigger('click');
   expect(wr.html()).toBe('<div class="root"><button class="button button__selected"></button></div>');
+
+  wr.unmount();
 });

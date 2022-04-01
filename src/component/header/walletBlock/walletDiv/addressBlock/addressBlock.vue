@@ -1,32 +1,33 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+
+import { computed } from 'vue';
 import Div from '@/element/div/div.vue';
 import Span from '@/element/span/span.vue';
 import Button from '@/element/button/button.vue';
+import propsObj from '@/element/propsObj';
 
-export default defineComponent({
-  props: {
-    block: String,
-    elem: String,
+type OnClickHandlerT = (payload: MouseEvent) => void;
+// eslint-disable-next-line no-undef
+const props = defineProps({
+  ...propsObj,
+
+  onClick: {
+    type: Function,
+    default: (): OnClickHandlerT => () => ({}),
   },
-  data() {
-    return {
-      parentName: this.$props.block,
-      name: this.$props.elem || 'addressBlock',
-    };
-  },
-  components: { Div, Span, Button },
 });
+
+const comp = computed(() => ({ elem: props.elem || 'addressBlock' }));
 </script>
 
 <template>
-  <Div :block="parentName" :elem="name">
-    <Span :block="name">
-      0хCb99...8EBb
+  <Div :block="props.block" :elem="comp.elem" :mods="props.mods">
+    <Span :block="comp.elem" :mods="props.mods">
+      <slot></slot>
     </Span>
-    <Button :block="name" :icon="'copy'" />
+    <Button :block="comp.elem" :icon="'copy'" :mods="props.mods"
+      @click="props.onClick"/>
   </Div>
-
 </template>
 
 <style lang="scss">
