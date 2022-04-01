@@ -10,7 +10,7 @@ afterEach(() => {
 });
 
 it('connectBlock renders', () => {
-  wrapper = mount(AddressBlock, { global: { plugins: [createStore({})] } });
+  wrapper = mount(AddressBlock);
 
   expect(wrapper.find('div').classes()).toEqual(['addressBlock']);
   expect(wrapper.find('span').classes()).toEqual(['addressBlock-span']);
@@ -47,21 +47,12 @@ it('watchs props changes', async () => {
   };
   const wr = mount(Div);
   expect(wr.find('.addressBlock').classes()).toEqual(['addressBlock']);
-  expect(wr.find('.addressBlock-span').classes()).toEqual(['addressBlock-span']);
-  expect(wr.find('.addressBlock-button').classes())
-    .toEqual(['addressBlock-button', 'addressBlock-button__icon_copy']);
 
   await wr.find('.test-btn').trigger('click');
   expect(wr.find('.addressBlock').classes()).toEqual(['addressBlock', 'addressBlock__selected']);
-  expect(wr.find('.addressBlock-span').classes()).toEqual(['addressBlock-span', 'addressBlock-span__selected']);
-  expect(wr.find('.addressBlock-button').classes())
-    .toEqual(['addressBlock-button', 'addressBlock-button__icon_copy', 'addressBlock-button__selected']);
 
   await wr.find('.test-btn').trigger('click');
   expect(wr.find('.addressBlock').classes()).toEqual(['addressBlock']);
-  expect(wr.find('.addressBlock-span').classes()).toEqual(['addressBlock-span']);
-  expect(wr.find('.addressBlock-button').classes())
-    .toEqual(['addressBlock-button', 'addressBlock-button__icon_copy']);
 
   wr.unmount();
 });

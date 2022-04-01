@@ -31,5 +31,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-  @use '.' as *;
+  @use 'styles' as *;
 </style>

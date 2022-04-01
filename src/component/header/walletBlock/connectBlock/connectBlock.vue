@@ -23,12 +23,12 @@ const comp = computed(() => ({ elem: props.elem || 'connectBlock' }));
 
 <template>
   <Div :block="props.block" :elem="comp.elem" :mods="props.mods">
-    <Button :block="comp.elem" @click="props.onClick" :mods="props.mods">
+    <Button :block="comp.elem" @click="props.onClick">
       Connect wallet
     </Button>
   </Div>
 </template>
 
 <style lang="scss">
-  @use '.' as *;
+  @use 'styles' as *;
 </style>

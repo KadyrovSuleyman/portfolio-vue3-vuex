@@ -32,5 +32,5 @@ const store = useStore();
 
 <style lang="scss">
   // @use '@/modificators' as *;
-  @use '.' as *;
+  @use 'styles' as *;
 </style>

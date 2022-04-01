@@ -18,18 +18,18 @@ const props = defineProps({
 });
 
 const comp = computed(() => ({ elem: props.elem || 'addressBlock' }));
+
 </script>
 
 <template>
   <Div :block="props.block" :elem="comp.elem" :mods="props.mods">
-    <Span :block="comp.elem" :mods="props.mods">
+    <Span :block="comp.elem">
       <slot></slot>
     </Span>
-    <Button :block="comp.elem" :icon="'copy'" :mods="props.mods"
-      @click="props.onClick"/>
+    <Button :block="comp.elem" :icon="'copy'" @click="props.onClick"/>
   </Div>
 </template>
 
 <style lang="scss">
-  @use '.' as *;
+  @use 'styles' as *;
 </style>

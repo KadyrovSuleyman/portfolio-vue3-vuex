@@ -48,15 +48,12 @@ it('watchs props changes', async () => {
   const wr = mount(Div);
 
   expect(wr.find('.connectBlock').classes()).toEqual(['connectBlock']);
-  expect(wr.find('.connectBlock-button').classes()).toEqual(['connectBlock-button']);
 
   await wr.find('.test-btn').trigger('click');
   expect(wr.find('.connectBlock').classes()).toEqual(['connectBlock', 'connectBlock__selected']);
-  expect(wr.find('.connectBlock-button').classes()).toEqual(['connectBlock-button', 'connectBlock-button__selected']);
 
   await wr.find('.test-btn').trigger('click');
   expect(wr.find('.connectBlock').classes()).toEqual(['connectBlock']);
-  expect(wr.find('.connectBlock-button').classes()).toEqual(['connectBlock-button']);
 
   wr.unmount();
 });
