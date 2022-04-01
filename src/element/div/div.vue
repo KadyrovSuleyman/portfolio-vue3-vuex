@@ -2,29 +2,28 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { formateClassName } from '@/module/bem/index';
-import { reactive } from 'vue';
+import { computed } from 'vue';
 
-import ModsI from '../ModsI';
+import propsObj from '../propsObj';
 
-interface PropsI extends ModsI {
-  block?: string,
-  elem?: string,
-  mods?: Record<string, unknown>,
-}
 // eslint-disable-next-line no-undef
-const props = defineProps<PropsI>();
+const props = defineProps({ ...propsObj });
 
-const {
-  mods: _mods, block: _block, elem: _elem, ...filtredProps
-} = reactive(props);
+const classNames = computed(() => {
+  const {
+    mods, block, elem, ...filtredProps
+  } = props;
+
+  return formateClassName(block, elem || 'div', {
+    ...filtredProps,
+    ...mods,
+  });
+});
 
 </script>
 
 <template>
-  <div :class="formateClassName(block, elem || 'div', {
-    ...filtredProps,
-    ...mods,
-  })">
+  <div :class="classNames">
 
     <slot></slot>
   </div>

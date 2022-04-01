@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils';
 import Button from '@/element/button/button.vue';
 import { createStore } from 'vuex';
+import { computed, ref } from 'vue';
 
 let wrapper = mount(Button, {});
 wrapper.unmount();
@@ -128,35 +129,38 @@ it('click trigger', () => {
   expect(store.state.count).toBe(2);
 });
 
-// it('props', () => {
-//   const Div = {
-//     props: [],
+it('props', async () => {
+  const Div = {
+    props: [],
 
-//     setup() {
-//       const isSelected = ref('false');
-//       const select = () => {
-//         isSelected.value = 'true';
-//         console.log(isSelected.value);
-//       };
+    setup() {
+      const isSelected = ref(false);
+      const select = () => {
+        isSelected.value = true;
+      };
 
-//       return {
-//         isSelected,
-//         select,
-//       };
-//     },
-//     components: {
-//       Button,
-//     },
+      const mods = computed(() => ({ selected: isSelected.value }));
 
-//     template: `
-//       <div class='root'>
-//         <Button :typee="isSelected" :onclick="select" :mods="{ selected: isSelected }" />
-//       </div>
-//     `,
-//   };
+      return {
+        isSelected,
+        select,
+        mods,
+      };
+    },
+    components: {
+      Button,
+    },
 
-//   const wr = mount(Div);
-//   wr.find('button').trigger('click');
+    template: `
+      <div class='root'>
+        <Button :onclick="select" :mods="mods" />
+      </div>
+    `,
+  };
 
-//   expect(wr.element).toBeNull();
-// });
+  const wr = mount(Div);
+  expect(wr.html()).toBe('<div class="root"><button class="button"></button></div>');
+
+  await wr.find('button').trigger('click');
+  expect(wr.html()).toBe('<div class="root"><button class="button button__selected"></button></div>');
+});

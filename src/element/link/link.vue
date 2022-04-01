@@ -2,32 +2,36 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { formateClassName } from '@/module/bem/index';
-import { reactive } from 'vue';
+import { computed } from 'vue';
 
-import ModsI from '../ModsI';
+import propsObj from '../propsObj';
 
-interface PropsI extends ModsI {
-  block?: string,
-  elem?: string,
-  mods?: Record<string, unknown>,
-
-  URL?: string,
-  onClick?: (payload: MouseEvent) => void,
-}
+type OnClickHandlerT = (payload: MouseEvent) => void;
 // eslint-disable-next-line no-undef
-const props = defineProps<PropsI>();
+const props = defineProps({
+  ...propsObj,
 
-const {
-  mods: _mods, block: _block, elem: _elem, onClick: _onClick, ...filtredProps
-} = reactive(props);
+  URL: String,
+  onClick: {
+    type: Function,
+    default: (): OnClickHandlerT => () => ({}),
+  },
+});
 
+const classNames = computed(() => {
+  const {
+    mods, block, elem, onClick, URL, ...filtredProps
+  } = props;
+
+  return formateClassName(block, elem || 'link', {
+    ...filtredProps,
+    ...mods,
+  });
+});
 </script>
 
 <template>
-  <a :href="URL || '#'" @click="onClick" :class="formateClassName(block, elem || 'link', {
-    ...filtredProps,
-    ...mods,
-  })">
+  <a :href="URL || '#'" @click="onClick" :class="classNames">
 
     <slot></slot>
   </a>

@@ -6,11 +6,13 @@ import types from './mutation-types';
 export default createStore({
   state: {
     count: 0,
+    str: 'a',
   },
   getters: {
   },
   mutations: {
     [types.INCREMENT]: (state, n = 1) => { state.count += n; },
+    change: (state) => { state.str += 'a'; },
   },
   actions: {
     [types.INCREMENT]: ({ commit }, n: number) => setTimeout(() => {

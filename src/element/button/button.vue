@@ -1,32 +1,37 @@
 <script setup lang="ts">
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { formateClassName, ModsT } from '@/module/bem/index';
-import { reactive } from 'vue';
+import { formateClassName } from '@/module/bem/index';
+import { computed } from 'vue';
 
-import ModsI from '../ModsI';
+import propsObj from '../propsObj';
 
-interface PropsI extends ModsI {
-  block?: string,
-  elem?: string,
-  mods?: Record<string, unknown>,
-
-  onClick?:(payload: MouseEvent) => void,
-}
+type OnClickHandlerT = (payload: MouseEvent) => void;
 // eslint-disable-next-line no-undef
-const props = defineProps<PropsI>();
+const props = defineProps({
+  ...propsObj,
 
-const {
-  mods, block, elem, onClick, ...filtredProps
-} = reactive(props);
+  onClick: {
+    type: Function,
+    default: (): OnClickHandlerT => () => ({}),
+  },
+});
+
+const classNames = computed(() => {
+  const {
+    mods, block, elem, onClick, ...filtredProps
+  } = props;
+
+  return formateClassName(block, elem || 'button', {
+    ...filtredProps,
+    ...mods,
+  });
+});
 
 </script>
 
 <template>
-  <button @click="onClick" :class="formateClassName(block, elem || 'button', {
-    ...filtredProps,
-    ...mods,
-  })">
+  <button @click="onClick" :class="classNames">
 
     <slot></slot>
   </button>

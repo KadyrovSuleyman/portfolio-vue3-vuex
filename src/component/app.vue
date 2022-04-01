@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, reactive } from 'vue';
 import Div from '@/element/div/div.vue';
 import Button from '@/element/button/button.vue';
 import { createStore, useStore } from 'vuex';
+import Span from '@/element/span/span.vue';
 import Header from './header/header.vue';
 import StakingAppBlock from './stakingAppBlock/stakingAppBlock.vue';
 
@@ -36,7 +37,16 @@ const store = useStore();
   <Header :block="name" :isAuthorized="false"/>
   <Div :block="name" :elem="'headerBorder'" />
   <StakingAppBlock :block="name" :isAuthorized="false" />
-  <Button :onClick="() => { store.commit('INCREMENT'); }">{{  store.state.count }}</Button>
+
+  <Button :onClick="() => { store.commit('change'); }"
+  :mods="{ str: store.state.str }"
+  :block="store.state.str"
+  :temp="store.state.str"
+  :type="store.state.str"
+  >{{  store.state.str }}</Button>
+
+  <Span :mods="{ str: store.state.str }">{{ store.state.str }}</Span>
+
 </template>
 
 <style lang="scss">

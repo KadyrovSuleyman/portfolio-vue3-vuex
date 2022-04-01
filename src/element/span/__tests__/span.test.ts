@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils';
 import Span from '@/element/span/span.vue';
-import { createStore } from 'vuex';
+import { createStore, useStore } from 'vuex';
+import { ref } from 'vue';
 
 let wrapper = mount(Span, {});
 wrapper.unmount();
@@ -105,54 +106,47 @@ describe('span formates classes correctly', () => {
 
 it('slots', () => {
   wrapper = mount(Span, {
-    // slots: {
-    //   default: 'test text',
-    // },
-    props: {
-      msg: 'test text',
+    slots: {
+      default: 'test text',
     },
   });
 
   expect(wrapper.html()).toBe('<span class="span">test text</span>');
 });
 
-it('props from store', async () => {
-  const store = createStore({
-    state: {
-      msg: 'before',
-    },
-    mutations: {
-      change: (state) => { state.msg = 'after'; },
-    },
-    actions: {
-      act: ({ commit }) => { commit('change'); },
-    },
-  });
+it('props changes correctly', async () => {
+  const Div = {
+    props: [],
 
-  wrapper = mount(Span, {
-    global: {
-      provide: {
-        store,
-      },
+    setup() {
+      const state = ref('before');
+      const changeState = () => {
+        state.value = 'after';
+      };
+
+      return {
+        state,
+        changeState,
+      };
     },
-    // slots: {
-    //   default: store.state.msg,
-    // },
-    props: {
-      msg: store.state.msg,
+    components: {
+      Span,
     },
-  });
 
-  const div = wrapper.get('span');
-  expect(div).not.toBeNull();
-  expect(div.html()).toBe('<span class="span">before</span>');
+    template: `
+      <div class='root'>
+        <Span>{{ state }}</Span>
+        <button @click="changeState"></button>
+      </div>
+    `,
+  };
 
-  store.commit('change');
-  store.dispatch('act');
-  await wrapper.vm.$nextTick();
+  const wr = mount(Div);
+  const span = wr.find('span');
+  const button = wr.find('button');
 
-  expect(div).not.toBeNull();
-  expect(store.state.msg).toBe('after');
+  expect(span.html()).toBe('<span class="span">before</span>');
 
-  expect(div.html()).toBe('<span class="span">after</span>');
+  await button.trigger('click');
+  expect(span.html()).toBe('<span class="span">after</span>');
 });
