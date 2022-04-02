@@ -15,7 +15,7 @@ const store = useStore();
 </script>
 
 <template>
-  <Header :block="name" :isAuthorized="false"/>
+  <Header :block="name" />
   <Div :block="name" :elem="'headerBorder'" />
   <StakingAppBlock :block="name" :isAuthorized="false" />
 

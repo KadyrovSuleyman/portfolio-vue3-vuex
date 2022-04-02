@@ -26,7 +26,7 @@ const comp = computed(() => ({
 
 <template>
   <Div :block="props.block" :elem="comp.elem"
-    :mods="{ selected: comp.selectedMod, ...props.mods }">
+    :mods="{ ...props.mods, ...comp.selectedMod }">
 
     <Link :URL="URL" :block="comp.elem"
       :mods="comp.selectedMod"

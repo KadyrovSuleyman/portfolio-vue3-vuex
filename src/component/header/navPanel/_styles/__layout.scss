@@ -4,9 +4,13 @@
   display: grid;
   justify-content: space-between;
 
-  width: 290px;
+  grid-auto-flow: column;
 
-  grid-template-columns: 84px 88px 33px;
+  column-gap: 20px;
 
   grid-row: 1 / 2;
+}
+
+.navPanel-navButton {
+  width: 80px;
 }

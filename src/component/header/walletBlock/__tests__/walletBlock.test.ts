@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { computed, ref } from 'vue';
-import { createStore } from 'vuex';
+import { createStore, Store } from 'vuex';
 import WalletBlock from '../walletBlock.vue';
 
 let wrapper = mount(WalletBlock, { global: { plugins: [createStore({})] } });
@@ -53,6 +53,17 @@ it('watchs props changes', async () => {
   expect(wr.find('.walletBlock').classes()).toEqual(['walletBlock']);
 
   wr.unmount();
+});
+
+// =========================================
+jest.mock('../adapter', () => {
+  const vue = jest.requireActual('vue');
+  return {
+    __esModule: true,
+    default: (store: Store<any>) => ({
+      isWalletConnect: vue.computed(() => store.state.connect),
+    }),
+  };
 });
 
 it('walletBlock if wallet connected, connectBlock if dont', async () => {

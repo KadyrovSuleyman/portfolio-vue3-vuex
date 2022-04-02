@@ -61,6 +61,7 @@ it('watchs props changes', async () => {
   wr.unmount();
 });
 
+// =========================================
 jest.mock('../adapter', () => {
   const vue = jest.requireActual('vue');
   return {
@@ -72,7 +73,6 @@ jest.mock('../adapter', () => {
   };
 });
 
-// =========================================
 describe('outer store', () => {
   it('changeAddress -> changeBalance', async () => {
     const store = createStore({

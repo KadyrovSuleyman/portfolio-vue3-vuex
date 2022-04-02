@@ -1,29 +1,21 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+
+import propsObj from '@/element/propsObj';
+import { formateClassName } from '@/module/bem';
+import { computed } from 'vue';
 import NavPanel from './navPanel/navPanel.vue';
 import WalletBlock from './walletBlock/walletBlock.vue';
 
-export default defineComponent({
-  props: {
-    block: String,
-    elem: String,
+// eslint-disable-next-line no-undef
+const props = defineProps({ ...propsObj });
+const comp = computed(() => ({ elem: props.elem || 'header' }));
 
-    isAuthorized: Boolean,
-  },
-  data() {
-    return {
-      parentName: this.$props.block,
-      name: this.$props.elem || 'header',
-    };
-  },
-  components: { NavPanel, WalletBlock },
-});
 </script>
 
 <template>
-  <header :class="`${parentName}-${name}`">
-    <NavPanel :block="name"/>
-    <WalletBlock :block="name" :isAuthorized="isAuthorized"/>
+  <header :class="formateClassName(props.block, comp.elem, { ...props.mods })">
+    <NavPanel :block="comp.elem"/>
+    <WalletBlock :block="comp.elem"/>
   </header>
 </template>
 
