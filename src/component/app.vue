@@ -8,7 +8,7 @@ import Header from './header/header.vue';
 import StakingAppBlock from './stakingAppBlock/stakingAppBlock.vue';
 
 const name = 'app';
-const isAuthorized = false;
+const isAuthorized = true;
 
 const store = useStore();
 
@@ -17,7 +17,7 @@ const store = useStore();
 <template>
   <Header :block="name" />
   <Div :block="name" :elem="'headerBorder'" />
-  <StakingAppBlock :block="name" :isAuthorized="false" />
+  <StakingAppBlock :block="name" :isAuthorized="true" />
 
   <Button :onClick="() => { store.commit('change'); }"
   :mods="{ str: store.state.str }"
