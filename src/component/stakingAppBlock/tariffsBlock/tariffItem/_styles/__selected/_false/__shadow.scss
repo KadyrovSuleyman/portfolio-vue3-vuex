@@ -1,0 +1,5 @@
+@use '../../variables' as *;
+
+.#{$parent}-tariffItem__selected_false {
+  box-shadow: 0px 16px 44px rgba(78, 102, 120, 0.1);
+}

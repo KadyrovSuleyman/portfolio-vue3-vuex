@@ -76,3 +76,55 @@ it('tip shows on mouse hover', async () => {
   await wrapper.find('.tariffItem-question').trigger('mouseleave');
   expect(wrapper.find('.tariffItem-tip').exists()).toBeFalsy();
 });
+
+it('watchs selected props change', async () => {
+  const Div = {
+    props: [],
+
+    setup() {
+      const isSelected = ref<string | undefined>(undefined);
+      const select = () => {
+        isSelected.value = 'true';
+      };
+      const unselect = () => {
+        isSelected.value = 'false';
+      };
+      const clean = () => {
+        isSelected.value = undefined;
+      };
+
+      return {
+        isSelected,
+        select,
+        unselect,
+        clean,
+      };
+    },
+    components: {
+      TariffItem,
+    },
+
+    template: `
+      <div class='root'>
+        <TariffItem :selected="isSelected"
+        />
+        <button class="select-btn" @click="select"></button>
+        <button class="unselect-btn" @click="unselect"></button>
+        <button class="clean-btn" @click="clean"></button>
+      </div>
+    `,
+  };
+  const wr = mount(Div);
+  expect(wr.find('.tariffItem').classes()).toEqual(['tariffItem']);
+
+  await wr.find('.select-btn').trigger('click');
+  expect(wr.find('.tariffItem').classes()).toEqual(['tariffItem', 'tariffItem__selected_true']);
+
+  await wr.find('.unselect-btn').trigger('click');
+  expect(wr.find('.tariffItem').classes()).toEqual(['tariffItem', 'tariffItem__selected_false']);
+
+  await wr.find('.clean-btn').trigger('click');
+  expect(wr.find('.tariffItem').classes()).toEqual(['tariffItem']);
+
+  wr.unmount();
+});

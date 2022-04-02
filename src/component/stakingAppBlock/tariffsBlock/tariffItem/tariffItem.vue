@@ -6,44 +6,21 @@ import Span from '@/element/span/span.vue';
 import propsObj from '@/element/propsObj';
 import Tip from './tip/tip.vue';
 
-// export default defineComponent({
-//   props: {
-//     period: String,
-//     apy: String,
-//     amount: String,
-
-//     block: String,
-//     elem: String,
-//   },
-//   data() {
-//     return {
-//       isTipVisible: false,
-
-//       parentName: this.$props.block,
-//       name: this.$props.elem || 'tariffItem',
-//     };
-//   },
-//   methods: {
-//     showTip() {
-//       this.isTipVisible = true;
-//     },
-//     hideTip() {
-//       this.isTipVisible = false;
-//     },
-//   },
-//   components: { Tip, Div, Span },
-// });
-
 // eslint-disable-next-line no-undef
 const props = defineProps({
   ...propsObj,
   period: String,
   apy: String,
   amount: String,
+
+  selected: String,
 });
 
 const isTipVisible = ref(false);
-const comp = computed(() => ({ elem: props.elem || 'tariffItem' }));
+const comp = computed(() => ({
+  elem: props.elem || 'tariffItem',
+  selected: (props.mods?.selected as string) || props.selected,
+}));
 
 const showTip = () => { isTipVisible.value = true; };
 const hideTip = () => { isTipVisible.value = false; };
@@ -51,7 +28,9 @@ const hideTip = () => { isTipVisible.value = false; };
 </script>
 
 <template>
-  <Div :block="props.block" :elem="comp.elem" :mods="props.mods">
+  <Div :block="props.block" :elem="comp.elem"
+    :mods="{ selected: comp.selected, ...props.mods}"
+  >
     <Tip :block="comp.elem" v-if="isTipVisible">
       Tip text hover
     </Tip>

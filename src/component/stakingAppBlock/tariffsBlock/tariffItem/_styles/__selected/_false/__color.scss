@@ -1,0 +1,7 @@
+@use '/src/modificators/variables/color' as *;
+@use '../../variables' as *;
+
+.#{$parent}-tariffItem__selected_false {
+  background-color: rgba($color: $white, $alpha: 1.0);
+  border-color: rgba($color: $white, $alpha: 1.0);
+}
