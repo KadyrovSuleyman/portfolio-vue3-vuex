@@ -1,5 +1,5 @@
 import { computed, ref } from 'vue';
-import { Store } from 'vuex';
+import { createStore, Store } from 'vuex';
 
 export type TariffItemT = {
   period: string,
@@ -27,6 +27,7 @@ export const tariffsList = ref<TariffItemT[]>([
 
 const adapt = (store: Store<any>) => ({
   // tariffsList: computed(() => store.state.list),
+
   tariffsList: tariffsList.value,
 });
 

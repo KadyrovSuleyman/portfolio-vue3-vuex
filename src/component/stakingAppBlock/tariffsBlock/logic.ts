@@ -1,19 +1,33 @@
 /* eslint-disable no-param-reassign */
-import { computed, ref } from 'vue';
+import { computed, ComputedRef, ref } from 'vue';
 
 import { TariffItemT } from './adapter';
 
-export const selectMap = (list: TariffItemT[]) => {
+// export const selectMap = (list: TariffItemT[]) => {
+//   const res: { [key: string]: string | undefined } = {};
+
+//   list.forEach((tariff) => {
+//     res[tariff.period] = undefined;
+//   });
+
+//   return res;
+// }
+
+export const selectMap = (list: TariffItemT[]) => computed(() => {
   const res: { [key: string]: string | undefined } = {};
 
   list.forEach((tariff) => {
     res[tariff.period] = undefined;
   });
 
-  return res;
-}
+  // console.log(list);
 
-export const selectToClosuree = (map: { [key: string]: string | undefined }, target: string) => {
+  return res;
+});
+
+// ============================
+
+export const selectToClosure = (map: { [key: string]: string | undefined }, target: string) => {
   if (map[target] === undefined || map[target] === 'false') {
     Object.keys(map).forEach((key) => {
       map[key] = 'false';
@@ -29,14 +43,62 @@ export const selectToClosuree = (map: { [key: string]: string | undefined }, tar
   }
 };
 
+// ----------------------------
+export const clickHandlerToClosure = (list: TariffItemT[], payload: MouseEvent) => {
+  payload.preventDefault();
+
+  const targetItem = (payload.target as HTMLDivElement);
+  const key = targetItem.querySelector('.tariffItem-period')?.textContent || '';
+
+  // console.warn(`${targetItem}: sending request`);
+  // -----------
+  // console.warn(`${targetItem}: sending answer`);
+
+  const map = selectMap(list);
+  selectToClosure(map.value, key);
+};
+
 // // ----------------------------
-// export const clickHandlerToClosuree = (obj: { [name: string]: boolean }, payload: MouseEvent) => {
+// export const clickHandlerToClosuree = (
+//   map: ComputedRef<{
+//     [key: string]: string | undefined;
+//   }>,
+//   payload: MouseEvent,
+// ) => {
 //   payload.preventDefault();
 
-//   const targetItem = (payload.target as HTMLAnchorElement).textContent || '';
+//   const targetItem = (payload.target as HTMLDivElement);
+//   const key = targetItem.querySelector('.tariffItem-period')?.textContent || '';
+
+//   // console.log(key);
+
 //   // console.warn(`${targetItem}: sending request`);
 //   // -----------
 //   // console.warn(`${targetItem}: sending answer`);
-//   selectToClosuree(obj, targetItem);
+
+//   selectToClosure(map.value, key);
+
+//   // console.log(map.value);
 // };
-// export const clickHandle = (payload: MouseEvent) => clickHandlerToClosure(navItems.value, payload);
+
+// // ----------------------------
+// export const clickHandlerToClosure = (
+//   map: { [key: string]: string | undefined },
+//   // map: any,
+//   payload: MouseEvent,
+// ) => {
+//   payload.preventDefault();
+
+//   const targetItem = (payload.target as HTMLDivElement);
+//   const key = targetItem.querySelector('.tariffItem-period')?.textContent || '';
+
+//   console.log(key);
+
+//   // console.warn(`${targetItem}: sending request`);
+//   // -----------
+//   // console.warn(`${targetItem}: sending answer`);
+
+//   selectToClosure(map, key);
+
+//   // console.log(map.value);
+// };
