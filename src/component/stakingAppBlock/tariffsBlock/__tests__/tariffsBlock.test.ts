@@ -1,19 +1,17 @@
 import { mount, VueWrapper } from '@vue/test-utils';
-import { computed, reactive, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { createStore, Store } from 'vuex';
 import TariffsBlock from '../tariffsBlock.vue';
 import { TariffItemT } from '../adapter';
-import tariffItemVue from '../tariffItem/tariffItem.vue';
-import { selectMap, clickHandlerToClosure, selectToClosure } from '../logic';
 
 jest.mock('../adapter', () => {
-  const vue = jest.requireActual('vue');
   const originalModule = jest.requireActual('../adapter');
   return {
     __esModule: true,
     ...originalModule,
     default: (store: Store<any>) => ({
       tariffsList: store.state.list,
+      selectList: store.state.selectList,
     }),
   };
 });
@@ -41,6 +39,11 @@ beforeEach(() => {
           amount: '500 - 1000 TKN',
         },
       ],
+      selectList: {
+        '30 Days': undefined,
+        '90 Days': undefined,
+        '150 Days': undefined,
+      },
     },
     mutations: {
       add: (state, item: TariffItemT) => { state.list.push(item); },
@@ -165,52 +168,45 @@ describe('outer store changing', () => {
 });
 
 it('selecting some tariff', async () => {
-  const map = selectMap(store.state.list);
-  // const map = computed(() => selectMap(store.state.list));
-
-  // const a = ref(map.value['30 Days']);
-
-  // const clickHandler = (payload: MouseEvent) => clickHandlerToClosure(map.value, payload);
-
-  // wrapper = mount(tariffItemVue, {
-  //   global: { plugins: [store] },
-  //   props: {
-  //     period: '30 Days',
-  //     selected: a,
-
-  //     onClick: clickHandler,
-  //   },
-  // });
-
-  store.commit('change', 1);
-  expect(map.value || {}).toStrictEqual({
-    '30 Days': undefined,
-    'changed period': undefined,
-    '150 Days': undefined,
+  wrapper = mount(TariffsBlock, {
+    global: { plugins: [store] },
   });
-  // expect(a.value).toBeUndefined();
 
-  selectToClosure(map, '30 Days');
-  expect(map.value).toStrictEqual({
-    '30 Days': 'true',
-    'changed period': 'false',
-    '150 Days': 'false',
-  });
-  // expect(a.value).toBe('true');
-  // expect(wrapper.props().selected).toBe('true');
+  const target = wrapper.findAll('.tariffsBlock-tariffItem');
 
+  expect(wrapper.findAll('.tariffsBlock-tariffItem').length).toBe(3);
+  expect(wrapper.findAll('.tariffsBlock-tariffItem__selected_true').length).toBe(0);
+  expect(wrapper.findAll('.tariffsBlock-tariffItem__selected_false').length).toBe(0);
 
+  await target[0].trigger('click');
+  expect(target[0].classes())
+    .toStrictEqual(['tariffsBlock-tariffItem', 'tariffsBlock-tariffItem__selected_true']);
+  expect(target[1].classes())
+    .toStrictEqual(['tariffsBlock-tariffItem', 'tariffsBlock-tariffItem__selected_false']);
+  expect(target[2].classes())
+    .toStrictEqual(['tariffsBlock-tariffItem', 'tariffsBlock-tariffItem__selected_false']);
 
+  await target[0].trigger('click');
+  expect(target[0].classes())
+    .toStrictEqual(['tariffsBlock-tariffItem']);
+  expect(target[1].classes())
+    .toStrictEqual(['tariffsBlock-tariffItem']);
+  expect(target[2].classes())
+    .toStrictEqual(['tariffsBlock-tariffItem']);
 
+  await target[2].trigger('click');
+  expect(target[0].classes())
+    .toStrictEqual(['tariffsBlock-tariffItem', 'tariffsBlock-tariffItem__selected_false']);
+  expect(target[1].classes())
+    .toStrictEqual(['tariffsBlock-tariffItem', 'tariffsBlock-tariffItem__selected_false']);
+  expect(target[2].classes())
+    .toStrictEqual(['tariffsBlock-tariffItem', 'tariffsBlock-tariffItem__selected_true']);
 
-  // expect(wrapper.findAll('.tariffsBlock-tariffItem').length).toBe(3);
-
-  // await wrapper.vm.$nextTick();
-  // await wrapper.vm.$forceUpdate();
-  // expect(wrapper.props()).toBeNull();
-
-  // await target.trigger('click');
-  // expect(target.props()).toBeNull();
-
-  // expect(wrapper.find('.tariffsBlock-tariffItem__selected_true').exists()).toBeTruthy();
+  await target[1].trigger('click');
+  expect(target[0].classes())
+    .toStrictEqual(['tariffsBlock-tariffItem', 'tariffsBlock-tariffItem__selected_false']);
+  expect(target[1].classes())
+    .toStrictEqual(['tariffsBlock-tariffItem', 'tariffsBlock-tariffItem__selected_true']);
+  expect(target[2].classes())
+    .toStrictEqual(['tariffsBlock-tariffItem', 'tariffsBlock-tariffItem__selected_false']);
 });

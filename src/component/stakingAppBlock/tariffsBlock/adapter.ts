@@ -1,5 +1,5 @@
-import { computed, ref } from 'vue';
-import { createStore, Store } from 'vuex';
+import { ref } from 'vue';
+import { Store } from 'vuex';
 
 export type TariffItemT = {
   period: string,
@@ -25,20 +25,23 @@ export const tariffsList = ref<TariffItemT[]>([
   },
 ]);
 
-// const adapt = (store: Store<any>) => ({
-//   // tariffsList: computed(() => store.state.list),
-
-//   tariffsList: tariffsList.value,
-// });
-
-const adapt = (store: Store<any>) => {
-  console.log(store.state.list);
-  store.commit('change', 1);
-  return {
-    tariffsList: store.state.list,
-
-    // tariffsList: tariffsList.value,
-  };
+export type SelectListT = {
+  [name: string]: string | undefined,
 };
+
+export const selectList = ref<SelectListT>({
+  '30 Days': undefined,
+  '90 Days': undefined,
+  '150 Days': undefined,
+});
+
+// ======================================
+const adapt = (store: Store<any>) => ({
+  // tariffsList: store.state.list,
+  // selectList: store.state.selectList,
+
+  tariffsList: tariffsList.value,
+  selectList: selectList.value,
+});
 
 export default adapt;
