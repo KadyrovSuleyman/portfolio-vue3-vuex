@@ -1,17 +1,67 @@
-import { mount } from '@vue/test-utils';
-import { computed, ref } from 'vue';
+import { mount, VueWrapper } from '@vue/test-utils';
+import { computed, reactive, ref } from 'vue';
 import { createStore, Store } from 'vuex';
 import TariffsBlock from '../tariffsBlock.vue';
 import { TariffItemT } from '../adapter';
+import tariffItemVue from '../tariffItem/tariffItem.vue';
+import { selectMap, clickHandlerToClosure, selectToClosure } from '../logic';
 
-let wrapper = mount(TariffsBlock, { global: { plugins: [createStore({})] } });
-wrapper.unmount();
+jest.mock('../adapter', () => {
+  const vue = jest.requireActual('vue');
+  const originalModule = jest.requireActual('../adapter');
+  return {
+    __esModule: true,
+    ...originalModule,
+    default: (store: Store<any>) => ({
+      tariffsList: store.state.list,
+    }),
+  };
+});
+
+let store: Store<any>;
+let wrapper: VueWrapper<any>;
+
+beforeEach(() => {
+  store = createStore({
+    state: {
+      list: [
+        {
+          period: '30 Days',
+          apy: '103,23%',
+          amount: '100 - 299 TKN',
+        },
+        {
+          period: '90 Days',
+          apy: '116,86%',
+          amount: '100 - 299 TKN',
+        },
+        {
+          period: '150 Days',
+          apy: '129,97%',
+          amount: '500 - 1000 TKN',
+        },
+      ],
+    },
+    mutations: {
+      add: (state, item: TariffItemT) => { state.list.push(item); },
+      delete: (state, index: number) => { state.list.splice(index, 1); },
+      change: (state, index: number) => {
+        state.list[index].period = 'changed period';
+        state.list[index].apy = 'changed apy';
+        state.list[index].amount = 'changed amount';
+      },
+    },
+  });
+});
 afterEach(() => {
+  store = createStore({});
   wrapper.unmount();
 });
 
+// ===========================
+
 it('tariffsBlock renders', () => {
-  wrapper = mount(TariffsBlock, { global: { plugins: [createStore({})] } });
+  wrapper = mount(TariffsBlock, { global: { plugins: [store] } });
 
   expect(wrapper.find('.tariffsBlock').classes()).toEqual(['tariffsBlock']);
 });
@@ -44,7 +94,7 @@ it('watchs props changes', async () => {
       </div>
     `,
   };
-  const wr = mount(Div, { global: { plugins: [createStore({})] } });
+  const wr = mount(Div, { global: { plugins: [store] } });
   expect(wr.find('.tariffsBlock').classes()).toEqual(['tariffsBlock']);
 
   await wr.find('.test-btn').trigger('click');
@@ -56,60 +106,7 @@ it('watchs props changes', async () => {
   wr.unmount();
 });
 
-// ===========================
-jest.mock('../adapter', () => {
-  const vue = jest.requireActual('vue');
-  const originalModule = jest.requireActual('../adapter');
-  return {
-    __esModule: true,
-    ...originalModule,
-    default: (store: Store<any>) => ({
-      tariffsList: vue.computed(() => store.state.list).value,
-    }),
-  };
-});
-
-const listTemplate = [
-  {
-    period: '30 Days',
-    apy: '103,23%',
-    amount: '100 - 299 TKN',
-  },
-  {
-    period: '90 Days',
-    apy: '116,86%',
-    amount: '100 - 299 TKN',
-  },
-  {
-    period: '150 Days',
-    apy: '129,97%',
-    amount: '500 - 1000 TKN',
-  },
-];
-
-describe('outer store', () => {
-  let store: Store<any>;
-
-  beforeEach(() => {
-    store = createStore({
-      state: {
-        list: [...listTemplate],
-      },
-      mutations: {
-        add: (state, item: TariffItemT) => { state.list.push(item); },
-        delete: (state, index: number) => { state.list.splice(index, 1); },
-        change: (state, index: number) => {
-          state.list[index].period = 'changed period';
-          state.list[index].apy = 'changed apy';
-          state.list[index].amount = 'changed amount';
-        },
-      },
-    });
-  });
-  afterEach(() => {
-    store = createStore({});
-  });
-
+describe('outer store changing', () => {
   it('adding tariff', async () => {
     wrapper = mount(TariffsBlock, {
       global: { plugins: [store] },
@@ -130,39 +127,90 @@ describe('outer store', () => {
     expect(newTariff.find('.tariffItem-amount').text()).toBe('Amount: scum amount');
   });
 
-  // it('deleting tariff', async () => {
-  //   wrapper = mount(TariffsBlock, {
-  //     global: { plugins: [store] },
-  //   });
+  it('deleting tariff', async () => {
+    wrapper = mount(TariffsBlock, {
+      global: { plugins: [store] },
+    });
 
-  //   expect(wrapper.findAll('.tariffsBlock-tariffItem').length).toBe(3);
+    expect(wrapper.findAll('.tariffsBlock-tariffItem').length).toBe(3);
 
-  //   store.commit('delete', 2);
-  //   await wrapper.vm.$nextTick();
-  //   expect(wrapper.findAll('.tariffsBlock-tariffItem').length).toBe(2);
+    store.commit('delete', 2);
+    await wrapper.vm.$nextTick();
+    expect(wrapper.findAll('.tariffsBlock-tariffItem').length).toBe(2);
 
-  //   store.commit('delete', 0);
-  //   await wrapper.vm.$nextTick();
-  //   expect(wrapper.findAll('.tariffsBlock-tariffItem').length).toBe(1);
+    store.commit('delete', 0);
+    await wrapper.vm.$nextTick();
+    expect(wrapper.findAll('.tariffsBlock-tariffItem').length).toBe(1);
 
-  //   store.commit('delete', 0);
-  //   await wrapper.vm.$nextTick();
-  //   expect(wrapper.findAll('.tariffsBlock-tariffItem').length).toBe(0);
+    store.commit('delete', 0);
+    await wrapper.vm.$nextTick();
+    expect(wrapper.findAll('.tariffsBlock-tariffItem').length).toBe(0);
+  });
+
+  it('changing tariff', async () => {
+    wrapper = mount(TariffsBlock, {
+      global: { plugins: [store] },
+    });
+
+    expect(wrapper.findAll('.tariffsBlock-tariffItem').length).toBe(3);
+
+    store.commit('change', 0);
+    await wrapper.vm.$nextTick();
+    expect(wrapper.findAll('.tariffsBlock-tariffItem').length).toBe(3);
+    const newTariff = wrapper.findAll('.tariffsBlock-tariffItem')[0];
+    expect(newTariff.find('.tariffItem-period').text()).toBe('changed period');
+    expect(newTariff.find('.tariffItem-apy').text()).toBe('APY: changed apy');
+    expect(newTariff.find('.tariffItem-amount').text()).toBe('Amount: changed amount');
+  });
+});
+
+it('selecting some tariff', async () => {
+  const map = selectMap(store.state.list);
+  // const map = computed(() => selectMap(store.state.list));
+
+  // const a = ref(map.value['30 Days']);
+
+  // const clickHandler = (payload: MouseEvent) => clickHandlerToClosure(map.value, payload);
+
+  // wrapper = mount(tariffItemVue, {
+  //   global: { plugins: [store] },
+  //   props: {
+  //     period: '30 Days',
+  //     selected: a,
+
+  //     onClick: clickHandler,
+  //   },
   // });
 
-  // it('changing tariff', async () => {
-  //   wrapper = mount(TariffsBlock, {
-  //     global: { plugins: [store] },
-  //   });
+  store.commit('change', 1);
+  expect(map.value || {}).toStrictEqual({
+    '30 Days': undefined,
+    'changed period': undefined,
+    '150 Days': undefined,
+  });
+  // expect(a.value).toBeUndefined();
 
-  //   expect(wrapper.findAll('.tariffsBlock-tariffItem').length).toBe(3);
+  selectToClosure(map, '30 Days');
+  expect(map.value).toStrictEqual({
+    '30 Days': 'true',
+    'changed period': 'false',
+    '150 Days': 'false',
+  });
+  // expect(a.value).toBe('true');
+  // expect(wrapper.props().selected).toBe('true');
 
-  //   store.commit('change', 0);
-  //   await wrapper.vm.$nextTick();
-  //   expect(wrapper.findAll('.tariffsBlock-tariffItem').length).toBe(3);
-  //   const newTariff = wrapper.findAll('.tariffsBlock-tariffItem')[0];
-  //   expect(newTariff.find('.tariffItem-period').text()).toBe('changed period');
-  //   expect(newTariff.find('.tariffItem-apy').text()).toBe('APY: changed apy');
-  //   expect(newTariff.find('.tariffItem-amount').text()).toBe('Amount: changed amount');
-  // });
+
+
+
+
+  // expect(wrapper.findAll('.tariffsBlock-tariffItem').length).toBe(3);
+
+  // await wrapper.vm.$nextTick();
+  // await wrapper.vm.$forceUpdate();
+  // expect(wrapper.props()).toBeNull();
+
+  // await target.trigger('click');
+  // expect(target.props()).toBeNull();
+
+  // expect(wrapper.find('.tariffsBlock-tariffItem__selected_true').exists()).toBeTruthy();
 });

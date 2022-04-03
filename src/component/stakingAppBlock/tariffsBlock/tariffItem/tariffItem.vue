@@ -6,6 +6,7 @@ import Span from '@/element/span/span.vue';
 import propsObj from '@/element/propsObj';
 import Tip from './tip/tip.vue';
 
+type OnClickHandlerT = (payload: MouseEvent) => void;
 // eslint-disable-next-line no-undef
 const props = defineProps({
   ...propsObj,
@@ -14,6 +15,11 @@ const props = defineProps({
   amount: String,
 
   selected: String,
+
+  onClick: {
+    type: Function,
+    default: (): OnClickHandlerT => () => ({}),
+  },
 });
 
 const isTipVisible = ref(false);
@@ -29,7 +35,8 @@ const hideTip = () => { isTipVisible.value = false; };
 
 <template>
   <Div :block="props.block" :elem="comp.elem"
-    :mods="{ selected: comp.selected, ...props.mods}"
+    :mods="{ ...props.mods, selected: comp.selected }"
+    :onClick="onClick"
   >
     <Tip :block="comp.elem" v-if="isTipVisible">
       Tip text hover

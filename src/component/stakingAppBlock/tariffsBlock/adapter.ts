@@ -25,10 +25,20 @@ export const tariffsList = ref<TariffItemT[]>([
   },
 ]);
 
-const adapt = (store: Store<any>) => ({
-  // tariffsList: computed(() => store.state.list),
+// const adapt = (store: Store<any>) => ({
+//   // tariffsList: computed(() => store.state.list),
 
-  tariffsList: tariffsList.value,
-});
+//   tariffsList: tariffsList.value,
+// });
+
+const adapt = (store: Store<any>) => {
+  console.log(store.state.list);
+  store.commit('change', 1);
+  return {
+    tariffsList: store.state.list,
+
+    // tariffsList: tariffsList.value,
+  };
+};
 
 export default adapt;

@@ -1,6 +1,10 @@
+import buttonVue from '@/element/button/button.vue';
+import { mount } from '@vue/test-utils';
+import { computed, provide, reactive, ref } from 'vue';
 import { createStore, Store } from 'vuex';
 import { TariffItemT } from '../adapter';
-import { selectMap, selectToClosure } from '../logic';
+import { clickHandlerToClosure, selectMap, selectToClosure } from '../logic';
+import tariffItemVue from '../tariffItem/tariffItem.vue';
 
 let store: Store<any>;
 
@@ -41,7 +45,7 @@ afterEach(() => {
 });
 
 it('selectMap', () => {
-  const map = selectMap(store.state.list);
+  const map = computed(() => selectMap(store.state.list));
 
   expect(map.value).toStrictEqual({
     '30 Days': undefined,
@@ -97,7 +101,7 @@ it('selectMap', () => {
 });
 
 it('selectToClosure', () => {
-  const map = selectMap(store.state.list);
+  const map = computed(() => selectMap(store.state.list));
 
   expect(map.value).toStrictEqual({
     '30 Days': undefined,
@@ -145,3 +149,58 @@ it('selectToClosure', () => {
     'scum period': undefined,
   });
 });
+
+// it('clickHandlerToClosure', async () => {
+//   const mapp = computed(() => selectMap(store.state.list));
+//   // const clickHandler = (payload: MouseEvent) => {
+//   //   // console.log(map.value);
+//   //   // console.log((payload.target as HTMLElement)
+//   //   // .querySelector('.tariffItem-period')?.textContent);
+//   //   clickHandlerToClosure(map.value, payload);
+//   // };
+
+//   // selectToClosure(map.value, '90 Days');
+//   // expect(map.value).toStrictEqual({
+//   //   '30 Days': 'false',
+//   //   '90 Days': 'true',
+//   //   '150 Days': 'false',
+//   // });
+
+//   const wr = mount(tariffItemVue, {
+//     global: {
+//       plugins: [store],
+//     },
+//     props: {
+//       period: '30 Days',
+//       apy: 'apy',
+//       amount: 'amount',
+//       // map: computed(() => selectMap(store.state.list)),
+//       // onClick: (payload: MouseEvent) => {
+//       //   clickHandlerToClosure(
+//       //     computed(() => selectMap(store.state.list)).value,
+//       //     payload),
+//       // },
+//       selected: mapp.value['30 Days'],
+//     },
+//   });
+
+//   expect(wr.html()).not.toBeNull();
+
+//   selectToClosure(mapp.value, '30 Days');
+//   expect(mapp.value).toStrictEqual({
+//     '30 Days': 'true',
+//     '90 Days': 'false',
+//     '150 Days': 'false',
+//   });
+
+//   // await wr.find('.tariffItem').trigger('click');
+//   // expect(mapp.value).toStrictEqual({
+//   //   '30 Days': 'true',
+//   //   '90 Days': 'false',
+//   //   '150 Days': 'false',
+//   // });
+
+//   expect(wr.props()).toBeNull();
+//   // expect(wr.find('.tariffItem__selected_true').exists()).toBeTruthy();
+
+// });
