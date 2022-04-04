@@ -1,27 +1,17 @@
-<script lang="ts">
+<script setup lang="ts">
+
+import propsObj from '@/element/propsObj';
 import { formateClassName } from '@/module/bem/index';
-import { defineComponent } from 'vue';
+import { computed } from 'vue';
 
-export default defineComponent({
-  props: {
-    mods: Object,
+// eslint-disable-next-line no-undef
+const props = defineProps({ ...propsObj });
+const comp = computed(() => ({ elem: props.elem || 'waitingIcon' }));
 
-    block: String,
-    elem: String,
-  },
-
-  data() {
-    return {
-      formateClassName,
-      blockName: this.$props.block,
-      elementName: this.$props.elem || 'waitingIcon',
-    };
-  },
-});
 </script>
 
 <template>
-  <div :class="formateClassName(blockName, elementName, {
+  <div :class="formateClassName(props.block, comp.elem, {
         ...$props.mods,
       })">
       <div :class="'fill'"/>

@@ -1,59 +1,53 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+
+import { computed } from 'vue';
 import Div from '@/element/div/div.vue';
 import Button from '@/element/button/button.vue';
 import Span from '@/element/span/span.vue';
+import propsObj from '@/element/propsObj';
+import { useStore } from 'vuex';
 import WaitingIcon from './waitingIcon/waitingIcon.vue';
+import adapt from './adapter';
+import generateMainButtonText from './logic';
 
-export default defineComponent({
-  props: {
-    state: String,
-
-    block: String,
-    elem: String,
-  },
-  data() {
-    return {
-      text: this.$props.state,
-
-      parentName: this.$props.block,
-      name: this.$props.elem || 'actionsBlock',
-    };
-  },
-  setup() {
-    return {};
-  },
-  components: {
-    Div,
-    Button,
-    Span,
-    WaitingIcon,
-  },
+// eslint-disable-next-line no-undef
+const props = defineProps({
+  ...propsObj,
 });
+const comp = computed(() => ({ elem: props.elem || 'actionsBlock' }));
+
+const store = useStore();
+const state = computed(() => adapt(store));
+const mainButtonText = computed(() => generateMainButtonText(adapt(store)));
+
 </script>
 
 <template>
-  <Div :block="parentName" :elem="name">
+  <Div :block="props.block" :elem="comp.elem" :mods="props.mods">
 
-    <Button :block="name" :elem="'timeButton'">
+    <Button v-if="state.isStaked && !state.isRestakeAvailable"
+      :block="comp.elem" :elem="'timeButton'"
+    >
       <Span :block="'timeButton'">
-        00:00:09
+        {{ state.restakeCountdown }}
       </Span>
     </Button>
 
-    <Button :block="name" :elem="'mainButton'"
-      :mods="{ waiting: text === 'Waiting' }"
+    <Button :block="comp.elem" :elem="'mainButton'"
+      :mods="{ waiting: state.isWaiting }"
     >
       <WaitingIcon
-        v-if="text === 'Waiting'"
+        v-if="state.isWaiting"
         :block="'mainButton'"
       />
       <Span :block="'mainButton'">
-        {{ text }}
+        {{ mainButtonText }}
       </Span>
     </Button>
 
-    <Button :block="name" :elem="'unstakeButton'">
+    <Button v-if="state.isStaked && state.isRestakeAvailable"
+      :block="comp.elem" :elem="'unstakeButton'"
+    >
       <Span :block="'unstakeButton'">
         Unstake
       </Span>
