@@ -18,9 +18,9 @@ yarn serve
 yarn build
 ```
 
-### Run your unit tests
+### Run unit tests
 ```
-yarn test:unit
+yarn test
 ```
 
 ### Lints and fixes files
