@@ -1,0 +1,33 @@
+@use 'variables' as *;
+
+.#{$parent}-calculator {
+  display: grid;
+  grid-auto-flow: row;
+
+  row-gap: 36px;
+};
+
+.calculator-promtInput {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+}
+
+.calculator-button {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+
+  justify-self: end;
+  padding-right: 16px;
+}
+
+.calculator-div {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
+  align-items: center;
+
+  column-gap: 16px;
+
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+}

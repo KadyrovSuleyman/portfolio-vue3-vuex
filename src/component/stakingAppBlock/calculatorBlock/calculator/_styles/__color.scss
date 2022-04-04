@@ -1,0 +1,10 @@
+@use '/src/modificators/variables/color' as *;
+
+.calculator-rewardSpan {
+  color: rgba($color: $text-red, $alpha: 1.0);
+}
+
+.calculator-button {
+  background: none;
+  color: rgba($color: $main, $alpha: 1.0);
+}

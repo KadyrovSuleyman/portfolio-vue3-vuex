@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /* eslint-disable vuejs-accessibility/form-control-has-label */
 
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import Div from '@/element/div/div.vue';
 import propsObj from '@/element/propsObj';
 import Input from '@/element/input/input.vue';

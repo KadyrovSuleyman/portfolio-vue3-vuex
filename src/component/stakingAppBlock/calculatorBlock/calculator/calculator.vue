@@ -3,8 +3,8 @@
 import { computed, ref } from 'vue';
 import Div from '@/element/div/div.vue';
 import propsObj from '@/element/propsObj';
-import Input from '@/element/input/input.vue';
 import Button from '@/element/button/button.vue';
+import Span from '@/element/span/span.vue';
 import PromtInput from './promtInput/promtInput.vue';
 
 // eslint-disable-next-line no-undef
@@ -20,10 +20,20 @@ const onInput = (payload: KeyboardEvent) => {
 
 <template>
   <Div :block="props.block" :elem="comp.elem" :mods="props.mods">
-    <PromtInput :block="comp.elem" :promtText="'Error proper amount'"/>
+    <PromtInput :block="comp.elem" :promtText="'Error proper amount'" :correct="'false'"/>
+    <Button :block="comp.elem">Max</Button>
+
+    <Div :block="comp.elem">
+      <Span :block="comp.elem" :elem="'periodSpan'">
+        Reward for 30 days:
+      </Span>
+      <Span :block="comp.elem" :elem="'rewardSpan'">
+        400 TKN
+      </Span>
+    </Div>
   </Div>
 </template>
 
 <style lang="scss">
-  @use '.' as *;
+  @use 'styles' as *;
 </style>
