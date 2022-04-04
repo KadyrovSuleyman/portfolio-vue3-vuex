@@ -1,5 +1,10 @@
 # gotbit-test-task
 
+# Тестовый проект для gotbit.io (в разработке)
+
+## Ссылка на макет
+https://www.figma.com/file/GkeK0k5LIAjk5JmEV1ZjVG/Test-Staking?node-id=1%3A1599
+
 ## Project setup
 ```
 yarn install
