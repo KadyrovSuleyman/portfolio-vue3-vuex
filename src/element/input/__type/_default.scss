@@ -1,0 +1,16 @@
+@use '/src/modificators/__font' as font;
+@use '/src/modificators/variables/color' as *;
+@use '/src/modificators/variables/border-radius' as radius;
+
+@mixin default {
+  @include font.default;
+  font-size: 20px;
+  line-height: 32px;
+
+  color: rgba($color: $text-main, $alpha: 1.0);
+
+  border-radius: radius.$small;
+  border-style: solid;
+  border-color: rgba($color: $blue-light, $alpha: 1.0);
+  border-width: 1px;
+}

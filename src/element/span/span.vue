@@ -21,25 +21,6 @@ const classNames = computed(() => {
   });
 });
 
-// import { formateClassName } from '@/module/bem/index';
-// import { reactive } from 'vue';
-
-// import ModsI from '../ModsI';
-
-// interface PropsI extends ModsI {
-//   block?: string,
-//   elem?: string,
-//   mods?: Record<string, unknown>,
-
-//   msg?: string,
-// }
-// // eslint-disable-next-line no-undef
-// const props = defineProps<PropsI>();
-
-// const {
-//   msg, mods, block, elem, ...filtredProps
-// } = reactive(props);
-
 </script>
 
 <template>

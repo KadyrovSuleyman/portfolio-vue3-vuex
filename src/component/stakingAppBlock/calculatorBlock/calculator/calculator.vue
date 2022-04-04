@@ -1,17 +1,25 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
-import Div from '@/element/div/div.vue';
+<script setup lang="ts">
 
-export default defineComponent({
-  components: {
-    Div,
-  },
-});
+import { computed, ref } from 'vue';
+import Div from '@/element/div/div.vue';
+import propsObj from '@/element/propsObj';
+import Input from '@/element/input/input.vue';
+
+// eslint-disable-next-line no-undef
+const props = defineProps({ ...propsObj });
+const comp = computed(() => ({ elem: props.elem || 'calculator' }));
+
+const text = ref('');
+const onInput = (payload: KeyboardEvent) => {
+  text.value = (payload.target as HTMLInputElement).value;
+};
+
 </script>
 
 <template>
-  <Div :className="'calculatorBlock-calculator'">
-
+  <Div :block="props.block" :elem="comp.elem" :mods="props.mods">
+    <Input :text="text" :onInput="onInput" />
+    {{ text }}
   </Div>
 </template>
 
