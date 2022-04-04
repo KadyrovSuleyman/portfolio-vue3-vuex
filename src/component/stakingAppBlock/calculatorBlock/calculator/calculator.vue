@@ -4,6 +4,8 @@ import { computed, ref } from 'vue';
 import Div from '@/element/div/div.vue';
 import propsObj from '@/element/propsObj';
 import Input from '@/element/input/input.vue';
+import Button from '@/element/button/button.vue';
+import PromtInput from './promtInput/promtInput.vue';
 
 // eslint-disable-next-line no-undef
 const props = defineProps({ ...propsObj });
@@ -18,8 +20,7 @@ const onInput = (payload: KeyboardEvent) => {
 
 <template>
   <Div :block="props.block" :elem="comp.elem" :mods="props.mods">
-    <Input :text="text" :onInput="onInput" />
-    {{ text }}
+    <PromtInput :block="comp.elem" :promtText="'Error proper amount'"/>
   </Div>
 </template>
 

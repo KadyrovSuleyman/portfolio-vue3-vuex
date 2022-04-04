@@ -44,6 +44,12 @@ it('test formateClassName func', () => {
       },
       [`${be}`],
     ],
+    [
+      {
+        theme: '',
+      },
+      [`${be}`],
+    ],
   ]);
 
   modsMap.forEach((res, mods) => {

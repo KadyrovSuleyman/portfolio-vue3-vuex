@@ -8,7 +8,7 @@ afterEach(() => {
   wrapper.unmount();
 });
 
-it('infoBlock renders', () => {
+it('app renders', () => {
   wrapper = mount(App);
 
   expect(wrapper.find('.app').classes()).toEqual(['app']);

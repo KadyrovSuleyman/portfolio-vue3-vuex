@@ -1,0 +1,9 @@
+@use '/src/modificators/variables/color' as *;
+
+.promtInput-input__correct_false {
+  border-color: rgba($color: $text-red, $alpha: 1.0);
+}
+
+.promtInput-span__correct_false {
+  color: rgba($color: $text-red, $alpha: 1.0);
+}

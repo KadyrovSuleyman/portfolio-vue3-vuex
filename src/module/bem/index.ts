@@ -14,6 +14,9 @@ export const formateClassName = (
 
   Object.keys(mods).forEach((mod) => {
     if (typeof mods[mod] === 'string') {
+      if (mods[mod] === '') {
+        return true;
+      }
       return res.push(`${be}__${mod}_${mods[mod]}`);
     }
 

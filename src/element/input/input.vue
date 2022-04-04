@@ -1,7 +1,6 @@
 <script setup lang="ts">
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable vuejs-accessibility/click-events-have-key-events */
-/* eslint-disable vue/no-mutating-props */
+/* eslint-disable vuejs-accessibility/form-control-has-label */
 
 import { formateClassName } from '@/module/bem/index';
 import { computed, Ref } from 'vue';
@@ -20,6 +19,7 @@ const props = defineProps({
   },
 
   placeholder: String,
+  type: String,
 });
 
 const classNames = computed(() => {
@@ -36,7 +36,7 @@ const classNames = computed(() => {
 </script>
 
 <template>
-  <input :value="text" @input="onInput"
+  <input :value="text" @input="onInput" :type="props.type"
     :class="classNames" :placeholder="props.placeholder" >
 </template>
 
