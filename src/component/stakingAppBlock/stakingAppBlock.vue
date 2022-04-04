@@ -1,49 +1,37 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+
+import { computed } from 'vue';
 import Div from '@/element/div/div.vue';
 import Span from '@/element/span/span.vue';
 import Button from '@/element/button/button.vue';
+import propsObj from '@/element/propsObj';
+import { useStore } from 'vuex';
 import WalletApprovedBlock from './walletApprovedBlock/walletApprovedBlock.vue';
 import TariffsBlock from './tariffsBlock/tariffsBlock.vue';
 import CalculatorBlock from './calculatorBlock/calculatorBlock.vue';
 import ActionsBlock from './actionsBlock/actionsBlock.vue';
+import adapt from './adapter';
 
-export default defineComponent({
-  props: {
-    isAuthorized: Boolean,
+// eslint-disable-next-line no-undef
+const props = defineProps({ ...propsObj });
+const comp = computed(() => ({ elem: props.elem || 'stakingAppBlock' }));
 
-    block: String,
-    elem: String,
-  },
-  data() {
-    return {
-      parentName: this.$props.block,
-      name: this.$props.elem || 'stakingAppBlock',
-    };
-  },
-  components: {
-    WalletApprovedBlock,
-    TariffsBlock,
-    CalculatorBlock,
-    ActionsBlock,
-    Div,
-    Span,
-    Button,
-  },
-});
+const store = useStore();
+const state = computed(() => adapt(store));
+
 </script>
 
 <template>
-  <Div :block="parentName" :elem="name">
-    <Span :block="name" :elem="'header'" >
+  <Div :block="props.block" :elem="comp.elem" :mods="props.mods">
+    <Span :block="comp.elem" :elem="'header'" >
       Staking App
     </Span>
-    <WalletApprovedBlock :block="name" v-if="isAuthorized"/>
-    <TariffsBlock :block="name" />
-    <CalculatorBlock :block="name" :isAuthorized="isAuthorized"/>
-    <ActionsBlock :block="name" :state="'Waiting'"/>
+    <WalletApprovedBlock :block="comp.elem" v-if="state.isWalletApproved"/>
+    <TariffsBlock :block="comp.elem" />
+    <CalculatorBlock :block="comp.elem" />
+    <ActionsBlock :block="comp.elem" />
 
-    <Button :block="name" :elem="'viewContractButton'" >
+    <Button :block="comp.elem" :elem="'viewContractButton'" >
       <Span :block="'viewContractButton'">
         View contract
       </Span>

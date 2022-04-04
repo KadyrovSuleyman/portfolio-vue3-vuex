@@ -1,30 +1,20 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+
+import { computed } from 'vue';
 import Span from '@/element/span/span.vue';
 import Div from '@/element/div/div.vue';
+import propsObj from '@/element/propsObj';
 
-export default defineComponent({
-  props: {
-    block: String,
-    elem: String,
-  },
-  data() {
-    return {
-      parentName: this.$props.block,
-      name: this.$props.elem || 'infoBlock',
-    };
-  },
-  components: {
-    Span,
-    Div,
-  },
-});
+// eslint-disable-next-line no-undef
+const props = defineProps({ ...propsObj });
+const comp = computed(() => ({ elem: props.elem || 'infoBlock' }));
+
 </script>
 
 <template>
-  <Div :block="parentName" :elem="name">
-    <Div :block="name" :icon="'warning'"/>
-    <Span :block="name">
+  <Div :block="props.block" :elem="comp.elem" :mods="props.mods">
+    <Div :block="comp.elem" :icon="'warning'"/>
+    <Span :block="comp.elem">
       <slot></slot>
     </Span>
   </Div>

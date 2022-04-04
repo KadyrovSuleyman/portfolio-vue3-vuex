@@ -11,9 +11,7 @@ import adapt from './adapter';
 import generateMainButtonText from './logic';
 
 // eslint-disable-next-line no-undef
-const props = defineProps({
-  ...propsObj,
-});
+const props = defineProps({ ...propsObj });
 const comp = computed(() => ({ elem: props.elem || 'actionsBlock' }));
 
 const store = useStore();

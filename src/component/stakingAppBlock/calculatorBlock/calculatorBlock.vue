@@ -1,36 +1,35 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+
+import { computed } from 'vue';
 import Div from '@/element/div/div.vue';
+import propsObj from '@/element/propsObj';
+import { useStore } from 'vuex';
 import Calculator from './calculator/calculator.vue';
 import InfoBlock from './infoBlock/infoBlock.vue';
+import adapt from './adapter';
 
-export default defineComponent({
-  props: {
-    isAuthorized: Boolean,
+// eslint-disable-next-line no-undef
+const props = defineProps({ ...propsObj });
+const comp = computed(() => ({ elem: props.elem || 'calculatorBlock' }));
 
-    block: String,
-    elem: String,
-  },
-  data() {
-    return {
-      parentName: this.$props.block,
-      name: this.$props.elem || 'calculatorBlock',
-    };
-  },
-  components: {
-    Calculator,
-    InfoBlock,
-    Div,
-  },
-});
+const store = useStore();
+const state = computed(() => adapt(store));
+
 </script>
 
 <template>
-  <Div :block="parentName" :elem="name">
-    <Calculator :block="name" v-if="isAuthorized" />
-    <InfoBlock :block="name" v-else >
+  <Div :block="props.block" :elem="comp.elem" :mods="props.mods">
+
+    <InfoBlock v-if="!state.isWalletConnected" :block="comp.elem">
       To perform actions on the page, connect your wallet
     </InfoBlock>
+
+    <InfoBlock v-else-if="!state.isWalletApproved" :block="comp.elem">
+      To perform actions on the page, approve your wallet
+    </InfoBlock>
+
+    <Calculator v-else-if="!state.isStaked" :block="comp.elem"/>
+
   </Div>
 </template>
 
