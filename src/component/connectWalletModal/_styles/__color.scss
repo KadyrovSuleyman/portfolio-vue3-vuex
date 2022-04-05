@@ -1,0 +1,9 @@
+@use '/src/modificators/variables/color' as *;
+
+.connectWalletModal {
+  background-color: rgba($color: $white, $alpha: 1.0);
+}
+
+.connectWalletModal-header {
+  color: rgba($color: $black, $alpha: 1.0);
+}

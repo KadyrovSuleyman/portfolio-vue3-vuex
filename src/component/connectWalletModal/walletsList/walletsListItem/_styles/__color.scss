@@ -1,0 +1,6 @@
+@use 'variables' as *;
+@use '/src/modificators/variables/color' as *;
+
+.#{$parent}-walletsListItem {
+  border-color: rgba($color: $blue-light, $alpha: 1.0);
+}

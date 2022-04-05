@@ -14,7 +14,7 @@ const props = defineProps({ ...propsObj });
 const comp = computed(() => ({ elem: props.elem || 'walletDiv' }));
 
 const store = useStore();
-const { address, balance } = adapt(store);
+const state = computed(() => adapt(store));
 
 const todo = () => { console.warn('need to do copy func'); };
 
@@ -23,10 +23,10 @@ const todo = () => { console.warn('need to do copy func'); };
 <template>
   <Div :block="props.block" :elem="comp.elem" :mods="props.mods" >
     <AddressBlock :block="comp.elem" :onClick="todo">
-      {{ address }}
+      {{ state.address }}
     </AddressBlock>
     <Span :block="comp.elem">
-      {{ balance }}
+      {{ state.balance }}
     </Span>
     <Button :block="comp.elem" :icon="'coin'" />
     <Button :block="comp.elem" :icon="'chevron'"/>

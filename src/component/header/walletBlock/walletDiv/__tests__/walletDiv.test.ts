@@ -62,16 +62,10 @@ it('watchs props changes', async () => {
 });
 
 // =========================================
-jest.mock('../adapter', () => {
-  const vue = jest.requireActual('vue');
-  return {
-    __esModule: true,
-    default: (store: Store<any>) => ({
-      address: vue.computed(() => store.state.address),
-      balance: vue.computed(() => store.state.balance),
-    }),
-  };
-});
+jest.mock('../adapter', () => ({
+  __esModule: true,
+  default: (store: Store<any>) => ({ ...store.state }),
+}));
 
 describe('outer store', () => {
   it('changeAddress -> changeBalance', async () => {

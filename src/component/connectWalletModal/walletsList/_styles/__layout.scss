@@ -1,0 +1,12 @@
+@use 'variables' as *;
+
+.#{$parent}-walletsList {
+  display: grid;
+
+  grid-auto-flow: row;
+  grid-template-columns: 1fr 1fr;
+
+  column-gap: 16px;
+  row-gap: 16px;
+  padding: 0 40px 40px 40px;
+}

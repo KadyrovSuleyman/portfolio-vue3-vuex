@@ -1,0 +1,12 @@
+@mixin icon-cross {
+  border-radius: 0;
+  background: none;
+
+  background-image: url(/src/static/icon/cross.svg);
+  background-repeat: no-repeat;
+
+  width: 24px;
+  height: 24px;
+
+  cursor: pointer;
+}

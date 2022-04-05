@@ -36,6 +36,7 @@ const state = computed(() => adapt(store));
         View contract
       </Span>
     </Button>
+
   </Div>
 </template>
 

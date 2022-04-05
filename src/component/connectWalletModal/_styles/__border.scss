@@ -1,0 +1,5 @@
+@use '/src/modificators/variables/border-radius' as *;
+
+.connectWalletModal {
+  border-radius: $large;
+}

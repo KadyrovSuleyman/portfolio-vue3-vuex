@@ -56,15 +56,12 @@ it('watchs props changes', async () => {
 });
 
 // =========================================
-jest.mock('../adapter', () => {
-  const vue = jest.requireActual('vue');
-  return {
-    __esModule: true,
-    default: (store: Store<any>) => ({
-      isWalletConnect: vue.computed(() => store.state.connect),
-    }),
-  };
-});
+jest.mock('../adapter', () => ({
+  __esModule: true,
+  default: (store: Store<any>) => ({
+    isWalletConnect: store.state.connect,
+  }),
+}));
 
 it('walletBlock if wallet connected, connectBlock if dont', async () => {
   const store = createStore({

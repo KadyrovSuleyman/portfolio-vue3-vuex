@@ -63,7 +63,6 @@ it('two-sides binding', async () => {
       const text = ref('before');
       const onInput = (payload: KeyboardEvent) => {
         text.value = (payload.target as HTMLInputElement).value;
-        console.log((payload.target as HTMLInputElement).value);
       };
       const changeText = () => { text.value = 'manual changed'; };
 

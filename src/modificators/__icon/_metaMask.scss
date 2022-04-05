@@ -1,0 +1,12 @@
+@mixin icon-metaMask {
+  border-radius: 0;
+  background: none;
+
+  background-image: url(/src/static/icon/metaMask.svg);
+  background-repeat: no-repeat;
+
+  width: 44px;
+  height: 44px;
+
+  cursor: pointer;
+}

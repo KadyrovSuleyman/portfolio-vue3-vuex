@@ -1,0 +1,13 @@
+@use 'variables' as *;
+
+.#{$parent}-walletsListItem {
+  cursor: pointer;
+}
+
+.walletsListItem-icon {
+  cursor: pointer;
+}
+
+.walletsListItem-span {
+  cursor: pointer;
+}

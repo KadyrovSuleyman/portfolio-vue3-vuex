@@ -1,0 +1,24 @@
+.connectWalletModal {
+  display: grid;
+  grid-auto-flow: row;
+
+  position: absolute;
+  width: 650px;
+
+  padding: 24px;
+  row-gap: 24px;
+}
+
+.connectWalletModal-button {
+  grid-row: 1 / 2;
+
+  justify-self: end;
+}
+
+.connectWalletModal-header {
+  padding: 0 150px + 40px 8px 40px;
+}
+
+.connectWalletModal-explanation {
+  padding: 0 150px + 40px 0 40px;
+}

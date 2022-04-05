@@ -1,0 +1,8 @@
+@use 'variables' as *;
+@use '/src/modificators/variables/border-radius' as *;
+
+.#{$parent}-walletsListItem {
+  border-radius: $smaller;
+  border-width: 1px;
+  border-style: solid;
+}

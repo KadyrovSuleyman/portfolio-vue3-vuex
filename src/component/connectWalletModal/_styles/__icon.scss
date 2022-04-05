@@ -1,0 +1,7 @@
+@use '/src/modificators/__icon/cross' as *;
+
+.connectWalletModal-button__icon_cross {
+  @include icon-cross;
+
+  padding: 0;
+}
