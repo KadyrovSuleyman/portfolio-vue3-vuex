@@ -56,12 +56,16 @@ it('watchs props changes', async () => {
 });
 
 // =========================================
-jest.mock('../adapter', () => ({
-  __esModule: true,
-  default: (store: Store<any>) => ({
-    isWalletConnect: store.state.connect,
-  }),
-}));
+jest.mock('../adapter', () => {
+  const originalModule = jest.requireActual('../adapter');
+  return {
+    __esModule: true,
+    ...originalModule,
+    adapt: (store: Store<any>) => ({
+      isWalletConnect: store.state.connect,
+    }),
+  };
+});
 
 it('walletBlock if wallet connected, connectBlock if dont', async () => {
   const store = createStore({

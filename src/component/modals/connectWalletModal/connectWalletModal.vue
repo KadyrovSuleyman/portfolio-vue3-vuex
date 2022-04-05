@@ -5,18 +5,18 @@ import Div from '@/element/div/div.vue';
 import Span from '@/element/span/span.vue';
 import Button from '@/element/button/button.vue';
 import propsObj from '@/element/propsObj';
+import { useStore } from 'vuex';
 import WalletsList from './walletsList/walletsList.vue';
+import generateCloseHandler from './adapter';
 
 // eslint-disable-next-line no-undef
 const props = defineProps({
   ...propsObj,
-
-  toClose: {
-    type: Function,
-    default: () => ({}),
-  },
 });
 const comp = computed(() => ({ elem: props.elem || 'connectWalletModal' }));
+
+const store = useStore();
+const closeHandler = generateCloseHandler(store);
 
 </script>
 
@@ -29,8 +29,8 @@ const comp = computed(() => ({ elem: props.elem || 'connectWalletModal' }));
     <Span :block="comp.elem" :elem="'explanation'">
       The selected wallet will be connected to your staking
     </Span>
-    <WalletsList :block="comp.elem" :toClose="props.toClose"/>
-    <Button :block="comp.elem" :onClick="props.toClose" :icon="'cross'" />
+    <WalletsList :block="comp.elem" />
+    <Button :block="comp.elem" :onClick="closeHandler" :icon="'cross'" />
 
   </Div>
 </template>

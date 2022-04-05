@@ -1,38 +1,61 @@
+import { Store } from 'vuex';
 import { StateListT } from './adapter';
 
-const generateMainButtonText = ({
+export type MainButtonPropsT = {
+  text?: string,
+  handler?: CallableFunction,
+}
+
+const generateMainButtonProps = ({
   isWalletConnected,
   isWalletApproved,
   isWaiting,
   isStaked,
   isReplenishAvailable,
   isRestakeAvailable,
-}: StateListT) => {
+}: StateListT): MainButtonPropsT => {
   if (isWaiting) {
-    return 'Waiting';
+    return {
+      text: 'Waiting',
+    };
   }
 
   if (!isWalletConnected) {
-    return 'Connect wallet';
+    return {
+      text: 'Connect wallet',
+      handler: (store: Store<any>) => () => {
+        store.commit('showConnectWallet');
+      },
+    };
   }
 
   if (!isWalletApproved) {
-    return 'Approve wallet';
+    return {
+      text: 'Approve wallet',
+    };
   }
 
   if (!isStaked) {
-    return 'Stake';
+    return {
+      text: 'Stake',
+    };
   }
 
   if (isRestakeAvailable) {
-    return 'Restake';
+    return {
+      text: 'Restake',
+    };
   }
 
   if (isReplenishAvailable) {
-    return 'Replenish';
+    return {
+      text: 'Replenish',
+    };
   }
 
-  return '';
+  return {
+    text: '',
+  };
 };
 
-export default generateMainButtonText;
+export default generateMainButtonProps;

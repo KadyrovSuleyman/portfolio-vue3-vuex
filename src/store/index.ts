@@ -11,6 +11,10 @@ export default createStore<any>({
     isReplenishAvailable: false,
     isRestakeAvailable: false,
     restakeCountdown: '00:00:09',
+
+    modalsShown: {
+      connectWallet: false,
+    },
   },
   mutations: {
     changee: (state, obj: { [name: string]: boolean | string }) => {
@@ -18,5 +22,7 @@ export default createStore<any>({
         state[index] = obj[index];
       });
     },
+
+    showConnectWallet: (state) => { state.modalsShown.connectWallet = true; },
   },
 });

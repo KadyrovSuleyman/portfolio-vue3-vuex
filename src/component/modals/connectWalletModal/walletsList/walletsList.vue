@@ -9,14 +9,7 @@ import WalletsListItem from './walletsListItem/walletsListItem.vue';
 import { clickHandlerGenerator } from './logic';
 
 // eslint-disable-next-line no-undef
-const props = defineProps({
-  ...propsObj,
-
-  toClose: {
-    type: Function,
-    default: () => ({}),
-  },
-});
+const props = defineProps({ ...propsObj });
 const comp = computed(() => ({ elem: props.elem || 'walletsList' }));
 
 const store = useStore();

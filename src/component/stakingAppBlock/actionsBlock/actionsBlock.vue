@@ -8,7 +8,7 @@ import propsObj from '@/element/propsObj';
 import { useStore } from 'vuex';
 import WaitingIcon from './waitingIcon/waitingIcon.vue';
 import adapt from './adapter';
-import generateMainButtonText from './logic';
+import generateMainButtonProps from './logic';
 
 // eslint-disable-next-line no-undef
 const props = defineProps({ ...propsObj });
@@ -16,7 +16,15 @@ const comp = computed(() => ({ elem: props.elem || 'actionsBlock' }));
 
 const store = useStore();
 const state = computed(() => adapt(store));
-const mainButtonText = computed(() => generateMainButtonText(adapt(store)));
+const mainButtonProps = computed(() => generateMainButtonProps(adapt(store)));
+
+const CALLBACK = computed(() => {
+  if (!mainButtonProps.value.handler) {
+    return () => ({});
+  }
+
+  return mainButtonProps.value.handler(store);
+});
 
 </script>
 
@@ -31,15 +39,15 @@ const mainButtonText = computed(() => generateMainButtonText(adapt(store)));
       </Span>
     </Button>
 
-    <Button :block="comp.elem" :elem="'mainButton'"
-      :mods="{ waiting: state.isWaiting }"
+    <Button :block="comp.elem" :elem="'mainButton'" :mods="{ waiting: state.isWaiting }"
+      :onClick="CALLBACK"
     >
       <WaitingIcon
         v-if="state.isWaiting"
         :block="'mainButton'"
       />
       <Span :block="'mainButton'">
-        {{ mainButtonText }}
+        {{ mainButtonProps.text }}
       </Span>
     </Button>
 
