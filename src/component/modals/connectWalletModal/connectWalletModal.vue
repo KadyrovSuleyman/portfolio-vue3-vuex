@@ -10,9 +10,7 @@ import WalletsList from './walletsList/walletsList.vue';
 import generateCloseHandler from './adapter';
 
 // eslint-disable-next-line no-undef
-const props = defineProps({
-  ...propsObj,
-});
+const props = defineProps({ ...propsObj });
 const comp = computed(() => ({ elem: props.elem || 'connectWalletModal' }));
 
 const store = useStore();
