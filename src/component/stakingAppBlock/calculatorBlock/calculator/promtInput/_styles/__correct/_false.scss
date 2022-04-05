@@ -3,6 +3,9 @@
 .promtInput-input__correct_false {
   border-color: rgba($color: $text-red, $alpha: 1.0);
 }
+.promtInput-input__correct_false:focus {
+  outline-color: rgba($color: $text-red, $alpha: 1.0);
+}
 
 .promtInput-span__correct_false {
   color: rgba($color: $text-red, $alpha: 1.0);
