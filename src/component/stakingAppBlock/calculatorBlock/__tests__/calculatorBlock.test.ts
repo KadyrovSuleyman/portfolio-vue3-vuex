@@ -36,7 +36,7 @@ afterEach(() => {
 });
 
 // =================================
-it('infoBlock renders', () => {
+it('calculatorBlock renders', () => {
   wrapper = mount(CalculatorBlock, {
     global: { plugins: [store] },
   });
