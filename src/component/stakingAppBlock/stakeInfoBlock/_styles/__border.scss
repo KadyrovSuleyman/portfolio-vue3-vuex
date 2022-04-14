@@ -1,0 +1,8 @@
+@use 'variables' as *;
+@use '/src/modificators/variables/border-radius' as *;
+
+.#{$parent}-stakeInfoBlock {
+  border-radius: $large;
+  border-width: 1px;
+  border-style: solid;
+}

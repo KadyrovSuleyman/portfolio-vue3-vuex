@@ -40,7 +40,6 @@ it('stakeInfoBlock renders', () => {
   expect(wrapper.find('.stakeInfoBlock').exists()).toBeTruthy();
 
   expect(wrapper.find('.stakeInfoBlock-infoContainer').exists()).toBeTruthy();
-  expect(wrapper.find('.stakeInfoBlock-stakeBgImg').exists()).toBeTruthy();
 
   expect(wrapper.find('.stakeInfoBlock-div').exists()).toBeTruthy();
   expect(wrapper.find('.stakeInfoBlock-incomeSpan').exists()).toBeTruthy();

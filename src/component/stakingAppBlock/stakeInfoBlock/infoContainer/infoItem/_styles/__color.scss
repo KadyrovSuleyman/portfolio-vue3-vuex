@@ -1,0 +1,14 @@
+@use 'variables' as *;
+@use '/src/modificators/variables/color' as *;
+
+.#{$parent}-infoItem {
+  background-color: rgba($color: $gray-light, $alpha: 1.0);
+}
+
+.infoItem-header {
+  color: rgba($color: $text-subtext, $alpha: 1.0);
+}
+
+.infoItem-value {
+  color: rgba($color: $text-main, $alpha: 1.0);
+}

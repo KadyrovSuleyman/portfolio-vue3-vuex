@@ -1,0 +1,14 @@
+@use 'variables' as *;
+@use '/src/modificators/variables/color' as *;
+
+.#{$parent}-stakeInfoBlock {
+  border-color: rgba($color: $blue-light, $alpha: 1.0);
+}
+
+.stakeInfoBlock-incomeSpan {
+  color: rgba($color: $text-red, $alpha: 1.0);
+}
+
+.stakeInfoBlock-promtSpan {
+  color: rgba($color: $text-subtext, $alpha: 1.0);
+}

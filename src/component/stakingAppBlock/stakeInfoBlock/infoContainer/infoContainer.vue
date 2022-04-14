@@ -27,7 +27,7 @@ const keys = Object.keys(state.value);
       <template v-slot:header>
         {{ key }}
       </template>
-      {{ state[key] }}
+      {{ state[key] }}{{ key === 'Staked' ? ' TKN' : ''}}
     </InfoItem>
 
   </Div>

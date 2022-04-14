@@ -10,6 +10,7 @@ import WalletApprovedBlock from './walletApprovedBlock/walletApprovedBlock.vue';
 import TariffsBlock from './tariffsBlock/tariffsBlock.vue';
 import CalculatorBlock from './calculatorBlock/calculatorBlock.vue';
 import ActionsBlock from './actionsBlock/actionsBlock.vue';
+import StakeInfoBlock from './stakeInfoBlock/stakeInfoBlock.vue';
 import adapt from './adapter';
 
 // eslint-disable-next-line no-undef
@@ -27,9 +28,12 @@ const state = computed(() => adapt(store));
       Staking App
     </Span>
     <WalletApprovedBlock :block="comp.elem" v-if="state.isWalletApproved"/>
-    <TariffsBlock :block="comp.elem" />
+    <TariffsBlock :block="comp.elem" v-if="!state.isStaked"/>
+    <StakeInfoBlock :block="comp.elem" v-else/>
     <CalculatorBlock :block="comp.elem" />
     <ActionsBlock :block="comp.elem" />
+
+    <Div :block="comp.elem" :elem="'bgImg'" v-if="state.isStaked"/>
 
     <Button :block="comp.elem" :elem="'viewContractButton'" >
       <Span :block="'viewContractButton'">

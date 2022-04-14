@@ -1,0 +1,6 @@
+@use 'variables' as *;
+@use '/src/modificators/variables/border-radius' as *;
+
+.#{$parent}-infoItem {
+  border-radius: $smaller;
+}

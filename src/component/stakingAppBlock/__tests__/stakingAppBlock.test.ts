@@ -110,4 +110,24 @@ it('watching outer store', async () => {
   });
   await wrapper.vm.$nextTick();
   expect(wrapper.find('.stakingAppBlock-walletApprovedBlock').exists()).toBeFalsy();
+
+  expect(wrapper.find('.stakingAppBlock-stakeInfoBlock').exists()).toBeFalsy();
+  expect(wrapper.find('.stakingAppBlock-bgImg').exists()).toBeFalsy();
+  expect(wrapper.find('.stakingAppBlock-tariffsBlock').exists()).toBeTruthy();
+
+  store.commit('change', {
+    isStaked: true,
+  });
+  await wrapper.vm.$nextTick();
+  expect(wrapper.find('.stakingAppBlock-stakeInfoBlock').exists()).toBeTruthy();
+  expect(wrapper.find('.stakingAppBlock-bgImg').exists()).toBeTruthy();
+  expect(wrapper.find('.stakingAppBlock-tariffsBlock').exists()).toBeFalsy();
+
+  store.commit('change', {
+    isStaked: false,
+  });
+  await wrapper.vm.$nextTick();
+  expect(wrapper.find('.stakingAppBlock-stakeInfoBlock').exists()).toBeFalsy();
+  expect(wrapper.find('.stakingAppBlock-bgImg').exists()).toBeFalsy();
+  expect(wrapper.find('.stakingAppBlock-tariffsBlock').exists()).toBeTruthy();
 });

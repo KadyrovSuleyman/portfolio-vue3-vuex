@@ -1,0 +1,10 @@
+@use 'variables' as *;
+
+.#{$parent}-infoItem {
+  display: grid;
+
+  row-gap: 8px;
+  padding: 24px 28px;
+
+  z-index: 1;
+}

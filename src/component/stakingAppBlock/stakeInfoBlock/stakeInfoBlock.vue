@@ -5,6 +5,7 @@ import { computed } from 'vue';
 import Div from '@/element/div/div.vue';
 import Span from '@/element/span/span.vue';
 import { useStore } from 'vuex';
+import InfoContainer from './infoContainer/infoContainer.vue';
 import adapt from './adapter';
 
 // eslint-disable-next-line no-undef
@@ -29,9 +30,7 @@ const state = computed(() => adapt(store));
       </Span>
     </Div>
 
-    <Div :block="comp.elem" :elem="'infoContainer'"/>
-
-    <Div :block="comp.elem" :elem="'stakeBgImg'" />
+    <InfoContainer :block="comp.elem" />
 
   </Div>
 
