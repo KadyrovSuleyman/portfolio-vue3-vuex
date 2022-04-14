@@ -2,8 +2,13 @@
   display: grid;
   grid-auto-flow: row;
 
-  position: absolute;
+  position: fixed;
   width: 650px;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
 
   padding: 24px;
   row-gap: 24px;

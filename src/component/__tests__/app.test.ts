@@ -21,6 +21,7 @@ it('app renders', () => {
   expect(wrapper.find('.app-header').exists()).toBeTruthy();
   expect(wrapper.find('.app-headerBorder').exists()).toBeTruthy();
   expect(wrapper.find('.app-stakingAppBlock').exists()).toBeTruthy();
+  expect(wrapper.find('.app-footer').exists()).toBeTruthy();
 });
 
 it('watchs props changes', async () => {

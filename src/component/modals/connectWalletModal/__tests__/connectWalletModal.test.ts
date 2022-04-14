@@ -22,6 +22,8 @@ it('connectWalletModal renders', () => {
   expect(wrapper.find('.connectWalletModal-explanation').exists()).toBeTruthy();
   expect(wrapper.find('.connectWalletModal-walletsList').exists()).toBeTruthy();
   expect(wrapper.find('.connectWalletModal-button').exists()).toBeTruthy();
+
+  expect(wrapper.find('.background').exists()).toBeTruthy();
 });
 
 it('watchs props changes', async () => {

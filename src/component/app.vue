@@ -18,6 +18,7 @@ const comp = computed(() => ({ elem: props.elem || 'app' }));
     <Header :block="comp.elem" />
     <Div :block="comp.elem" :elem="'headerBorder'" />
     <StakingAppBlock :block="comp.elem"/>
+    <Div :block="comp.elem" :elem="'footer'" />
   </Div>
   <Modals />
 </template>

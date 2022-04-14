@@ -31,6 +31,7 @@ const closeHandler = generateCloseHandler(store);
     <Button :block="comp.elem" :onClick="closeHandler" :icon="'cross'" />
 
   </Div>
+  <Div :elem="'background'" />
 </template>
 
 <style lang="scss">

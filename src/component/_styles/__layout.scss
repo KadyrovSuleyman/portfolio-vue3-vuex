@@ -1,18 +1,19 @@
 body {
   position: absolute;
-  width: 1920px;
-  height: 978px;
   left: 0px;
   top: 0px;
+
+  width: 100%;
+  margin: 0;
 }
 
 .app {
   display: grid;
 
-  grid-template-columns: 375px auto 375px;
+  grid-template-columns: auto 1170px auto;
   grid-auto-flow: row;
 
-  row-gap: 100px;
+  row-gap: 128px;
 }
 
 .app-header {
@@ -29,4 +30,12 @@ body {
 
 .app-stakingAppBlock {
   grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.app-footer {
+  grid-column: 1 / 4;
+  grid-row: 3 / 4;
+
+  height: 100px;
 }
