@@ -14,6 +14,8 @@ export default createStore<any>({
 
     modalsShown: {
       connectWallet: false,
+      transactionConfirmed: false,
+      replenish: false,
     },
   },
   mutations: {
@@ -24,5 +26,6 @@ export default createStore<any>({
     },
 
     showConnectWallet: (state) => { state.modalsShown.connectWallet = true; },
+    showTransactionConfirmed: (state) => { state.modalsShown.transactionConfirmed = true; },
   },
 });

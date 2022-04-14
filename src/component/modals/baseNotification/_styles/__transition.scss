@@ -1,0 +1,7 @@
+[class*=notification__show_true] {
+  transition: opacity 1s ease;
+}
+
+[class*=notification__show_false] {
+  opacity: 0;
+}

@@ -20,6 +20,10 @@ const comp = computed(() => ({ elem: props.elem || 'stakingAppBlock' }));
 const store = useStore();
 const state = computed(() => adapt(store));
 
+const aaa = () => {
+  store.commit('showTransactionConfirmed');
+};
+
 </script>
 
 <template>
@@ -35,7 +39,9 @@ const state = computed(() => adapt(store));
 
     <Div :block="comp.elem" :elem="'bgImg'" v-if="state.isStaked"/>
 
-    <Button :block="comp.elem" :elem="'viewContractButton'" >
+    <Button :block="comp.elem" :elem="'viewContractButton'"
+      @click="aaa"
+    >
       <Span :block="'viewContractButton'">
         View contract
       </Span>

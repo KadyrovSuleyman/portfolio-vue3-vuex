@@ -1,0 +1,8 @@
+@use '/src/modificators/__font/-family/montserrat' as *;
+
+[class*=notification]:not(button) {
+  @include montserrat;
+
+  font-size: 20px;
+  letter-spacing: 0.02em;
+}

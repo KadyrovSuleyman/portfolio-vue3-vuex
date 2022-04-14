@@ -7,6 +7,8 @@ export type ModalsT = {
 
 export const modalsShown = ref<ModalsT>({
   connectWallet: false,
+  transactionConfirmed: false,
+  replenish: false,
 });
 
 const adapt = (store: Store<any>): ModalsT => ({

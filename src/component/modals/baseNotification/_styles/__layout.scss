@@ -1,0 +1,14 @@
+[class*=notification]:not(button) {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+
+  padding: 24px 28px;
+  column-gap: 16px;
+
+  position: fixed;
+  bottom: 48px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 100;
+}
