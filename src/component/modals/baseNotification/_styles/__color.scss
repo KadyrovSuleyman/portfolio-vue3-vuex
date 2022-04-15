@@ -1,6 +1,6 @@
 @use '/src/modificators/variables/color' as *;
 
 [class*=notification]:not(button) {
-  background-color: rgba($color: $gray-light, $alpha: 1.0);
+  background-color: rgba($color: $green, $alpha: 1.0);
   color: rgba($color: $text-subtext, $alpha: 1.0);
 }

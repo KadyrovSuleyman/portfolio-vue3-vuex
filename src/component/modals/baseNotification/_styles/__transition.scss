@@ -1,7 +1,16 @@
-[class*=notification__show_true] {
-  transition: opacity 1s ease;
+// [class*=notification__show_true] {
+//   transition: opacity 1s ease;
+// }
+
+// [class*=notification__show_false] {
+//   opacity: 0;
+// }
+
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s ease;
 }
 
-[class*=notification__show_false] {
+.fade-enter-from, .fade-leave-to {
   opacity: 0;
 }
