@@ -50,6 +50,9 @@ const generateMainButtonProps = ({
   if (isReplenishAvailable) {
     return {
       text: 'Replenish',
+      handler: (store: Store<any>) => () => {
+        store.commit('showReplenish');
+      },
     };
   }
 

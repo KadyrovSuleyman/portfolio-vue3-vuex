@@ -1,0 +1,21 @@
+@use '/src/modificators/variables/color' as *;
+
+.replenishModal {
+  background-color: rgba($color: $white, $alpha: 1.0);
+}
+
+.replenishModal-header {
+  color: rgba($color: $black, $alpha: 1.0);
+}
+
+.replenishModal-tkn-span {
+  color: rgba($color: $text-red, $alpha: 1.0);
+}
+
+.replenishModal-replenish-button {
+  background-color: rgba($color: $main, $alpha: 1.0);
+}
+
+.replenish-button-span {
+  color: rgba($color: $white, $alpha: 1.0);
+}

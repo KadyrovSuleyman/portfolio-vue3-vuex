@@ -1,0 +1,32 @@
+@use '/src/element/span/__type/default' as *;
+
+@use '/src/modificators/__font/-weight/semi-bold' as *;
+@use '/src/modificators/__font/-weight/extra-bold' as *;
+@use '/src/modificators/__font/-family/montserrat' as *;
+
+.calculator-periodSpan {
+  @include default;
+
+  @include montserrat;
+  @include semi-bold;
+
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+}
+
+.calculator-rewardSpan {
+  @include default;
+
+  @include montserrat;
+  @include extra-bold;
+
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.02em;
+}
+
+.calculator-button {
+  line-height: 32px;
+  font-size: 20px;
+}

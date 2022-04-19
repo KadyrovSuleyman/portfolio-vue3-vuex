@@ -1,0 +1,9 @@
+.replenishModal-enter-active,
+.replenishModal-leave-active {
+  transition: opacity .5s ease;
+}
+
+.replenishModal-enter-from,
+.replenishModal-leave-to {
+  opacity: 0;
+}

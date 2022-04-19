@@ -1,6 +1,6 @@
 import { onMounted, onUnmounted } from 'vue';
 
-export const AUTOCLOSE_TIME = 30000;
+export const AUTOCLOSE_TIME = 3000;
 
 const autoClose = (callback: CallableFunction, time = AUTOCLOSE_TIME) => {
   let timer: number;

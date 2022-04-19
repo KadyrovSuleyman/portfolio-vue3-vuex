@@ -1,0 +1,19 @@
+@use '/src/modificators/__font/-weight/extra-bold' as *;
+@use '/src/modificators/__font/-weight/bold' as *;
+@use '/src/modificators/__font/-family/montserrat' as *;
+
+.replenishModal-header {
+  @include extra-bold;
+  @include montserrat;
+
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.02em;
+}
+
+.replenish-button-span {
+  @include bold;
+
+  font-size: 16px;
+  line-height: 20px;
+}

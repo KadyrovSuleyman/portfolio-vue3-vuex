@@ -62,6 +62,6 @@ const CALLBACK = computed(() => {
   </Div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @use 'styles' as *;
 </style>

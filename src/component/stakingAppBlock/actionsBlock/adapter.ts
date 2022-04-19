@@ -5,12 +5,12 @@ export type StateListT = { [name: string]: boolean | string };
 
 export const isWaiting = ref<boolean>(false);
 
-export const isWalletConnected = ref<boolean>(false);
-export const isWalletApproved = ref<boolean>(false);
+export const isWalletConnected = ref<boolean>(true);
+export const isWalletApproved = ref<boolean>(true);
 
-export const isStaked = ref<boolean>(false);
+export const isStaked = ref<boolean>(true);
 export const isRestakeAvailable = ref<boolean>(false);
-export const isReplenishAvailable = ref<boolean>(false);
+export const isReplenishAvailable = ref<boolean>(true);
 
 export const restakeCountdown = ref<string>('00:00:09');
 

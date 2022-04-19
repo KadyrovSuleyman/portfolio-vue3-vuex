@@ -1,0 +1,9 @@
+@use '/src/modificators/variables/border-radius' as *;
+
+.replenishModal {
+  border-radius: $large;
+}
+
+.replenishModal-replenish-button {
+  border-radius: $smaller;
+}
