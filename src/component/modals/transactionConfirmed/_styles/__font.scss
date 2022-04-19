@@ -1,0 +1,11 @@
+@use '/src/modificators/__font/-family/montserrat' as *;
+@use '/src/modificators/__font/-weight/semi-bold' as *;
+
+.transactionConfirmed-span {
+  @include montserrat;
+  @include semi-bold;
+
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+}

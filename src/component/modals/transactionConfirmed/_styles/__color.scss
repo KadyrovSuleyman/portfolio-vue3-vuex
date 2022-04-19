@@ -1,0 +1,16 @@
+@use '/src/modificators/variables/color' as *;
+
+.transactionConfirmed-span,
+.transactionConfirmed-button
+{
+  background-color: rgba($color: #ffffff, $alpha: 0);
+}
+
+.transactionConfirmed-notification
+{
+  background-color: rgba($color: $green, $alpha: 0.8);
+}
+
+.transactionConfirmed-span {
+  color: rgba($color: $white, $alpha: 1.0);
+}

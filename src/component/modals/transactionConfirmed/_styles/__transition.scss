@@ -1,0 +1,9 @@
+.transactionConfirmed-enter-active,
+.transactionConfirmed-leave-active {
+  transition: opacity .5s ease;
+}
+
+.transactionConfirmed-enter-from,
+.transactionConfirmed-leave-to {
+  opacity: 0;
+}

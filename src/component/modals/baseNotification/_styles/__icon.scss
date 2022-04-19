@@ -1,7 +1,7 @@
-@use '/src/modificators/__icon/cross' as *;
+@use '/src/modificators/__icon/cross_white' as *;
 
-.notification-button__icon_cross {
-  @include icon-cross;
+.notification-button__icon_cross_white {
+  @include icon-cross_white;
 
   padding: 0;
 }
