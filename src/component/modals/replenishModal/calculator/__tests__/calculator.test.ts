@@ -45,9 +45,6 @@ it('calculator renders', () => {
 
   expect(wrapper.find('.calculator-promtInput').exists()).toBeTruthy();
   expect(wrapper.find('.calculator-button').exists()).toBeTruthy();
-  expect(wrapper.find('.calculator-div').exists()).toBeTruthy();
-  expect(wrapper.find('.calculator-periodSpan').exists()).toBeTruthy();
-  expect(wrapper.find('.calculator-rewardSpan').exists()).toBeFalsy();
 });
 
 it('watchs props changes', async () => {
@@ -116,45 +113,5 @@ describe('watching outer store', () => {
     await max.trigger('click');
     expect(store.state.maxValue).toBe(800);
     expect((input.element as HTMLInputElement).value).toBe('800');
-  });
-
-  it('period', async () => {
-    wrapper = mount(Calculator, {
-      global: { plugins: [store] },
-    });
-    expect(wrapper.find('.calculator').exists()).toBeTruthy();
-    expect(wrapper.find('.calculator-periodSpan').text())
-      .toBe(`Reward for ${store.state.period}:`);
-
-    store.commit('change', {
-      period: '90 Days',
-    });
-    await wrapper.vm.$nextTick();
-    expect(wrapper.find('.calculator-periodSpan').text())
-      .toBe('Reward for 90 Days:');
-  });
-
-  it('rewardCalcParam', async () => {
-    wrapper = mount(Calculator, {
-      global: { plugins: [store] },
-    });
-    expect(wrapper.find('.calculator').exists()).toBeTruthy();
-    expect(wrapper.find('.calculator-rewardSpan').exists()).toBeFalsy();
-
-    wrapper.find('input').element.value = '1000';
-    await wrapper.find('input').trigger('input');
-    expect(wrapper.find('.calculator-rewardSpan').exists()).toBeTruthy();
-    expect(wrapper.find('.calculator-rewardSpan').text())
-      .toBe(`${1000 * store.state.rewardCalcParam} TKN`);
-
-    store.commit('change', {
-      rewardCalcParam: 0.2,
-    });
-    await wrapper.vm.$nextTick();
-    expect(wrapper.find('.calculator-rewardSpan').text()).toBe('200 TKN');
-
-    wrapper.find('input').element.value = '500';
-    await wrapper.find('input').trigger('input');
-    expect(wrapper.find('.calculator-rewardSpan').text()).toBe('100 TKN');
   });
 });
