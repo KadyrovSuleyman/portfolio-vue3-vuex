@@ -13,7 +13,7 @@ const props = defineProps({
   ...propsObj,
   target: String,
 });
-const comp = computed(() => ({ elem: props.elem || 'transactionConfirmed' }));
+const comp = computed(() => ({ elem: props.elem || 'copied' }));
 
 const store = useStore();
 const state = computed(() => adapt(store));
@@ -29,12 +29,11 @@ const notificationClickHandler = generateNotificationClickHandler(store);
   <transition :name="comp.elem">
     <BaseNotification :block="comp.elem" :mods="props.mods"
       v-if="state.isShown" :close-handler="closeHandler"
+      :duration="1000"
     >
-      <Button :block="comp.elem" @click="notificationClickHandler">
-        <Span :block="comp.elem">
-          Transaction confirmed! Click here to see it
-        </Span>
-      </Button>
+      <Span :block="comp.elem">
+        Copied!
+      </Span>
     </BaseNotification>
   </transition>
 </Teleport>

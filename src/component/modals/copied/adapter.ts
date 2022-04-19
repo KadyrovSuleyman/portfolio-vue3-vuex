@@ -5,21 +5,21 @@ import { Store } from 'vuex';
 const isShown = ref(false);
 
 export const adapt = (store: Store<any>) => ({
-  isShown: store.state.modalsShown.transactionConfirmed,
+  isShown: store.state.modalsShown.copied,
 
   // isShown: isShown.value,
 });
 
 export const generateCloseHandler = (store: Store<any>) => () => {
-  store.state.modalsShown.transactionConfirmed = false;
+  store.state.modalsShown.copied = false;
 
   // isShown.value = false;
 };
 
 export const generateNotificationClickHandler = (store: Store<any>) => () => {
-  console.warn('transactionConfirmed-notification clicked');
+  console.warn('copied-notification clicked');
 
-  store.state.modalsShown.transactionConfirmed = false;
+  store.state.modalsShown.copied = false;
 
   // isShown.value = false;
 };

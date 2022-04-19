@@ -10,6 +10,7 @@ beforeEach(() => {
         connectWallet: false,
         transactionConfirmed: false,
         replenish: false,
+        copied: false,
       },
     },
     mutations: {

@@ -13,10 +13,11 @@ const props = defineProps({
     type: Function,
     default: () => ({}),
   },
+  duration: Number,
 });
 const comp = computed(() => ({ elem: props.elem || 'notification' }));
 
-autoClose(props.closeHandler);
+autoClose(props.closeHandler, props.duration);
 
 </script>
 

@@ -2,7 +2,6 @@
 import { mount, VueWrapper } from '@vue/test-utils';
 import { createStore, Store } from 'vuex';
 import Notification from '../transactionConfirmed.vue';
-import { notificationClickHandler } from '../adapter';
 
 jest.mock('../adapter.ts', () => {
   const originalModule = jest.requireActual('../adapter.ts');
@@ -13,7 +12,9 @@ jest.mock('../adapter.ts', () => {
     generateCloseHandler: (store: Store<any>) => () => {
       store.state.isShown = false;
     },
-    notificationClickHandler: jest.fn(),
+    generateNotificationClickHandler: (store: Store<any>) => () => {
+      store.state.notificationClickCount += 1;
+    },
   };
 });
 
@@ -22,6 +23,7 @@ beforeEach(() => {
   store = createStore<any>({
     state: {
       isShown: false,
+      notificationClickCount: 0,
     },
     mutations: {
       change: (state, obj: { [name: string]: boolean | string }) => {
@@ -142,8 +144,11 @@ it('notification clicks', async () => {
   await wrapper.vm.$nextTick();
   expect(store.state.isShown).toBeTruthy();
   expect(wrapper.findComponent('.transactionConfirmed-notification').exists()).toBeTruthy();
-  expect(notificationClickHandler).toBeCalledTimes(0);
+  expect(store.state.notificationClickCount).toBe(0);
 
   await wrapper.findComponent('.transactionConfirmed-button').trigger('click');
-  expect(notificationClickHandler).toBeCalledTimes(1);
+  expect(store.state.notificationClickCount).toBe(1);
+
+  await wrapper.findComponent('.transactionConfirmed-button').trigger('click');
+  expect(store.state.notificationClickCount).toBe(2);
 });

@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import { Store } from 'vuex';
 
-const isWalletConnect = ref(false);
+const isWalletConnect = ref(true);
 
 export const adapt = (store: Store<any>) => ({
   // isWalletConnect: store.state.connect,

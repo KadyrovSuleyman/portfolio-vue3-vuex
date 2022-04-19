@@ -62,10 +62,14 @@ it('watchs props changes', async () => {
 });
 
 // =========================================
-jest.mock('../adapter', () => ({
-  __esModule: true,
-  default: (store: Store<any>) => ({ ...store.state }),
-}));
+jest.mock('../adapter', () => {
+  const originalModule = jest.requireActual('../adapter.ts');
+  return {
+    __esModule: true,
+    ...originalModule,
+    default: (store: Store<any>) => ({ ...store.state }),
+  };
+});
 
 describe('outer store', () => {
   it('changeAddress -> changeBalance', async () => {

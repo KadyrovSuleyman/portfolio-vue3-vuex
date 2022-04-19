@@ -16,7 +16,10 @@ export default createStore<any>({
       connectWallet: false,
       transactionConfirmed: false,
       replenish: false,
+      copied: false,
     },
+
+    address: 'asdfasdf',
   },
   mutations: {
     changee: (state, obj: { [name: string]: boolean | string }) => {
@@ -28,5 +31,6 @@ export default createStore<any>({
     showConnectWallet: (state) => { state.modalsShown.connectWallet = true; },
     showTransactionConfirmed: (state) => { state.modalsShown.transactionConfirmed = true; },
     showReplenish: (state) => { state.modalsShown.replenish = true; },
+    showCopied: (state) => { state.modalsShown.copied = true; },
   },
 });

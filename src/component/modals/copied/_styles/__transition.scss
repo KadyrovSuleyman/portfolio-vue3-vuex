@@ -1,0 +1,9 @@
+.copied-enter-active,
+.copied-leave-active {
+  transition: opacity .5s ease;
+}
+
+.copied-enter-from,
+.copied-leave-to {
+  opacity: 0;
+}

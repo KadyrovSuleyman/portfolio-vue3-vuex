@@ -1,0 +1,16 @@
+@use '/src/modificators/variables/color' as *;
+
+.copied-span,
+.copied-button
+{
+  background-color: rgba($color: #ffffff, $alpha: 0);
+}
+
+.copied-notification
+{
+  background-color: rgba($color: $main, $alpha: 1);
+}
+
+.copied-span {
+  color: rgba($color: $white, $alpha: 1.0);
+}
