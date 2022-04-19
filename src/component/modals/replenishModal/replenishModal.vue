@@ -67,6 +67,7 @@ const replenishConfirmHandler = generateReplenishConfirmHandler(store);
   <transition :name="comp.elem">
   <Div :elem="'background'"
         v-if="state.isShown"
+        :onClick="closeHandler"
       />
   </transition>
 </Teleport>

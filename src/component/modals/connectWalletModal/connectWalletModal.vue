@@ -43,6 +43,7 @@ const closeHandler = generateCloseHandler(store);
   <transition name="fade">
   <Div :elem="'background'"
         v-if="state.isShown"
+        :onClick="closeHandler"
       />
   </transition>
 </Teleport>
