@@ -1,69 +1,127 @@
-import { mount } from '@vue/test-utils';
-import { computed, ref } from 'vue';
-import { createStore } from 'vuex';
+/* eslint-disable no-param-reassign */
+import { mount, VueWrapper } from '@vue/test-utils';
+import { createStore, Store } from 'vuex';
 import Modal from '../connectWalletModal.vue';
 
-let wrapper = mount(Modal, {
-  global: { plugins: [createStore({})] },
+jest.mock('../adapter.ts', () => {
+  const originalModule = jest.requireActual('../adapter.ts');
+  return {
+    __esModule: true,
+    ...originalModule,
+    adapt: (store: Store<any>) => ({ ...store.state }),
+    generateCloseHandler: (store: Store<any>) => () => {
+      store.state.isShown = false;
+    },
+  };
 });
-wrapper.unmount();
+
+let store: Store<any>;
+beforeEach(() => {
+  store = createStore<any>({
+    state: {
+      isShown: false,
+    },
+    mutations: {
+      change: (state, obj: { [name: string]: boolean | string }) => {
+        Object.keys(obj).forEach((index) => {
+          state[index] = obj[index];
+        });
+      },
+    },
+  });
+});
+
+beforeEach(() => {
+  const el = document.createElement('div');
+  el.className = 'app';
+  document.body.appendChild(el);
+});
+afterEach(() => {
+  document.body.outerHTML = '';
+});
+
+let wrapper: VueWrapper<any>;
 afterEach(() => {
   wrapper.unmount();
 });
 
-it('connectWalletModal renders', () => {
+it('connectWalletModal renders', async () => {
   wrapper = mount(Modal, {
-    global: { plugins: [createStore({})] },
+    global: { plugins: [store] },
+    props: {
+      target: '.app',
+    },
   });
 
-  expect(wrapper.find('.connectWalletModal').classes()).toEqual(['connectWalletModal']);
+  expect(wrapper.findComponent('.connectWalletModal').exists()).toBeFalsy();
+  expect(wrapper.findComponent('.background').exists()).toBeFalsy();
 
-  expect(wrapper.find('.connectWalletModal-header').exists()).toBeTruthy();
-  expect(wrapper.find('.connectWalletModal-explanation').exists()).toBeTruthy();
-  expect(wrapper.find('.connectWalletModal-walletsList').exists()).toBeTruthy();
-  expect(wrapper.find('.connectWalletModal-button').exists()).toBeTruthy();
+  store.commit('change', {
+    isShown: true,
+  });
+  await wrapper.vm.$nextTick();
+  expect(store.state.isShown).toBeTruthy();
 
-  expect(wrapper.find('.background').exists()).toBeTruthy();
+  expect(wrapper.findComponent('.connectWalletModal').classes()).toEqual(['connectWalletModal']);
+
+  expect(wrapper.findComponent('.connectWalletModal-header').exists()).toBeTruthy();
+  expect(wrapper.findComponent('.connectWalletModal-explanation').exists()).toBeTruthy();
+  expect(wrapper.findComponent('.connectWalletModal-walletsList').exists()).toBeTruthy();
+  expect(wrapper.findComponent('.connectWalletModal-button').exists()).toBeTruthy();
+
+  expect(wrapper.findComponent('.background').exists()).toBeTruthy();
+});
+
+it('closes', async () => {
+  wrapper = mount(Modal, {
+    global: { plugins: [store] },
+    props: {
+      target: '.app',
+    },
+  });
+
+  expect(wrapper.findComponent('.connectWalletModal').exists()).toBeFalsy();
+  expect(wrapper.findComponent('.background').exists()).toBeFalsy();
+
+  store.commit('change', {
+    isShown: true,
+  });
+  await wrapper.vm.$nextTick();
+  expect(store.state.isShown).toBeTruthy();
+
+  wrapper.findComponent('.connectWalletModal-button').trigger('click');
+  await wrapper.vm.$nextTick();
+  expect(store.state.isShown).toBeFalsy();
+
+  expect(wrapper.findComponent('.connectWalletModal').exists()).toBeFalsy();
+  expect(wrapper.findComponent('.background').exists()).toBeFalsy();
 });
 
 it('watchs props changes', async () => {
-  const Div = {
-    props: [],
-
-    setup() {
-      const isSelected = ref(false);
-      const select = () => {
-        isSelected.value = !isSelected.value;
-      };
-      const mods = computed(() => ({ selected: isSelected.value }));
-
-      return {
-        isSelected,
-        select,
-        mods,
-      };
+  store.state.isShown = true;
+  wrapper = mount(Modal, {
+    global: { plugins: [store] },
+    props: {
+      target: '.app',
     },
-    components: {
-      Modal,
-    },
-
-    template: `
-      <div class='root'>
-        <Modal :mods="mods"/>
-        <button class="test-btn" @click="select"></button>
-      </div>
-    `,
-  };
-  const wr = mount(Div, {
-    global: { plugins: [createStore({})] },
   });
-  expect(wr.find('.connectWalletModal').classes()).toEqual(['connectWalletModal']);
+  expect(wrapper.findComponent('.connectWalletModal').classes()).toEqual(['connectWalletModal']);
 
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.connectWalletModal').classes()).toEqual(['connectWalletModal', 'connectWalletModal__selected']);
+  wrapper.setProps({
+    ...wrapper.props,
+    mods: {
+      selected: true,
+    },
+  });
+  await wrapper.vm.$nextTick();
+  expect(wrapper.findComponent('.connectWalletModal').classes()).toEqual(['connectWalletModal', 'connectWalletModal__selected']);
 
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.connectWalletModal').classes()).toEqual(['connectWalletModal']);
-
-  wr.unmount();
+  wrapper.setProps({
+    ...wrapper.props,
+    mods: {
+      selected: false,
+    },
+  });
+  await wrapper.vm.$nextTick();
+  expect(wrapper.findComponent('.connectWalletModal').classes()).toEqual(['connectWalletModal']);
 });
