@@ -1,12 +1,14 @@
 import { Module } from 'vuex';
 import { state, StateT } from './state';
 import mutations from './mutations';
+// import getters from './getters';
 
-const modal: Module<StateT, any> = {
+const wallet: Module<StateT, any> = {
   namespaced: true,
 
   state,
   mutations,
+  // getters,
 };
 
-export default modal;
+export default wallet;

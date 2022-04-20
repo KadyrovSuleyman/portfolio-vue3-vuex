@@ -1,16 +1,20 @@
-import { TariffItemT } from '@/component/stakingAppBlock/tariffsBlock/adapter';
 import { createLogger, createStore } from 'vuex';
-import types from './mutation-types';
+import { CoinT } from './coin/types.d';
+import { WalletT } from './wallet/types.d';
 import modal from './modal';
+import wallet from './wallet';
+import coin from './coin';
+import account from './account';
 
-export default createStore<any>({
+const store = createStore<any>({
   modules: {
     modal,
+    wallet,
+    coin,
+    account,
   },
 
   state: {
-    isWalletConnected: true,
-    isWalletApproved: false,
     isWaiting: false,
     isStaked: false,
     isReplenishAvailable: false,
@@ -27,3 +31,24 @@ export default createStore<any>({
     },
   },
 });
+
+const walletList: WalletT[] = [{
+  name: 'MetaMask',
+  icon: 'icon/metaMask.svg',
+},
+{
+  name: 'Walletconnect',
+  icon: 'icon/walletconnect.svg',
+}];
+store.commit('wallet/load-list', walletList);
+
+const coinList: CoinT[] = [
+  {
+    name: 'binance',
+    abbreviation: 'BUSD',
+    icon: 'icon/binance.svg',
+  },
+];
+store.commit('coin/load-list', coinList);
+
+export default store;

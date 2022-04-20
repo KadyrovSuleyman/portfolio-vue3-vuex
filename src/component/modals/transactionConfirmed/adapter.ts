@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { ref } from 'vue';
 import { Store } from 'vuex';
-import { MODAL } from '@/store/modal/state';
+import MODAL from '@/store/modal/types';
 
 const isShown = ref(false);
 

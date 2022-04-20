@@ -1,4 +1,6 @@
 /* eslint-disable no-param-reassign */
+import { Store } from 'vuex';
+import MODAL from '@/store/modal/types';
 
 export const getWalletName = (target: HTMLElement, className: string) => {
   while (target !== document.body) {
@@ -12,11 +14,12 @@ export const getWalletName = (target: HTMLElement, className: string) => {
 };
 
 // ----------------------------
-export const clickHandlerGenerator = (className = 'walletsList') => (payload: MouseEvent) => {
+export const clickHandlerGenerator = (store: Store<any>, className = 'walletsList') => (payload: MouseEvent) => {
   payload.preventDefault();
 
   const targetItem = payload.target as HTMLElement;
-  const key = getWalletName(targetItem, className);
+  const name = getWalletName(targetItem, className);
 
-  console.warn(`${key}: sending request`);
+  store.commit('wallet/select', name);
+  store.commit('modal/hide', MODAL.connectWallet);
 };

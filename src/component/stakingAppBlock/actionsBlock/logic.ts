@@ -1,5 +1,5 @@
 import { Store } from 'vuex';
-import { MODAL } from '@/store/modal/state';
+import MODAL from '@/store/modal/types';
 import { StateListT } from './adapter';
 
 export type MainButtonPropsT = {
@@ -33,6 +33,9 @@ const generateMainButtonProps = ({
   if (!isWalletApproved) {
     return {
       text: 'Approve wallet',
+      handler: (store: Store<any>) => () => {
+        store.commit('wallet/approve');
+      },
     };
   }
 

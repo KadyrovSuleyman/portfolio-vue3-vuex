@@ -16,6 +16,7 @@ const store = useStore();
 const state = computed(() => adapt(store));
 
 const clickHandler = clickHandlerGenerator(
+  store,
   `${props.block ? `${props.block}-` : ''}${comp.value.elem}`,
 );
 

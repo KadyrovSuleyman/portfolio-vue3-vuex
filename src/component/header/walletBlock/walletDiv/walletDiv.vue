@@ -26,7 +26,7 @@ const copyClickHandler = generateCopyClickHandler(store);
       {{ state.address }}
     </AddressBlock>
     <Span :block="comp.elem">
-      {{ state.balance }}
+      {{ state.balance }} {{ state.coinAbbreviation }}
     </Span>
 
     <Button :block="comp.elem" :icon="'coin'">

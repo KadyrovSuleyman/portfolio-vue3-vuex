@@ -1,4 +1,4 @@
-import { MODAL } from '@/store/modal/state';
+import MODAL from '@/store/modal/types';
 /* eslint-disable no-param-reassign */
 import { ref } from 'vue';
 import { Store } from 'vuex';
