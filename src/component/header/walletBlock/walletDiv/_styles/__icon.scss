@@ -1,8 +1,16 @@
 @use '/src/modificators/__icon/coin' as *;
 @use '/src/modificators/__icon/chevron' as *;
 
-.walletDiv-button__icon_coin {
-  @include icon_coin
+.walletDiv-button__icon_coin > img {
+  border-radius: 0;
+  background: none;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  width: 24px;
+  height: 24px;
+
+  cursor: pointer;
 }
 
 .walletDiv-button__icon_chevron {

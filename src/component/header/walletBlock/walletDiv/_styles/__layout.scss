@@ -11,9 +11,11 @@
 }
 
 .walletDiv-span {
-  padding: 0 4px;
+  padding: 0 4px 0 12px;
 }
 
 .walletDiv-button {
-  margin-right: 8px;
+  display: grid;
+  padding: 0;
+  padding-right: 8px;
 }
