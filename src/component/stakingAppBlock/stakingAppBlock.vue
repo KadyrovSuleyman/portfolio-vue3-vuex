@@ -11,7 +11,7 @@ import TariffsBlock from './tariffsBlock/tariffsBlock.vue';
 import CalculatorBlock from './calculatorBlock/calculatorBlock.vue';
 import ActionsBlock from './actionsBlock/actionsBlock.vue';
 import StakeInfoBlock from './stakeInfoBlock/stakeInfoBlock.vue';
-import adapt from './adapter';
+import { adapt, generateViewContractClickHandler } from './adapter';
 
 // eslint-disable-next-line no-undef
 const props = defineProps({ ...propsObj });
@@ -20,9 +20,7 @@ const comp = computed(() => ({ elem: props.elem || 'stakingAppBlock' }));
 const store = useStore();
 const state = computed(() => adapt(store));
 
-const aaa = () => {
-  store.commit('showTransactionConfirmed');
-};
+const viewContractClickHandler = generateViewContractClickHandler(store);
 
 </script>
 
@@ -40,7 +38,7 @@ const aaa = () => {
     <Div :block="comp.elem" :elem="'bgImg'" v-if="state.isStaked"/>
 
     <Button :block="comp.elem" :elem="'viewContractButton'"
-      @click="aaa"
+      @click="viewContractClickHandler"
     >
       <Span :block="'viewContractButton'">
         View contract

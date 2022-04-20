@@ -1,4 +1,5 @@
 import { Store } from 'vuex';
+import { MODAL } from '@/store/modal/state';
 import { StateListT } from './adapter';
 
 export type MainButtonPropsT = {
@@ -24,7 +25,7 @@ const generateMainButtonProps = ({
     return {
       text: 'Connect wallet',
       handler: (store: Store<any>) => () => {
-        store.commit('showConnectWallet');
+        store.commit('modal/show', MODAL.connectWallet);
       },
     };
   }
@@ -51,7 +52,7 @@ const generateMainButtonProps = ({
     return {
       text: 'Replenish',
       handler: (store: Store<any>) => () => {
-        store.commit('showReplenish');
+        store.commit('modal/show', MODAL.replenish);
       },
     };
   }

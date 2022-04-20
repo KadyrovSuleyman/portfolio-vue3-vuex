@@ -8,7 +8,7 @@ jest.mock('../adapter', () => {
   return {
     __esModule: true,
     ...originalModule,
-    default: (store: Store<any>) => ({ ...store.state }),
+    adapt: (store: Store<any>) => ({ ...store.state }),
   };
 });
 

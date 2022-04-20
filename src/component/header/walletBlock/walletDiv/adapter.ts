@@ -1,4 +1,5 @@
 import { ref } from 'vue';
+import { MODAL } from '@/store/modal/state';
 import { Store } from 'vuex';
 
 const address = ref('0хCb99...8EBb');
@@ -23,7 +24,7 @@ export const generateCopyClickHandler = (store: Store<any>) => () => {
   const state = adapt(store);
 
   navigator.clipboard.writeText(state.address)
-    .then(() => { store.commit('showCopied'); });
+    .then(() => { store.commit('modal/show', MODAL.copied); });
 };
 
 export default adapt;

@@ -1,8 +1,13 @@
 import { TariffItemT } from '@/component/stakingAppBlock/tariffsBlock/adapter';
 import { createLogger, createStore } from 'vuex';
 import types from './mutation-types';
+import modal from './modal';
 
 export default createStore<any>({
+  modules: {
+    modal,
+  },
+
   state: {
     isWalletConnected: true,
     isWalletApproved: false,
@@ -12,13 +17,6 @@ export default createStore<any>({
     isRestakeAvailable: false,
     restakeCountdown: '00:00:09',
 
-    modalsShown: {
-      connectWallet: false,
-      transactionConfirmed: false,
-      replenish: false,
-      copied: false,
-    },
-
     address: 'asdfasdf',
   },
   mutations: {
@@ -27,10 +25,5 @@ export default createStore<any>({
         state[index] = obj[index];
       });
     },
-
-    showConnectWallet: (state) => { state.modalsShown.connectWallet = true; },
-    showTransactionConfirmed: (state) => { state.modalsShown.transactionConfirmed = true; },
-    showReplenish: (state) => { state.modalsShown.replenish = true; },
-    showCopied: (state) => { state.modalsShown.copied = true; },
   },
 });

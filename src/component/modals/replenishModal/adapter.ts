@@ -1,3 +1,4 @@
+import { MODAL } from '@/store/modal/state';
 /* eslint-disable no-param-reassign */
 import { ref } from 'vue';
 import { Store } from 'vuex';
@@ -7,7 +8,7 @@ const maxAmount = ref(1000);
 const availableAmount = ref(40);
 
 export const adapt = (store: Store<any>) => ({
-  isShown: store.state.modalsShown.replenish,
+  isShown: store.state.modal.replenish,
   // maxAmount: store.state.maxAmount,
   // availableAmount: store.state.availableAmount,
 
@@ -17,13 +18,13 @@ export const adapt = (store: Store<any>) => ({
 });
 
 export const generateCloseHandler = (store: Store<any>) => () => {
-  store.state.modalsShown.replenish = false;
+  store.commit('modal/hide', MODAL.replenish);
 
   // isShown.value = false;
 };
 
 export const generateReplenishConfirmHandler = (store: Store<any>) => () => {
-  store.state.modalsShown.replenish = false;
+  store.commit('modal/hide', MODAL.replenish);
 
   // isShown.value = false;
 };

@@ -6,7 +6,7 @@ let store: Store<any>;
 beforeEach(() => {
   store = createStore<any>({
     state: {
-      modalsShown: {
+      modal: {
         connectWallet: false,
         transactionConfirmed: false,
         replenish: false,
