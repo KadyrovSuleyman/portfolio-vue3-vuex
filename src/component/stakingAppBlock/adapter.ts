@@ -7,12 +7,12 @@ export const isStaked = ref<boolean>(true);
 
 export const adapt = (store: Store<any>) => ({
   isWalletApproved: store.state.wallet.isApproved,
-  // isStaked: store.state.isStaked,
+  isStaked: store.state.stake.isStaked,
 
   // isWalletApproved: isWalletApproved.value,
-  isStaked: isStaked.value,
+  // isStaked: isStaked.value,
 });
 
 export const generateViewContractClickHandler = (store: Store<any>) => () => {
-  store.commit('modal/show', MODAL.transactionConfirmed);
+  store.dispatch('modal/show', MODAL.transactionConfirmed);
 };

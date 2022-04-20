@@ -19,7 +19,7 @@ const adapt = (store: Store<any>) => ({
   isWalletConnected: store.getters['wallet/isConnected'],
   isWalletApproved: store.state.wallet.isApproved,
   // isWaiting: store.state.isWaiting,
-  // isStaked: store.state.isStaked,
+  isStaked: store.state.stake.isStaked,
   // isReplenishAvailable: store.state.isReplenishAvailable,
   // isRestakeAvailable: store.state.isRestakeAvailable,
   // restakeCountdown: store.state.restakeCountdown,
@@ -27,10 +27,11 @@ const adapt = (store: Store<any>) => ({
   // isWalletConnected: isWalletConnected.value,
   // isWalletApproved: isWalletApproved.value,
   isWaiting: isWaiting.value,
-  isStaked: isStaked.value,
+  // isStaked: isStaked.value,
   isReplenishAvailable: isReplenishAvailable.value,
   isRestakeAvailable: isRestakeAvailable.value,
   restakeCountdown: restakeCountdown.value,
+  disabled: false,
 });
 
 export default adapt;

@@ -2,10 +2,7 @@ import { MutationTree } from 'vuex';
 import { StateT } from './state';
 
 const mutations: MutationTree<StateT> = {
-  load: (state: StateT, newState: StateT) => {
-    state.address = newState.address;
-    state.balance = newState.balance;
-  },
+  stake: (state: StateT) => { state.isStaked = true; },
 };
 
 export default mutations;

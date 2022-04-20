@@ -10,14 +10,14 @@ const coinLink = ref('icon/walletconnect.svg');
 const coinAbbreviation = ref('BUSD');
 
 const adapt = (store: Store<any>) => ({
-  // address: store.state.address,
-  // balance: store.state.balance,
+  address: store.state.account.address,
+  balance: store.getters['account/balance'],
   coinName: store.getters['coin/name'],
   coinLink: store.getters['coin/icon'],
   coinAbbreviation: store.getters['coin/abbreviation'],
 
-  address: address.value,
-  balance: balance.value,
+  // address: address.value,
+  // balance: balance.value,
   // coinName: coinName.value,
   // coinLink: coinLink.value,
   // coinAbbreviation: coinAbbreviation.value,
@@ -27,7 +27,9 @@ export const generateCopyClickHandler = (store: Store<any>) => () => {
   const state = adapt(store);
 
   navigator.clipboard.writeText(state.address)
-    .then(() => { store.commit('modal/show', MODAL.copied); });
+    .then(() => { store.dispatch('modal/show', MODAL.copied); });
+
+  store.dispatch('coin/select', 'ethereum');
 };
 
 export default adapt;

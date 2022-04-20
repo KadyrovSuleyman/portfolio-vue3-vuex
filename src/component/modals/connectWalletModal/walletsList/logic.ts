@@ -20,6 +20,6 @@ export const clickHandlerGenerator = (store: Store<any>, className = 'walletsLis
   const targetItem = payload.target as HTMLElement;
   const name = getWalletName(targetItem, className);
 
-  store.commit('wallet/select', name);
-  store.commit('modal/hide', MODAL.connectWallet);
+  store.dispatch('wallet/select', name);
+  store.dispatch('modal/hide', MODAL.connectWallet);
 };

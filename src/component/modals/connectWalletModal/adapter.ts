@@ -12,7 +12,7 @@ export const adapt = (store: Store<any>) => ({
 });
 
 export const generateCloseHandler = (store: Store<any>) => () => {
-  store.commit('modal/hide', MODAL.connectWallet);
+  store.dispatch('modal/hide', MODAL.connectWallet);
 
   // isShown.value = false;
 };

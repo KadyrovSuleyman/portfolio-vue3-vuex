@@ -39,8 +39,9 @@ const CALLBACK = computed(() => {
       </Span>
     </Button>
 
-    <Button :block="comp.elem" :elem="'mainButton'" :mods="{ waiting: state.isWaiting }"
-      :onClick="CALLBACK"
+    <Button :block="comp.elem" :elem="'mainButton'"
+      :mods="{ waiting: state.isWaiting, disabled: state.disabled }"
+      :onClick="CALLBACK" :disabled="state.disabled"
     >
       <WaitingIcon
         v-if="state.isWaiting"

@@ -9,11 +9,11 @@ export const isStaked = ref<boolean>(false);
 const adapt = (store: Store<any>) => ({
   isWalletConnected: store.getters['wallet/isConnected'],
   isWalletApproved: store.state.wallet.isApproved,
-  // isStaked: store.state.isStaked,
+  isStaked: store.state.stake.isStaked,
 
   // isWalletConnected: isWalletConnected.value,
   // isWalletApproved: isWalletApproved.value,
-  isStaked: isStaked.value,
+  // isStaked: isStaked.value,
 });
 
 export default adapt;

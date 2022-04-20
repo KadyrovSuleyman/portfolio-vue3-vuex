@@ -25,7 +25,7 @@ const generateMainButtonProps = ({
     return {
       text: 'Connect wallet',
       handler: (store: Store<any>) => () => {
-        store.commit('modal/show', MODAL.connectWallet);
+        store.dispatch('modal/show', MODAL.connectWallet);
       },
     };
   }
@@ -34,7 +34,7 @@ const generateMainButtonProps = ({
     return {
       text: 'Approve wallet',
       handler: (store: Store<any>) => () => {
-        store.commit('wallet/approve');
+        store.dispatch('wallet/approve');
       },
     };
   }
@@ -42,6 +42,9 @@ const generateMainButtonProps = ({
   if (!isStaked) {
     return {
       text: 'Stake',
+      handler: (store: Store<any>) => () => {
+        store.dispatch('stake/stake');
+      },
     };
   }
 
@@ -55,7 +58,7 @@ const generateMainButtonProps = ({
     return {
       text: 'Replenish',
       handler: (store: Store<any>) => () => {
-        store.commit('modal/show', MODAL.replenish);
+        store.dispatch('modal/show', MODAL.replenish);
       },
     };
   }

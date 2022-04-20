@@ -12,7 +12,7 @@ export const adapt = (store: Store<any>) => ({
 });
 
 export const generateCloseHandler = (store: Store<any>) => () => {
-  store.commit('modal/hide', MODAL.transactionConfirmed);
+  store.dispatch('modal/hide', MODAL.transactionConfirmed);
 
   // isShown.value = false;
 };
@@ -20,7 +20,7 @@ export const generateCloseHandler = (store: Store<any>) => () => {
 export const generateNotificationClickHandler = (store: Store<any>) => () => {
   console.warn('transactionConfirmed-notification clicked');
 
-  store.commit('modal/hide', MODAL.transactionConfirmed);
+  store.dispatch('modal/hide', MODAL.transactionConfirmed);
 
   // isShown.value = false;
 };

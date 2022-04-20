@@ -18,13 +18,13 @@ export const adapt = (store: Store<any>) => ({
 });
 
 export const generateCloseHandler = (store: Store<any>) => () => {
-  store.commit('modal/hide', MODAL.replenish);
+  store.dispatch('modal/hide', MODAL.replenish);
 
   // isShown.value = false;
 };
 
 export const generateReplenishConfirmHandler = (store: Store<any>) => () => {
-  store.commit('modal/hide', MODAL.replenish);
+  store.dispatch('modal/hide', MODAL.replenish);
 
   // isShown.value = false;
 };

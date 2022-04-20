@@ -32,7 +32,7 @@ const viewContractClickHandler = generateViewContractClickHandler(store);
     <WalletApprovedBlock :block="comp.elem" v-if="state.isWalletApproved"/>
     <TariffsBlock :block="comp.elem" v-if="!state.isStaked"/>
     <StakeInfoBlock :block="comp.elem" v-else/>
-    <CalculatorBlock :block="comp.elem" />
+    <CalculatorBlock :block="comp.elem" v-if="!state.isStaked"/>
     <ActionsBlock :block="comp.elem" />
 
     <Div :block="comp.elem" :elem="'bgImg'" v-if="state.isStaked"/>
