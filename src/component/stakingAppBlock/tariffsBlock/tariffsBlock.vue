@@ -13,11 +13,11 @@ const props = defineProps({ ...propsObj });
 const comp = computed(() => ({ elem: props.elem || 'tariffsBlock' }));
 
 const store = useStore();
-const { tariffsList, selectList } = adapt(store);
+const state = computed(() => adapt(store));
 
 const clickHandler = clickHandlerGenerator({
-  list: selectList,
   className: `${props.block ? `${props.block}-` : ''}${comp.value.elem}`,
+  store,
 });
 
 </script>
@@ -25,10 +25,10 @@ const clickHandler = clickHandlerGenerator({
 <template>
   <Div :block="props.block" :elem="comp.elem" :mods="props.mods">
 
-    <TariffItem v-for="({ period, apy, amount }) in tariffsList" :key="period"
+    <TariffItem v-for="({ period, apy, amountMin, amountMax }) in state.tariffsList" :key="period"
       :block="comp.elem" :period="period" :apy="apy"
-      :amount="amount"
-      :onClick="clickHandler" :selected="selectList[period]"
+      :amountMin="amountMin" :amountMax="amountMax"
+      :onClick="clickHandler" :selected="state.selectList[period]"
     />
 
   </Div>

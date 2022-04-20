@@ -10,9 +10,10 @@ type OnClickHandlerT = (payload: MouseEvent) => void;
 // eslint-disable-next-line no-undef
 const props = defineProps({
   ...propsObj,
-  period: String,
-  apy: String,
-  amount: String,
+  period: Number,
+  apy: Number,
+  amountMin: Number,
+  amountMax: Number,
 
   selected: String,
 
@@ -43,12 +44,12 @@ const hideTip = () => { isTipVisible.value = false; };
     </Tip>
 
     <Span :block="comp.elem" :elem="'period'">
-      {{ period }}
+      {{ props.period }} Days
     </Span>
 
     <Div :block="comp.elem" :elem="'apyDiv'">
       <Span :block="comp.elem" :elem="'apy'">
-        APY: {{ apy }}
+        APY: {{ props.apy }}%
       </Span>
       <Div
         :block="comp.elem" :elem="'question'"
@@ -56,7 +57,7 @@ const hideTip = () => { isTipVisible.value = false; };
     </Div>
 
     <Span :block="comp.elem" :elem="'amount'">
-      Amount: {{ amount }}
+      Amount: {{ props.amountMin }} - {{ props.amountMax }} TKN
     </Span>
   </Div>
 </template>
