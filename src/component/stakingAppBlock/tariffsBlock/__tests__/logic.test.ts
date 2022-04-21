@@ -1,80 +1,36 @@
-// import { mount } from '@vue/test-utils';
-// import { getSelectListKey, selectToClosure } from '../logic';
+import { mount } from '@vue/test-utils';
+import { getSelectListKey } from '../logic';
 
-// it('selectToClosure', () => {
-//   const list = {
-//     '30 Days': undefined,
-//     '90 Days': undefined,
-//     '150 Days': undefined,
-//   };
+it('getSelectListKey', () => {
+  const Div = {
+    props: [],
 
-//   const select = (target: string) => selectToClosure(list, target);
+    setup() {
+      return {};
+    },
 
-//   expect(list).toStrictEqual({
-//     '30 Days': undefined,
-//     '90 Days': undefined,
-//     '150 Days': undefined,
-//   });
+    template: `
+    <div class="root">
+      <div class="root-target">
+        <div class="target-scum">
+          <span class="target-span">fake</span>
+        </div>
+        <button class="target-another">
+          <div class="another-div">divi</div>
+        </button>
+        <div class="target-tariffItem">
+          <span class="tariffItem-period">catcha!</span>
+        </div>
+      </div>
+    </div>
+  `,
+  };
 
-//   select('30 Days');
-//   expect(list).toStrictEqual({
-//     '30 Days': 'true',
-//     '90 Days': 'false',
-//     '150 Days': 'false',
-//   });
+  const wr = mount(Div);
+  expect(wr.html()).not.toBeNull();
 
-//   select('90 Days');
-//   expect(list).toStrictEqual({
-//     '30 Days': 'false',
-//     '90 Days': 'true',
-//     '150 Days': 'false',
-//   });
-
-//   select('90 Days');
-//   expect(list).toStrictEqual({
-//     '30 Days': undefined,
-//     '90 Days': undefined,
-//     '150 Days': undefined,
-//   });
-
-//   select('150 Days');
-//   expect(list).toStrictEqual({
-//     '30 Days': 'false',
-//     '90 Days': 'false',
-//     '150 Days': 'true',
-//   });
-// });
-
-// it('getSelectListKey', () => {
-//   const Div = {
-//     props: [],
-
-//     setup() {
-//       return {};
-//     },
-
-//     template: `
-//     <div class="root">
-//       <div class="root-target">
-//         <div class="target-scum">
-//           <span class="target-span">fake</span>
-//         </div>
-//         <button class="target-another">
-//           <div class="another-div">divi</div>
-//         </button>
-//         <div class="target-tariffItem">
-//           <span class="tariffItem-period">catcha!</span>
-//         </div>
-//       </div>
-//     </div>
-//   `,
-//   };
-
-//   const wr = mount(Div);
-//   expect(wr.html()).not.toBeNull();
-
-//   expect(getSelectListKey(
-//     wr.find('.target-span').element as HTMLElement,
-//     'root',
-//   )).toBe('catcha!');
-// });
+  expect(getSelectListKey(
+    wr.find('.target-span').element as HTMLElement,
+    'root',
+  )).toBe('catcha!');
+});

@@ -5,16 +5,31 @@ import App from '../app.vue';
 let store: Store<any>;
 beforeEach(() => {
   store = createStore<any>({
-    state: {
+    modules: {
       modal: {
-        connectWallet: false,
-        transactionConfirmed: false,
-        replenish: false,
-        copied: false,
+        state: {
+          connectWallet: false,
+        },
+      },
+      tariff: {
+        state: {
+          list: [],
+        },
+      },
+      wallet: {
+        state: {
+          isWalletConnected: false,
+          isWalletApproved: false,
+        },
+      },
+      stake: {
+        state: {
+          isStaked: false,
+        },
       },
     },
     mutations: {
-      change: (state, obj: { [name: string]: any }) => {
+      change: (state, obj: { [name: string]: boolean | string }) => {
         Object.keys(obj).forEach((index) => {
           state[index] = obj[index];
         });

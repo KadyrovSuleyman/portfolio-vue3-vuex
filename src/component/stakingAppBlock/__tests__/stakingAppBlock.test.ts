@@ -13,12 +13,25 @@ jest.mock('../adapter', () => {
 });
 
 let store: Store<any>;
-let wrapper: VueWrapper<any>;
-
 beforeEach(() => {
   store = createStore<any>({
-    state: {
-      isWalletApproved: false,
+    modules: {
+      tariff: {
+        state: {
+          list: [],
+        },
+      },
+      wallet: {
+        state: {
+          isWalletConnected: false,
+          isWalletApproved: false,
+        },
+      },
+      stake: {
+        state: {
+          isStaked: false,
+        },
+      },
     },
     mutations: {
       change: (state, obj: { [name: string]: boolean | string }) => {
@@ -29,6 +42,8 @@ beforeEach(() => {
     },
   });
 });
+
+let wrapper: VueWrapper<any>;
 afterEach(() => {
   wrapper.unmount();
 });

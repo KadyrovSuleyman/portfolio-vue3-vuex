@@ -1,6 +1,5 @@
 /* eslint-disable no-shadow */
 import mutations from '../mutations';
-import MODAL from './enum';
 
 const state = {
   first: false,
@@ -10,25 +9,25 @@ const state = {
 it('show/hide', () => {
   expect(state.first).toBeFalsy();
 
-  mutations.show(state, MODAL.first);
+  mutations.show(state, 'first');
   expect(state).toEqual({
     first: true,
     second: false,
   });
 
-  mutations.show(state, MODAL.second);
+  mutations.show(state, 'second');
   expect(state).toEqual({
     first: true,
     second: true,
   });
 
-  mutations.hide(state, MODAL.second);
+  mutations.hide(state, 'second');
   expect(state).toEqual({
     first: true,
     second: false,
   });
 
-  mutations.hide(state, MODAL.first);
+  mutations.hide(state, 'first');
   expect(state).toEqual({
     first: false,
     second: false,

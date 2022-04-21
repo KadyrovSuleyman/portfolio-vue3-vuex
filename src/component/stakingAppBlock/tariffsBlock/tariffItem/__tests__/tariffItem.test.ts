@@ -1,9 +1,8 @@
-import { mount } from '@vue/test-utils';
-import { computed, ref } from 'vue';
+import { mount, VueWrapper } from '@vue/test-utils';
+import { ref } from 'vue';
 import TariffItem from '../tariffItem.vue';
 
-let wrapper = mount(TariffItem);
-wrapper.unmount();
+let wrapper: VueWrapper<any>;
 afterEach(() => {
   wrapper.unmount();
 });
@@ -21,49 +20,35 @@ it('tariffItem renders', () => {
 });
 
 it('watchs props changes', async () => {
-  const Div = {
-    props: [],
+  wrapper = mount(TariffItem);
+  expect(wrapper.find('.tariffItem').classes()).toEqual(['tariffItem']);
 
-    setup() {
-      const isSelected = ref(false);
-      const select = () => {
-        isSelected.value = !isSelected.value;
-      };
-      const mods = computed(() => ({ selected: isSelected.value }));
-
-      return {
-        isSelected,
-        select,
-        mods,
-      };
+  await wrapper.setProps({
+    ...wrapper.props,
+    mods: {
+      selected: true,
     },
-    components: {
-      TariffItem,
+  });
+  expect(wrapper.find('.tariffItem').classes()).toEqual(['tariffItem', 'tariffItem__selected']);
+
+  await wrapper.setProps({
+    ...wrapper.props,
+    mods: {
+      selected: false,
     },
+  });
+  expect(wrapper.find('.tariffItem').classes()).toEqual(['tariffItem']);
 
-    template: `
-      <div class='root'>
-        <TariffItem :mods="mods" :period="'period'"
-          :apy="'apy'" :amount="'amount'"
-        />
-        <button class="test-btn" @click="select"></button>
-      </div>
-    `,
-  };
-  const wr = mount(Div);
-  expect(wr.find('.tariffItem').classes()).toEqual(['tariffItem']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.tariffItem').classes()).toEqual(['tariffItem', 'tariffItem__selected']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.tariffItem').classes()).toEqual(['tariffItem']);
-
-  expect(wr.find('.tariffItem-period').text()).toBe('period');
-  expect(wr.find('.tariffItem-apy').text()).toBe('APY: apy');
-  expect(wr.find('.tariffItem-amount').text()).toBe('Amount: amount');
-
-  wr.unmount();
+  await wrapper.setProps({
+    ...wrapper.props,
+    period: 30,
+    apy: 100,
+    amountMin: 100,
+    amountMax: 1000,
+  });
+  expect(wrapper.find('.tariffItem-period').text()).toBe('30 Days');
+  expect(wrapper.find('.tariffItem-apy').text()).toBe('APY: 100%');
+  expect(wrapper.find('.tariffItem-amount').text()).toBe('Amount: 100 - 1000 TKN');
 });
 
 it('tip shows on mouse hover', async () => {

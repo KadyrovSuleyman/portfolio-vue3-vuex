@@ -15,6 +15,15 @@ jest.mock('../adapter.ts', () => {
   };
 });
 
+jest.mock('../walletsList/adapter.ts', () => {
+  const originalModule = jest.requireActual('../walletsList/adapter.ts');
+  return {
+    __esModule: true,
+    ...originalModule,
+    default: (store: Store<any>) => ({ walletList: [] }),
+  };
+});
+
 let store: Store<any>;
 beforeEach(() => {
   store = createStore<any>({

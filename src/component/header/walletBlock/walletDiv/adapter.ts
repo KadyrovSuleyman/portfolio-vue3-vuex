@@ -9,7 +9,7 @@ const coinName = ref('binance');
 const coinLink = ref('icon/walletconnect.svg');
 const coinAbbreviation = ref('BUSD');
 
-const adapt = (store: Store<any>) => ({
+export const adapt = (store: Store<any>) => ({
   address: store.state.account.address,
   balance: store.getters['account/balance'],
   coinName: store.getters['coin/name'],

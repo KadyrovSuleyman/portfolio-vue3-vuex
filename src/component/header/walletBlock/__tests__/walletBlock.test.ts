@@ -1,10 +1,30 @@
-import { mount } from '@vue/test-utils';
-import { computed, ref } from 'vue';
+import { mount, VueWrapper } from '@vue/test-utils';
 import { createStore, Store } from 'vuex';
 import WalletBlock from '../walletBlock.vue';
 
-let wrapper = mount(WalletBlock, { global: { plugins: [createStore({})] } });
-wrapper.unmount();
+jest.mock('../adapter', () => {
+  const originalModule = jest.requireActual('../adapter');
+  return {
+    __esModule: true,
+    ...originalModule,
+    adapt: (store: Store<any>) => ({
+      isWalletConnect: store.state.connect,
+    }),
+  };
+});
+
+jest.mock('../walletDiv/adapter.ts', () => {
+  const originalModule = jest.requireActual('../walletDiv/adapter.ts');
+  return {
+    __esModule: true,
+    ...originalModule,
+    default: (store: Store<any>) => ({
+      address: '',
+    }),
+  };
+});
+
+let wrapper: VueWrapper<any>;
 afterEach(() => {
   wrapper.unmount();
 });
@@ -16,55 +36,26 @@ it('walletBlock renders', () => {
 });
 
 it('watchs props changes', async () => {
-  const Div = {
-    props: [],
+  wrapper = mount(WalletBlock, { global: { plugins: [createStore({})] } });
+  expect(wrapper.find('.walletBlock').classes()).toEqual(['walletBlock']);
 
-    setup() {
-      const isSelected = ref(false);
-      const select = () => {
-        isSelected.value = !isSelected.value;
-      };
-      const mods = computed(() => ({ selected: isSelected.value }));
-
-      return {
-        isSelected,
-        select,
-        mods,
-      };
+  wrapper.setProps({
+    ...wrapper.props,
+    mods: {
+      selected: true,
     },
-    components: {
-      WalletBlock,
+  });
+  await wrapper.vm.$nextTick();
+  expect(wrapper.find('.walletBlock').classes()).toEqual(['walletBlock', 'walletBlock__selected']);
+
+  wrapper.setProps({
+    ...wrapper.props,
+    mods: {
+      selected: false,
     },
-
-    template: `
-      <div class='root'>
-        <WalletBlock :mods="mods"/>
-        <button class="test-btn" @click="select"></button>
-      </div>
-    `,
-  };
-  const wr = mount(Div, { global: { plugins: [createStore({})] } });
-  expect(wr.find('.walletBlock').classes()).toEqual(['walletBlock']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.walletBlock').classes()).toEqual(['walletBlock', 'walletBlock__selected']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.walletBlock').classes()).toEqual(['walletBlock']);
-
-  wr.unmount();
-});
-
-// =========================================
-jest.mock('../adapter', () => {
-  const originalModule = jest.requireActual('../adapter');
-  return {
-    __esModule: true,
-    ...originalModule,
-    adapt: (store: Store<any>) => ({
-      isWalletConnect: store.state.connect,
-    }),
-  };
+  });
+  await wrapper.vm.$nextTick();
+  expect(wrapper.find('.walletBlock').classes()).toEqual(['walletBlock']);
 });
 
 it('walletBlock if wallet connected, connectBlock if dont', async () => {
