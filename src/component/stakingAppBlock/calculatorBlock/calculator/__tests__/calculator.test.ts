@@ -19,6 +19,11 @@ beforeEach(() => {
       minValue: 500,
       period: 30,
       apy: 150,
+
+      text: '',
+      setText: (newInput: string) => store.commit('change', {
+        text: newInput,
+      }),
     },
     mutations: {
       change: (state, obj: { [name: string]: any }) => {

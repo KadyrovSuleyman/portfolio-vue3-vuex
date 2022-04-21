@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { computed, reactive, ref } from 'vue';
+import { computed } from 'vue';
 import Div from '@/element/div/div.vue';
 import propsObj from '@/element/propsObj';
 import Button from '@/element/button/button.vue';
@@ -20,14 +20,13 @@ const comp = computed(() => ({ elem: props.elem || 'calculator' }));
 const store = useStore();
 const state = computed(() => adapt(store));
 
-const text = ref('');
-const errorText = computed(() => validate(text.value, state.value));
-const correct = computed(() => correctState(text.value, state.value));
+const errorText = computed(() => validate(state.value.text, state.value.minValue));
+const correct = computed(() => correctState(state.value.text, state.value.minValue));
 
 const onInput = (payload: KeyboardEvent) => {
   const target = (payload.target as HTMLInputElement);
   if (!isValidInput(target.value)) {
-    target.value = text.value;
+    target.value = state.value.text;
     return;
   }
 
@@ -35,23 +34,23 @@ const onInput = (payload: KeyboardEvent) => {
     target.value = String(state.value.maxValue);
   }
 
-  text.value = target.value;
+  state.value.setText(target.value);
 };
 
 const onButtonClick = () => {
-  text.value = String(state.value.maxValue);
+  state.value.setText(String(state.value.maxValue));
 };
 
-const reward = computed(() => calculateReward(Number(text.value), state.value));
+const reward = computed(() => calculateReward(Number(state.value.text), state.value));
 
-inputValueWatcher(state, text);
+inputValueWatcher(state);
 
 </script>
 
 <template>
   <Div :block="props.block" :elem="comp.elem" :mods="props.mods">
     <PromtInput :block="comp.elem" :promtText="errorText" :correct="correct"
-      :text="text" :onInput="onInput" :disabled="state.disabled"
+      :text="state.text" :onInput="onInput" :disabled="state.disabled"
     />
     <Button :block="comp.elem" :onClick="onButtonClick" :disabled="state.disabled">
       Max

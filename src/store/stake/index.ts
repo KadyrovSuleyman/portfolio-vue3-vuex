@@ -1,7 +1,7 @@
 import { Module } from 'vuex';
 import { state, StateT } from './state';
 import mutations from './mutations';
-// import getters from './getters';
+import getters from './getters';
 import actions from './actions';
 
 const wallet: Module<StateT, any> = {
@@ -9,7 +9,7 @@ const wallet: Module<StateT, any> = {
 
   state,
   mutations,
-  // getters,
+  getters,
   actions,
 };
 

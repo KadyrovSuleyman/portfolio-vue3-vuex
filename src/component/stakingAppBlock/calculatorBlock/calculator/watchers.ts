@@ -1,13 +1,13 @@
 /* eslint-disable no-param-reassign */
 import { Ref, watch } from 'vue';
 
-export const inputValueWatcher = (state: Ref<any>, target: Ref<string>) => watch(state, () => {
+export const inputValueWatcher = (state: Ref<any>) => watch(state, () => {
   if (state.value.disabled) {
-    target.value = '';
+    state.value.setText('');
   }
 
-  if (state.value.maxValue < target.value) {
-    target.value = String(state.value.maxValue);
+  if (state.value.maxValue < Number(state.value.text)) {
+    state.value.setText(String(state.value.maxValue));
   }
 });
 

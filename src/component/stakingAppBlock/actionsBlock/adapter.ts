@@ -32,12 +32,21 @@ const adapt = (store: Store<any>) => ({
   isRestakeAvailable: isRestakeAvailable.value,
   restakeCountdown: restakeCountdown.value,
 
-  disabled:
-    store.getters['wallet/isConnected']
-    && store.state.wallet.isApproved
-    && !store.state.stake.isStaked
-    && store.state.tariff.index === -1
-  ,
+  // disabled: !(
+  //   store.getters['stake/isAllowed']
+  //   || store.getters['stake/isInputValid']
+  // ),
+
+  disabled: !(
+    !store.getters['wallet/isConnected']
+    || !store.state.wallet.isApproved
+
+    || (
+      store.getters['stake/isAllowed']
+      && store.getters['stake/isInputValid']
+    )
+
+  ),
 });
 
 export default adapt;

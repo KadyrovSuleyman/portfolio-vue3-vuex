@@ -3,6 +3,8 @@ import { createStore, Store } from 'vuex';
 import CalculatorBlock from '../calculatorBlock.vue';
 
 jest.mock('../adapter');
+jest.mock('../calculator/adapter.ts');
+jest.mock('../calculator/logic.ts');
 
 let wrapper: VueWrapper<any>;
 afterEach(() => {

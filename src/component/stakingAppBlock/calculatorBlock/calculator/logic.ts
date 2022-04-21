@@ -1,27 +1,25 @@
-export const validate = (input: string, state: any | undefined = undefined) => {
+const MIN_VALUE = 0;
+
+export const validate = (input: string, minValue = MIN_VALUE) => {
   const value = Number(input);
 
   if (value === 0) {
     return 'Error proper amount - zero value';
   }
 
-  if (!state) {
-    return '';
-  }
-
-  if (value < state.minValue) {
+  if (value < minValue) {
     return 'Error proper amount - less than provided';
   }
 
   return '';
 };
 
-export const correctState = (input: string, state: any | undefined = undefined) => {
+export const correctState = (input: string, minValue = MIN_VALUE) => {
   if (input === '') {
     return '';
   }
 
-  if (validate(input, state) !== '') {
+  if (validate(input, minValue) !== '') {
     return 'false';
   }
 
