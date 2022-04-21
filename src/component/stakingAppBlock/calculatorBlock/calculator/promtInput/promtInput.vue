@@ -21,6 +21,7 @@ const props = defineProps({
 
   correct: String,
   promtText: String,
+  disabled: Boolean,
 });
 const comp = computed(() => ({ elem: props.elem || 'promtInput' }));
 
@@ -28,11 +29,11 @@ const comp = computed(() => ({ elem: props.elem || 'promtInput' }));
 
 <template>
   <Div :block="props.block" :elem="comp.elem"
-    :mods="{ ...props.mods, correct: props.correct }"
+    :mods="{ ...props.mods, correct: props.correct, disabled: props.disabled }"
   >
 
     <Input :block="comp.elem" :text="props.text" :onInput="props.onInput"
-      :mods="{ correct: props.correct }"
+      :mods="{ correct: props.correct } " :disabled="props.disabled"
     />
 
     <Span v-if="props.correct === 'false'" :block="comp.elem"

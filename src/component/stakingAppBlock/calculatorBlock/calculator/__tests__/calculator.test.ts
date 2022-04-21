@@ -1,8 +1,10 @@
 import { mount, VueWrapper } from '@vue/test-utils';
 import { createStore, Store } from 'vuex';
 import Calculator from '../calculator.vue';
+import { calculateReward } from '../logic';
 
 jest.mock('../adapter');
+jest.mock('../logic');
 
 let wrapper: VueWrapper<any>;
 afterEach(() => {
@@ -14,8 +16,9 @@ beforeEach(() => {
   store = createStore<any>({
     state: {
       maxValue: 1000,
-      period: '30 Days',
-      rewardCalcParam: 0.4,
+      minValue: 500,
+      period: 30,
+      apy: 150,
     },
     mutations: {
       change: (state, obj: { [name: string]: any }) => {
@@ -94,10 +97,10 @@ describe('watching outer store', () => {
     });
     expect(wrapper.find('.calculator').exists()).toBeTruthy();
     expect(wrapper.find('.calculator-periodSpan').text())
-      .toBe(`Reward for ${store.state.period}:`);
+      .toBe(`Reward for ${store.state.period} Days:`);
 
     store.commit('change', {
-      period: '90 Days',
+      period: 90,
     });
     await wrapper.vm.$nextTick();
     expect(wrapper.find('.calculator-periodSpan').text())
@@ -115,16 +118,10 @@ describe('watching outer store', () => {
     await wrapper.find('input').trigger('input');
     expect(wrapper.find('.calculator-rewardSpan').exists()).toBeTruthy();
     expect(wrapper.find('.calculator-rewardSpan').text())
-      .toBe(`${1000 * store.state.rewardCalcParam} TKN`);
-
-    store.commit('change', {
-      rewardCalcParam: 0.2,
-    });
-    await wrapper.vm.$nextTick();
-    expect(wrapper.find('.calculator-rewardSpan').text()).toBe('200 TKN');
+      .toBe(`${calculateReward(1000)} TKN`);
 
     wrapper.find('input').element.value = '500';
     await wrapper.find('input').trigger('input');
-    expect(wrapper.find('.calculator-rewardSpan').text()).toBe('100 TKN');
+    expect(wrapper.find('.calculator-rewardSpan').text()).toBe('500 TKN');
   });
 });

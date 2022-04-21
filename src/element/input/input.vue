@@ -18,6 +18,7 @@ const props = defineProps({
     default: (): OnInputFuncT => () => ({}),
   },
 
+  disabled: Boolean,
   placeholder: String,
   type: String,
 });
@@ -37,7 +38,7 @@ const classNames = computed(() => {
 
 <template>
   <input :value="text" @input="onInput" :type="props.type"
-    :class="classNames" :placeholder="props.placeholder" >
+    :class="classNames" :placeholder="props.placeholder" :disabled="props.disabled" >
 </template>
 
 <style lang="scss">

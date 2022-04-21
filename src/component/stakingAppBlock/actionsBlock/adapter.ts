@@ -31,7 +31,13 @@ const adapt = (store: Store<any>) => ({
   isReplenishAvailable: isReplenishAvailable.value,
   isRestakeAvailable: isRestakeAvailable.value,
   restakeCountdown: restakeCountdown.value,
-  disabled: false,
+
+  disabled:
+    store.getters['wallet/isConnected']
+    && store.state.wallet.isApproved
+    && !store.state.stake.isStaked
+    && store.state.tariff.index === -1
+  ,
 });
 
 export default adapt;

@@ -15,6 +15,7 @@ const props = defineProps({
     type: Function,
     default: (): OnClickHandlerT => () => ({}),
   },
+  disabled: Boolean,
 });
 
 const classNames = computed(() => {
@@ -31,7 +32,7 @@ const classNames = computed(() => {
 </script>
 
 <template>
-  <button @click="onClick" :class="classNames">
+  <button @click="onClick" :class="classNames" :disabled="props.disabled">
 
     <slot></slot>
   </button>

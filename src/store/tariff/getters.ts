@@ -17,6 +17,11 @@ const getters: GetterTree<StateT, any> = {
     });
     return res;
   },
+
+  period: (state: StateT) => state.list[state.index]?.period,
+  apy: (state: StateT) => state.list[state.index]?.apy,
+  amountMax: (state: StateT) => state.list[state.index]?.amountMax,
+  amountMin: (state: StateT) => state.list[state.index]?.amountMin,
 };
 
 export default getters;
