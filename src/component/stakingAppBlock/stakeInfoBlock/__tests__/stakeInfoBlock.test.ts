@@ -3,6 +3,7 @@ import { createStore, Store } from 'vuex';
 import StakeInfoBlock from '../stakeInfoBlock.vue';
 
 jest.mock('../adapter');
+jest.mock('../infoContainer/adapter.ts');
 
 let store: Store<any>;
 beforeEach(() => {

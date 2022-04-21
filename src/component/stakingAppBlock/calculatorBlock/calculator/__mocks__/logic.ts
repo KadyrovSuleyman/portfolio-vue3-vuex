@@ -33,5 +33,3 @@ export const isValidInput = (input: string) => {
 
   return reg.test(input);
 };
-
-export const calculateReward = (input: number) => input;

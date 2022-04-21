@@ -25,5 +25,5 @@ export const clickHandlerGenerator = ({ store, className = 'tariffItem' } : {
   const targetString = getSelectListKey(targetItem, className);
 
   const key = extractNumber(targetString);
-  store.commit('tariff/select', key);
+  store.dispatch('tariff/select', key);
 };

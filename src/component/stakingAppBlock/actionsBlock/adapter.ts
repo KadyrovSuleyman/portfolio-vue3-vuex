@@ -8,7 +8,7 @@ export const isWaiting = ref<boolean>(false);
 // export const isWalletConnected = ref<boolean>(true);
 // export const isWalletApproved = ref<boolean>(true);
 
-export const isStaked = ref<boolean>(true);
+// export const isStaked = ref<boolean>(true);
 export const isRestakeAvailable = ref<boolean>(false);
 export const isReplenishAvailable = ref<boolean>(true);
 

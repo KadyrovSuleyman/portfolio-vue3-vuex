@@ -1,4 +1,5 @@
 import { GetterTree } from 'vuex';
+import { formateDate } from './date';
 import { StateT } from './state';
 
 const getters: GetterTree<StateT, any> = {
@@ -14,6 +15,14 @@ const getters: GetterTree<StateT, any> = {
     && Number(state.inputValue) >= rootGetters['tariff/amountMin']
     && Number(state.inputValue) <= rootGetters['tariff/amountMax']
   ),
+
+  reward: (state: StateT) => {
+    const res = state.staked * ((state.apy / 100) - 1);
+    return Math.floor(res * 1000) / 1000;
+  },
+
+  from: (state: StateT) => formateDate(state.from) || '',
+  to: (state: StateT) => formateDate(state.to) || '',
 };
 
 export default getters;

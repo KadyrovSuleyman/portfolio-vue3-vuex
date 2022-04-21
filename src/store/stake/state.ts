@@ -2,7 +2,11 @@ export const state = {
   isStaked: false,
 
   inputValue: '',
-  // inputValue: 0,
+
+  staked: 0,
+  apy: 100,
+  from: new Date(),
+  to: new Date(),
 
   isReplenishAvailable: false,
   isRestakeAvailable: false,

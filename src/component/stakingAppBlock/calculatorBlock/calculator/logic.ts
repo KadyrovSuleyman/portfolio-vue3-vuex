@@ -31,8 +31,3 @@ export const isValidInput = (input: string) => {
 
   return reg.test(input);
 };
-
-export const calculateReward = (input: number, state: any | undefined = undefined) => {
-  const res = input * (((state?.apy || 100) / 100) - 1);
-  return Math.floor(res * 1000) / 1000;
-};

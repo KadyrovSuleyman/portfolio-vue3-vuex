@@ -13,7 +13,8 @@ const comp = computed(() => ({ elem: props.elem || 'infoContainer' }));
 
 const store = useStore();
 const state = computed(() => adapt(store));
-const keys = Object.keys(state.value);
+
+const keys = computed(() => Object.keys(state.value));
 
 </script>
 
@@ -27,7 +28,7 @@ const keys = Object.keys(state.value);
       <template v-slot:header>
         {{ key }}
       </template>
-      {{ state[key] }}{{ key === 'Staked' ? ' TKN' : ''}}
+      {{ state[key] }}
     </InfoItem>
 
   </Div>

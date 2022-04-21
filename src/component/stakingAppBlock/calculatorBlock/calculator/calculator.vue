@@ -7,9 +7,7 @@ import Button from '@/element/button/button.vue';
 import Span from '@/element/span/span.vue';
 import { useStore } from 'vuex';
 import PromtInput from './promtInput/promtInput.vue';
-import {
-  isValidInput, validate, correctState, calculateReward,
-} from './logic';
+import { isValidInput, validate, correctState } from './logic';
 import adapt from './adapter';
 import { inputValueWatcher } from './watchers';
 
@@ -41,8 +39,6 @@ const onButtonClick = () => {
   state.value.setText(String(state.value.maxValue));
 };
 
-const reward = computed(() => calculateReward(Number(state.value.text), state.value));
-
 inputValueWatcher(state);
 
 </script>
@@ -61,7 +57,7 @@ inputValueWatcher(state);
         Reward {{ state.period ? `for ${state.period} Days` : ''}}:
       </Span>
       <Span v-if="correct === 'true'" :block="comp.elem" :elem="'rewardSpan'">
-        {{ reward }} TKN
+        {{ state.reward }} TKN
       </Span>
     </Div>
   </Div>
