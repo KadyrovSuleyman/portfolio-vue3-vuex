@@ -1,10 +1,7 @@
-import { mount } from '@vue/test-utils';
-import { computed, ref } from 'vue';
-import { createStore } from 'vuex';
+import { mount, VueWrapper } from '@vue/test-utils';
 import NavButton from '../navButton.vue';
 
-let wrapper = mount(NavButton);
-wrapper.unmount();
+let wrapper: VueWrapper<any>;
 afterEach(() => {
   wrapper.unmount();
 });
@@ -18,98 +15,29 @@ it('navButton renders', () => {
 });
 
 it('watchs props changes', async () => {
-  const Div = {
-    props: [],
+  wrapper = mount(NavButton);
+  expect(wrapper.find('.navButton').classes()).toEqual(['navButton']);
+  expect(wrapper.find('.navButton-link').classes()).toEqual(['navButton-link']);
+  expect(wrapper.find('.navButton-rectangle').classes()).toEqual(['navButton-rectangle']);
 
-    setup() {
-      const isSelected = ref(false);
-      const select = () => {
-        isSelected.value = !isSelected.value;
-      };
-      const mods = computed(() => ({ selected: isSelected.value }));
-
-      return {
-        isSelected,
-        select,
-        mods,
-      };
+  await wrapper.setProps({
+    mods: {
+      selected: true,
     },
-    components: {
-      NavButton,
-    },
-
-    template: `
-      <div class='root'>
-        <NavButton :mods="mods"/>
-        <button class="test-btn" @click="select"></button>
-      </div>
-    `,
-  };
-  const wr = mount(Div);
-  expect(wr.find('.navButton').classes()).toEqual(['navButton']);
-  expect(wr.find('.navButton-link').classes()).toEqual(['navButton-link']);
-  expect(wr.find('.navButton-rectangle').classes()).toEqual(['navButton-rectangle']);
-
-  await wr.find('.test-btn').trigger('click');
-
-  expect(wr.find('.navButton').classes()).toEqual(['navButton', 'navButton__selected']);
-  expect(wr.find('.navButton-link').classes()).toEqual(['navButton-link', 'navButton-link__selected']);
-  expect(wr.find('.navButton-rectangle').classes())
+  });
+  expect(wrapper.find('.navButton').classes()).toEqual(['navButton', 'navButton__selected']);
+  expect(wrapper.find('.navButton-link').classes()).toEqual(['navButton-link', 'navButton-link__selected']);
+  expect(wrapper.find('.navButton-rectangle').classes())
     .toEqual(['navButton-rectangle', 'navButton-rectangle__selected']);
 
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.navButton').classes()).toEqual(['navButton']);
-  expect(wr.find('.navButton-link').classes()).toEqual(['navButton-link']);
-  expect(wr.find('.navButton-rectangle').classes()).toEqual(['navButton-rectangle']);
-
-  wr.unmount();
-});
-
-it('watchs select prop changes', async () => {
-  const Div = {
-    props: [],
-
-    setup() {
-      const isSelected = ref(false);
-      const select = () => {
-        isSelected.value = !isSelected.value;
-      };
-      const selected = computed(() => isSelected.value);
-
-      return {
-        isSelected,
-        select,
-        selected,
-      };
+  await wrapper.setProps({
+    mods: {
+      selected: false,
     },
-    components: {
-      NavButton,
-    },
-
-    template: `
-      <div class='root'>
-        <NavButton :selected="selected"/>
-        <button class="test-btn" @click="select"></button>
-      </div>
-    `,
-  };
-  const wr = mount(Div);
-  expect(wr.find('.navButton').classes()).toEqual(['navButton']);
-  expect(wr.find('.navButton-link').classes()).toEqual(['navButton-link']);
-  expect(wr.find('.navButton-rectangle').classes()).toEqual(['navButton-rectangle']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.navButton').classes()).toEqual(['navButton', 'navButton__selected']);
-  expect(wr.find('.navButton-link').classes()).toEqual(['navButton-link', 'navButton-link__selected']);
-  expect(wr.find('.navButton-rectangle').classes())
-    .toEqual(['navButton-rectangle', 'navButton-rectangle__selected']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.navButton').classes()).toEqual(['navButton']);
-  expect(wr.find('.navButton-link').classes()).toEqual(['navButton-link']);
-  expect(wr.find('.navButton-rectangle').classes()).toEqual(['navButton-rectangle']);
-
-  wr.unmount();
+  });
+  expect(wrapper.find('.navButton').classes()).toEqual(['navButton']);
+  expect(wrapper.find('.navButton-link').classes()).toEqual(['navButton-link']);
+  expect(wrapper.find('.navButton-rectangle').classes()).toEqual(['navButton-rectangle']);
 });
 
 it('link generates', () => {

@@ -1,28 +1,9 @@
 import { mount, VueWrapper } from '@vue/test-utils';
-import { createStore, Store } from 'vuex';
+import { createStore } from 'vuex';
 import WalletBlock from '../walletBlock.vue';
 
-jest.mock('../adapter', () => {
-  const originalModule = jest.requireActual('../adapter');
-  return {
-    __esModule: true,
-    ...originalModule,
-    adapt: (store: Store<any>) => ({
-      isWalletConnect: store.state.connect,
-    }),
-  };
-});
-
-jest.mock('../walletDiv/adapter.ts', () => {
-  const originalModule = jest.requireActual('../walletDiv/adapter.ts');
-  return {
-    __esModule: true,
-    ...originalModule,
-    default: (store: Store<any>) => ({
-      address: '',
-    }),
-  };
-});
+jest.mock('../adapter');
+jest.mock('../walletDiv/adapter.ts');
 
 let wrapper: VueWrapper<any>;
 afterEach(() => {
@@ -39,22 +20,20 @@ it('watchs props changes', async () => {
   wrapper = mount(WalletBlock, { global: { plugins: [createStore({})] } });
   expect(wrapper.find('.walletBlock').classes()).toEqual(['walletBlock']);
 
-  wrapper.setProps({
+  await wrapper.setProps({
     ...wrapper.props,
     mods: {
       selected: true,
     },
   });
-  await wrapper.vm.$nextTick();
   expect(wrapper.find('.walletBlock').classes()).toEqual(['walletBlock', 'walletBlock__selected']);
 
-  wrapper.setProps({
+  await wrapper.setProps({
     ...wrapper.props,
     mods: {
       selected: false,
     },
   });
-  await wrapper.vm.$nextTick();
   expect(wrapper.find('.walletBlock').classes()).toEqual(['walletBlock']);
 });
 

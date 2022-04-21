@@ -3,20 +3,7 @@ import { mount, VueWrapper } from '@vue/test-utils';
 import { createStore, Store } from 'vuex';
 import Modal from '../replenishModal.vue';
 
-jest.mock('../adapter.ts', () => {
-  const originalModule = jest.requireActual('../adapter.ts');
-  return {
-    __esModule: true,
-    ...originalModule,
-    adapt: (store: Store<any>) => ({ ...store.state }),
-    generateCloseHandler: (store: Store<any>) => () => {
-      store.state.isShown = false;
-    },
-    generateReplenishConfirmHandler: (store: Store<any>) => () => {
-      store.state.replenishCount += 1;
-    },
-  };
-});
+jest.mock('../adapter.ts');
 
 let store: Store<any>;
 beforeEach(() => {
@@ -90,22 +77,20 @@ it('watchs props changes', async () => {
   });
   expect(wrapper.findComponent('.replenishModal').classes()).toEqual(['replenishModal']);
 
-  wrapper.setProps({
+  await wrapper.setProps({
     ...wrapper.props,
     mods: {
       selected: true,
     },
   });
-  await wrapper.vm.$nextTick();
   expect(wrapper.findComponent('.replenishModal').classes()).toEqual(['replenishModal', 'replenishModal__selected']);
 
-  wrapper.setProps({
+  await wrapper.setProps({
     ...wrapper.props,
     mods: {
       selected: false,
     },
   });
-  await wrapper.vm.$nextTick();
   expect(wrapper.findComponent('.replenishModal').classes()).toEqual(['replenishModal']);
 });
 

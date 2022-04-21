@@ -1,9 +1,7 @@
-import { mount } from '@vue/test-utils';
-import { computed, ref } from 'vue';
+import { mount, VueWrapper } from '@vue/test-utils';
 import Tip from '../tip.vue';
 
-let wrapper = mount(Tip);
-wrapper.unmount();
+let wrapper: VueWrapper<any>;
 afterEach(() => {
   wrapper.unmount();
 });
@@ -18,43 +16,25 @@ it('tip renders', () => {
 });
 
 it('watchs props changes', async () => {
-  const Div = {
-    props: [],
-
-    setup() {
-      const isSelected = ref(false);
-      const select = () => {
-        isSelected.value = !isSelected.value;
-      };
-      const mods = computed(() => ({ selected: isSelected.value }));
-
-      return {
-        isSelected,
-        select,
-        mods,
-      };
+  wrapper = mount(Tip, {
+    slots: {
+      default: 'test-tip',
     },
-    components: {
-      Tip,
+  });
+  expect(wrapper.find('.tip').classes()).toEqual(['tip']);
+  expect(wrapper.find('.tip-span').text()).toBe('test-tip');
+
+  await wrapper.setProps({
+    mods: {
+      selected: true,
     },
+  });
+  expect(wrapper.find('.tip').classes()).toEqual(['tip', 'tip__selected']);
 
-    template: `
-      <div class='root'>
-        <Tip :mods="mods">test-tip</Tip>
-        <button class="test-btn" @click="select"></button>
-      </div>
-    `,
-  };
-  const wr = mount(Div);
-  expect(wr.find('.tip').classes()).toEqual(['tip']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.tip').classes()).toEqual(['tip', 'tip__selected']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.tip').classes()).toEqual(['tip']);
-
-  expect(wr.find('.tip-span').text()).toBe('test-tip');
-
-  wr.unmount();
+  await wrapper.setProps({
+    mods: {
+      selected: false,
+    },
+  });
+  expect(wrapper.find('.tip').classes()).toEqual(['tip']);
 });

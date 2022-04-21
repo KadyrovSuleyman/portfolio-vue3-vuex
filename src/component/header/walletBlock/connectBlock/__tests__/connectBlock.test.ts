@@ -1,10 +1,8 @@
-import { mount } from '@vue/test-utils';
-import { computed, ref } from 'vue';
+import { mount, VueWrapper } from '@vue/test-utils';
 import { createStore } from 'vuex';
 import ConnectBlock from '../connectBlock.vue';
 
-let wrapper = mount(ConnectBlock, {});
-wrapper.unmount();
+let wrapper: VueWrapper<any>;
 afterEach(() => {
   wrapper.unmount();
 });
@@ -18,44 +16,24 @@ it('connectBlock renders', () => {
 });
 
 it('watchs props changes', async () => {
-  const Div = {
-    props: [],
+  wrapper = mount(ConnectBlock);
+  expect(wrapper.find('.connectBlock').classes()).toEqual(['connectBlock']);
 
-    setup() {
-      const isSelected = ref(false);
-      const select = () => {
-        isSelected.value = !isSelected.value;
-      };
-      const mods = computed(() => ({ selected: isSelected.value }));
-
-      return {
-        isSelected,
-        select,
-        mods,
-      };
+  await wrapper.setProps({
+    mods: {
+      selected: true,
     },
-    components: {
-      ConnectBlock,
+  });
+  expect(wrapper.find('.connectBlock').classes()).toEqual(['connectBlock', 'connectBlock__selected']);
+
+  await wrapper.setProps({
+    mods: {
+      selected: false,
     },
+  });
+  expect(wrapper.find('.connectBlock').classes()).toEqual(['connectBlock']);
 
-    template: `
-      <div class='root'>
-        <ConnectBlock :mods="mods"/>
-        <button class="test-btn" @click="select"></button>
-      </div>
-    `,
-  };
-  const wr = mount(Div);
-
-  expect(wr.find('.connectBlock').classes()).toEqual(['connectBlock']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.connectBlock').classes()).toEqual(['connectBlock', 'connectBlock__selected']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.connectBlock').classes()).toEqual(['connectBlock']);
-
-  wr.unmount();
+  wrapper.unmount();
 });
 
 it('click sends data to outer store', async () => {

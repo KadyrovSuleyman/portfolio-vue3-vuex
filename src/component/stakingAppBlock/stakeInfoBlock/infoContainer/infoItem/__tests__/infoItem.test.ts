@@ -19,22 +19,20 @@ it('watchs props changes', async () => {
   wrapper = mount(InfoItem);
   expect(wrapper.find('.infoItem').classes()).toEqual(['infoItem']);
 
-  wrapper.setProps({
+  await wrapper.setProps({
     ...wrapper.props,
     mods: {
       selected: true,
     },
   });
-  await wrapper.vm.$nextTick();
   expect(wrapper.find('.infoItem').classes()).toEqual(['infoItem', 'infoItem__selected']);
 
-  wrapper.setProps({
+  await wrapper.setProps({
     ...wrapper.props,
     mods: {
       selected: false,
     },
   });
-  await wrapper.vm.$nextTick();
   expect(wrapper.find('.infoItem').classes()).toEqual(['infoItem']);
 });
 

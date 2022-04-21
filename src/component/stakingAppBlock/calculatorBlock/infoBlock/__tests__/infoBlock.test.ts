@@ -1,9 +1,8 @@
-import { mount } from '@vue/test-utils';
+import { mount, VueWrapper } from '@vue/test-utils';
 import { computed, ref } from 'vue';
 import InfoBlock from '../infoBlock.vue';
 
-let wrapper = mount(InfoBlock);
-wrapper.unmount();
+let wrapper: VueWrapper<any>;
 afterEach(() => {
   wrapper.unmount();
 });

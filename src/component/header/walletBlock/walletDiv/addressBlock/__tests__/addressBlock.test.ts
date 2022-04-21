@@ -1,10 +1,9 @@
-import { mount } from '@vue/test-utils';
-import { computed, ref } from 'vue';
+import { mount, VueWrapper } from '@vue/test-utils';
+import { ref } from 'vue';
 import { createStore } from 'vuex';
 import AddressBlock from '../addressBlock.vue';
 
-let wrapper = mount(AddressBlock);
-wrapper.unmount();
+let wrapper: VueWrapper<any>;
 afterEach(() => {
   wrapper.unmount();
 });
@@ -18,43 +17,22 @@ it('connectBlock renders', () => {
 });
 
 it('watchs props changes', async () => {
-  const Div = {
-    props: [],
+  wrapper = mount(AddressBlock);
+  expect(wrapper.find('.addressBlock').classes()).toEqual(['addressBlock']);
 
-    setup() {
-      const isSelected = ref(false);
-      const select = () => {
-        isSelected.value = !isSelected.value;
-      };
-      const mods = computed(() => ({ selected: isSelected.value }));
-
-      return {
-        isSelected,
-        select,
-        mods,
-      };
+  await wrapper.setProps({
+    mods: {
+      selected: true,
     },
-    components: {
-      AddressBlock,
+  });
+  expect(wrapper.find('.addressBlock').classes()).toEqual(['addressBlock', 'addressBlock__selected']);
+
+  await wrapper.setProps({
+    mods: {
+      selected: false,
     },
-
-    template: `
-      <div class='root'>
-        <AddressBlock :mods="mods"/>
-        <button class="test-btn" @click="select"></button>
-      </div>
-    `,
-  };
-  const wr = mount(Div);
-  expect(wr.find('.addressBlock').classes()).toEqual(['addressBlock']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.addressBlock').classes()).toEqual(['addressBlock', 'addressBlock__selected']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.addressBlock').classes()).toEqual(['addressBlock']);
-
-  wr.unmount();
+  });
+  expect(wrapper.find('.addressBlock').classes()).toEqual(['addressBlock']);
 });
 
 it('click sends data to outer store', async () => {

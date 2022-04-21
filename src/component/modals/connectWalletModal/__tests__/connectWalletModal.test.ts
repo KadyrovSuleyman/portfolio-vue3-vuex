@@ -3,26 +3,8 @@ import { mount, VueWrapper } from '@vue/test-utils';
 import { createStore, Store } from 'vuex';
 import Modal from '../connectWalletModal.vue';
 
-jest.mock('../adapter.ts', () => {
-  const originalModule = jest.requireActual('../adapter.ts');
-  return {
-    __esModule: true,
-    ...originalModule,
-    adapt: (store: Store<any>) => ({ ...store.state }),
-    generateCloseHandler: (store: Store<any>) => () => {
-      store.state.isShown = false;
-    },
-  };
-});
-
-jest.mock('../walletsList/adapter.ts', () => {
-  const originalModule = jest.requireActual('../walletsList/adapter.ts');
-  return {
-    __esModule: true,
-    ...originalModule,
-    default: (store: Store<any>) => ({ walletList: [] }),
-  };
-});
+jest.mock('../adapter.ts');
+jest.mock('../walletsList/adapter.ts');
 
 let store: Store<any>;
 beforeEach(() => {
@@ -116,21 +98,19 @@ it('watchs props changes', async () => {
   });
   expect(wrapper.findComponent('.connectWalletModal').classes()).toEqual(['connectWalletModal']);
 
-  wrapper.setProps({
+  await wrapper.setProps({
     ...wrapper.props,
     mods: {
       selected: true,
     },
   });
-  await wrapper.vm.$nextTick();
   expect(wrapper.findComponent('.connectWalletModal').classes()).toEqual(['connectWalletModal', 'connectWalletModal__selected']);
 
-  wrapper.setProps({
+  await wrapper.setProps({
     ...wrapper.props,
     mods: {
       selected: false,
     },
   });
-  await wrapper.vm.$nextTick();
   expect(wrapper.findComponent('.connectWalletModal').classes()).toEqual(['connectWalletModal']);
 });

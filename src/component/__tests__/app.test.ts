@@ -2,40 +2,26 @@ import { mount, VueWrapper } from '@vue/test-utils';
 import { createStore, Store } from 'vuex';
 import App from '../app.vue';
 
+jest.mock('../stakingAppBlock/adapter');
+jest.mock('../stakingAppBlock/actionsBlock/adapter.ts');
+jest.mock('../stakingAppBlock/calculatorBlock/adapter.ts');
+jest.mock('../stakingAppBlock/stakeInfoBlock/infoContainer/adapter.ts');
+jest.mock('../stakingAppBlock/stakeInfoBlock/adapter.ts');
+jest.mock('../stakingAppBlock/tariffsBlock/adapter.ts');
+
+jest.mock('../header/walletBlock/walletDiv/adapter.ts');
+jest.mock('../header/walletBlock/adapter.ts');
+
+jest.mock('../modals/connectWalletModal/walletsList/adapter.ts');
+jest.mock('../modals/connectWalletModal/adapter.ts');
+jest.mock('../modals/copied/adapter.ts');
+jest.mock('../modals/replenishModal/calculator/adapter.ts');
+jest.mock('../modals/replenishModal/adapter.ts');
+jest.mock('../modals/transactionConfirmed/adapter.ts');
+
 let store: Store<any>;
 beforeEach(() => {
-  store = createStore<any>({
-    modules: {
-      modal: {
-        state: {
-          connectWallet: false,
-        },
-      },
-      tariff: {
-        state: {
-          list: [],
-        },
-      },
-      wallet: {
-        state: {
-          isWalletConnected: false,
-          isWalletApproved: false,
-        },
-      },
-      stake: {
-        state: {
-          isStaked: false,
-        },
-      },
-    },
-    mutations: {
-      change: (state, obj: { [name: string]: boolean | string }) => {
-        Object.keys(obj).forEach((index) => {
-          state[index] = obj[index];
-        });
-      },
-    },
-  });
+  store = createStore<any>({});
 });
 
 beforeEach(() => {

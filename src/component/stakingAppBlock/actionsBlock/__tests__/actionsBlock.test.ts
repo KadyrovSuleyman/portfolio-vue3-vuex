@@ -1,20 +1,15 @@
 import { mount, VueWrapper } from '@vue/test-utils';
-import { computed, ref } from 'vue';
 import { createStore, Store } from 'vuex';
 import ActionsBlock from '../actionsBlock.vue';
 
-jest.mock('../adapter', () => {
-  const originalModule = jest.requireActual('../adapter');
-  return {
-    __esModule: true,
-    ...originalModule,
-    default: (store: Store<any>) => ({ ...store.state }),
-  };
+jest.mock('../adapter');
+
+let wrapper: VueWrapper<any>;
+afterEach(() => {
+  wrapper.unmount();
 });
 
 let store: Store<any>;
-let wrapper: VueWrapper<any>;
-
 beforeEach(() => {
   store = createStore<any>({
     state: {
@@ -35,11 +30,7 @@ beforeEach(() => {
     },
   });
 });
-afterEach(() => {
-  wrapper.unmount();
-});
 
-// ==================================
 it('waitingIcon renders', () => {
   wrapper = mount(ActionsBlock, {
     global: { plugins: [store] },
@@ -49,45 +40,20 @@ it('waitingIcon renders', () => {
 });
 
 it('watchs props changes', async () => {
-  const Div = {
-    props: [],
-
-    setup() {
-      const isSelected = ref(false);
-      const select = () => {
-        isSelected.value = !isSelected.value;
-      };
-      const mods = computed(() => ({ selected: isSelected.value }));
-
-      return {
-        isSelected,
-        select,
-        mods,
-      };
-    },
-    components: {
-      ActionsBlock,
-    },
-
-    template: `
-      <div class='root'>
-        <ActionsBlock :mods="mods"/>
-        <button class="test-btn" @click="select"></button>
-      </div>
-    `,
-  };
-  const wr = mount(Div, {
+  wrapper = mount(ActionsBlock, {
     global: { plugins: [store] },
   });
-  expect(wr.find('.actionsBlock').classes()).toEqual(['actionsBlock']);
+  expect(wrapper.find('.actionsBlock').classes()).toEqual(['actionsBlock']);
 
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.actionsBlock').classes()).toEqual(['actionsBlock', 'actionsBlock__selected']);
+  await wrapper.setProps(
+    { mods: { selected: true } },
+  );
+  expect(wrapper.find('.actionsBlock').classes()).toEqual(['actionsBlock', 'actionsBlock__selected']);
 
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.actionsBlock').classes()).toEqual(['actionsBlock']);
-
-  wr.unmount();
+  await wrapper.setProps(
+    { mods: { selected: false } },
+  );
+  expect(wrapper.find('.actionsBlock').classes()).toEqual(['actionsBlock']);
 });
 
 it('main button watch the store', async () => {

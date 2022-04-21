@@ -1,10 +1,8 @@
-import { mount } from '@vue/test-utils';
-import { computed, ref } from 'vue';
+import { mount, VueWrapper } from '@vue/test-utils';
 import { createStore } from 'vuex';
 import Header from '../header.vue';
 
-let wrapper = mount(Header, { global: { plugins: [createStore({})] } });
-wrapper.unmount();
+let wrapper: VueWrapper<any>;
 afterEach(() => {
   wrapper.unmount();
 });
@@ -18,41 +16,20 @@ it('navButton renders', () => {
 });
 
 it('watchs props changes', async () => {
-  const Div = {
-    props: [],
+  wrapper = mount(Header, { global: { plugins: [createStore({})] } });
+  expect(wrapper.find('header').classes()).toEqual(['header']);
 
-    setup() {
-      const isSelected = ref(false);
-      const select = () => {
-        isSelected.value = !isSelected.value;
-      };
-      const mods = computed(() => ({ selected: isSelected.value }));
-
-      return {
-        isSelected,
-        select,
-        mods,
-      };
+  await wrapper.setProps({
+    mods: {
+      selected: true,
     },
-    components: {
-      Header,
+  });
+  expect(wrapper.find('header').classes()).toEqual(['header', 'header__selected']);
+
+  await wrapper.setProps({
+    mods: {
+      selected: false,
     },
-
-    template: `
-      <div class='root'>
-        <Header :mods="mods"/>
-        <button class="test-btn" @click="select"></button>
-      </div>
-    `,
-  };
-  const wr = mount(Div, { global: { plugins: [createStore({})] } });
-  expect(wr.find('header').classes()).toEqual(['header']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('header').classes()).toEqual(['header', 'header__selected']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('header').classes()).toEqual(['header']);
-
-  wr.unmount();
+  });
+  expect(wrapper.find('header').classes()).toEqual(['header']);
 });

@@ -2,14 +2,7 @@ import { mount, VueWrapper } from '@vue/test-utils';
 import { createStore, Store } from 'vuex';
 import StakeInfoBlock from '../stakeInfoBlock.vue';
 
-jest.mock('../adapter', () => {
-  const originalModule = jest.requireActual('../adapter');
-  return {
-    __esModule: true,
-    ...originalModule,
-    default: (store: Store<any>) => ({ ...store.state }),
-  };
-});
+jest.mock('../adapter');
 
 let store: Store<any>;
 beforeEach(() => {
@@ -52,22 +45,20 @@ it('watchs props changes', async () => {
   });
   expect(wrapper.find('.stakeInfoBlock').classes()).toEqual(['stakeInfoBlock']);
 
-  wrapper.setProps({
+  await wrapper.setProps({
     ...wrapper.props,
     mods: {
       selected: true,
     },
   });
-  await wrapper.vm.$nextTick();
   expect(wrapper.find('.stakeInfoBlock').classes()).toEqual(['stakeInfoBlock', 'stakeInfoBlock__selected']);
 
-  wrapper.setProps({
+  await wrapper.setProps({
     ...wrapper.props,
     mods: {
       selected: false,
     },
   });
-  await wrapper.vm.$nextTick();
   expect(wrapper.find('.stakeInfoBlock').classes()).toEqual(['stakeInfoBlock']);
 });
 

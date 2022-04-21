@@ -1,16 +1,8 @@
 import { mount, VueWrapper } from '@vue/test-utils';
-import { computed, ref } from 'vue';
 import { createStore, Store } from 'vuex';
 import Calculator from '../calculator.vue';
 
-jest.mock('../adapter', () => {
-  const originalModule = jest.requireActual('../adapter');
-  return {
-    __esModule: true,
-    ...originalModule,
-    default: (store: Store<any>) => ({ ...store.state }),
-  };
-});
+jest.mock('../adapter');
 
 let store: Store<any>;
 let wrapper: VueWrapper<any>;
@@ -48,45 +40,24 @@ it('calculator renders', () => {
 });
 
 it('watchs props changes', async () => {
-  const Div = {
-    props: [],
-
-    setup() {
-      const isSelected = ref(false);
-      const select = () => {
-        isSelected.value = !isSelected.value;
-      };
-      const mods = computed(() => ({ selected: isSelected.value }));
-
-      return {
-        isSelected,
-        select,
-        mods,
-      };
-    },
-    components: {
-      Calculator,
-    },
-
-    template: `
-      <div class='root'>
-        <Calculator :mods="mods" />
-        <button class="test-btn" @click="select"></button>
-      </div>
-    `,
-  };
-  const wr = mount(Div, {
+  wrapper = mount(Calculator, {
     global: { plugins: [store] },
   });
-  expect(wr.find('.calculator').classes()).toEqual(['calculator']);
+  expect(wrapper.find('.calculator').classes()).toEqual(['calculator']);
 
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.calculator').classes()).toEqual(['calculator', 'calculator__selected']);
+  await wrapper.setProps({
+    mods: {
+      selected: true,
+    },
+  });
+  expect(wrapper.find('.calculator').classes()).toEqual(['calculator', 'calculator__selected']);
 
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.calculator').classes()).toEqual(['calculator']);
-
-  wr.unmount();
+  await wrapper.setProps({
+    mods: {
+      selected: false,
+    },
+  });
+  expect(wrapper.find('.calculator').classes()).toEqual(['calculator']);
 });
 
 describe('watching outer store', () => {

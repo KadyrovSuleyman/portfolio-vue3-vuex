@@ -1,9 +1,8 @@
-import { mount } from '@vue/test-utils';
-import { computed, ref } from 'vue';
+import { mount, VueWrapper } from '@vue/test-utils';
+import { ref } from 'vue';
 import PromtInput from '../promtInput.vue';
 
-let wrapper = mount(PromtInput);
-wrapper.unmount();
+let wrapper: VueWrapper<any>;
 afterEach(() => {
   wrapper.unmount();
 });
@@ -16,43 +15,22 @@ it('promtInput renders', () => {
 });
 
 it('watchs props changes', async () => {
-  const Div = {
-    props: [],
+  wrapper = mount(PromtInput);
+  expect(wrapper.find('.promtInput').classes()).toEqual(['promtInput']);
 
-    setup() {
-      const isSelected = ref(false);
-      const select = () => {
-        isSelected.value = !isSelected.value;
-      };
-      const mods = computed(() => ({ selected: isSelected.value }));
-
-      return {
-        isSelected,
-        select,
-        mods,
-      };
+  await wrapper.setProps({
+    mods: {
+      selected: true,
     },
-    components: {
-      PromtInput,
+  });
+  expect(wrapper.find('.promtInput').classes()).toEqual(['promtInput', 'promtInput__selected']);
+
+  await wrapper.setProps({
+    mods: {
+      selected: false,
     },
-
-    template: `
-      <div class='root'>
-        <PromtInput :mods="mods"/>
-        <button class="test-btn" @click="select"></button>
-      </div>
-    `,
-  };
-  const wr = mount(Div);
-  expect(wr.find('.promtInput').classes()).toEqual(['promtInput']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.promtInput').classes()).toEqual(['promtInput', 'promtInput__selected']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.promtInput').classes()).toEqual(['promtInput']);
-
-  wr.unmount();
+  });
+  expect(wrapper.find('.promtInput').classes()).toEqual(['promtInput']);
 });
 
 it('two-sides binding', async () => {
@@ -105,61 +83,38 @@ it('two-sides binding', async () => {
 });
 
 it('error shows', async () => {
-  const Div = {
-    props: [],
+  wrapper = mount(PromtInput);
+  expect(wrapper.find('.promtInput').classes()).toEqual(['promtInput']);
+  expect(wrapper.find('.promtInput-span').exists()).toBeFalsy();
 
-    setup() {
-      const correct = ref('');
-      const promtText = ref('before');
+  await wrapper.setProps({
+    correct: 'true',
+  });
+  expect(wrapper.find('.promtInput').classes()).toEqual(['promtInput', 'promtInput__correct_true']);
+  expect(wrapper.find('.promtInput-span').exists()).toBeFalsy();
 
-      const setCorrect = (value: string) => { correct.value = value; };
-      const changePromt = (value: string) => { promtText.value = value; };
-
-      return {
-        correct,
-        promtText,
-        setCorrect,
-        changePromt,
-      };
-    },
-    components: {
-      PromtInput,
-    },
-
-    template: `
-      <div class='root'>
-        <PromtInput :promtText="promtText" :correct="correct"/>
-
-        <button class="correct-false" @click="setCorrect('false')"></button>
-        <button class="correct-true" @click="setCorrect('true')"></button>
-        <button class="correct-none" @click="setCorrect('')"></button>
-
-        <button class="changePromt" @click="changePromt('after')"></button>
-      </div>
-    `,
-  };
-  const wr = mount(Div);
-  expect(wr.find('.promtInput').classes()).toEqual(['promtInput']);
-  expect(wr.find('.promtInput-span').exists()).toBeFalsy();
-
-  await wr.find('.correct-true').trigger('click');
-  expect(wr.find('.promtInput').classes()).toEqual(['promtInput', 'promtInput__correct_true']);
-  expect(wr.find('.promtInput-span').exists()).toBeFalsy();
-
-  await wr.find('.correct-false').trigger('click');
-  expect(wr.find('.promtInput').classes()).toEqual(['promtInput', 'promtInput__correct_false']);
-  expect(wr.find('.promtInput-span').classes())
+  await wrapper.setProps({
+    correct: 'false',
+  });
+  expect(wrapper.find('.promtInput').classes()).toEqual(['promtInput', 'promtInput__correct_false']);
+  expect(wrapper.find('.promtInput-span').classes())
     .toEqual(['promtInput-span', 'promtInput-span__correct_false']);
 
-  await wr.find('.correct-none').trigger('click');
-  expect(wr.find('.promtInput').classes()).toEqual(['promtInput']);
-  expect(wr.find('.promtInput-span').exists()).toBeFalsy();
+  await wrapper.setProps({
+    correct: undefined,
+  });
+  expect(wrapper.find('.promtInput').classes()).toEqual(['promtInput']);
+  expect(wrapper.find('.promtInput-span').exists()).toBeFalsy();
 
-  await wr.find('.correct-false').trigger('click');
-  expect(wr.find('.promtInput-span').text()).toBe('before');
+  await wrapper.setProps({
+    correct: 'false',
+    promtText: 'before',
+  });
+  expect(wrapper.find('.promtInput-span').text()).toBe('before');
 
-  await wr.find('.changePromt').trigger('click');
-  expect(wr.find('.promtInput-span').text()).toBe('after');
-
-  wr.unmount();
+  await wrapper.setProps({
+    correct: 'false',
+    promtText: 'after',
+  });
+  expect(wrapper.find('.promtInput-span').text()).toBe('after');
 });

@@ -3,20 +3,7 @@ import { mount, VueWrapper } from '@vue/test-utils';
 import { createStore, Store } from 'vuex';
 import Notification from '../transactionConfirmed.vue';
 
-jest.mock('../adapter.ts', () => {
-  const originalModule = jest.requireActual('../adapter.ts');
-  return {
-    __esModule: true,
-    ...originalModule,
-    adapt: (store: Store<any>) => ({ ...store.state }),
-    generateCloseHandler: (store: Store<any>) => () => {
-      store.state.isShown = false;
-    },
-    generateNotificationClickHandler: (store: Store<any>) => () => {
-      store.state.notificationClickCount += 1;
-    },
-  };
-});
+jest.mock('../adapter.ts');
 
 let store: Store<any>;
 beforeEach(() => {
@@ -84,23 +71,21 @@ it('watchs props changes', async () => {
   expect(wrapper.findComponent('.transactionConfirmed-notification').classes())
     .toEqual(['transactionConfirmed-notification']);
 
-  wrapper.setProps({
+  await wrapper.setProps({
     ...wrapper.props,
     mods: {
       selected: true,
     },
   });
-  await wrapper.vm.$nextTick();
   expect(wrapper.findComponent('.transactionConfirmed-notification').classes())
     .toEqual(['transactionConfirmed-notification', 'transactionConfirmed-notification__selected']);
 
-  wrapper.setProps({
+  await wrapper.setProps({
     ...wrapper.props,
     mods: {
       selected: false,
     },
   });
-  await wrapper.vm.$nextTick();
   expect(wrapper.findComponent('.transactionConfirmed-notification').classes())
     .toEqual(['transactionConfirmed-notification']);
 });

@@ -3,14 +3,7 @@ import { computed, ref } from 'vue';
 import { createStore, Store } from 'vuex';
 import WalletsList from '../walletsList.vue';
 
-jest.mock('../adapter', () => {
-  const originalModule = jest.requireActual('../adapter');
-  return {
-    __esModule: true,
-    ...originalModule,
-    default: (store: Store<any>) => ({ ...store.state }),
-  };
-});
+jest.mock('../adapter.ts');
 
 let store: Store<any>;
 let wrapper: VueWrapper<any>;
@@ -54,43 +47,22 @@ it('walletsList renders', () => {
 });
 
 it('watchs props changes', async () => {
-  const Div = {
-    props: [],
+  wrapper = mount(WalletsList, { global: { plugins: [store] } });
+  expect(wrapper.find('.walletsList').classes()).toEqual(['walletsList']);
 
-    setup() {
-      const isSelected = ref(false);
-      const select = () => {
-        isSelected.value = !isSelected.value;
-      };
-      const mods = computed(() => ({ selected: isSelected.value }));
-
-      return {
-        isSelected,
-        select,
-        mods,
-      };
+  await wrapper.setProps({
+    mods: {
+      selected: true,
     },
-    components: {
-      WalletsList,
+  });
+  expect(wrapper.find('.walletsList').classes()).toEqual(['walletsList', 'walletsList__selected']);
+
+  await wrapper.setProps({
+    mods: {
+      selected: false,
     },
-
-    template: `
-      <div class='root'>
-        <WalletsList :mods="mods"/>
-        <button class="test-btn" @click="select"></button>
-      </div>
-    `,
-  };
-  const wr = mount(Div, { global: { plugins: [store] } });
-  expect(wr.find('.walletsList').classes()).toEqual(['walletsList']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.walletsList').classes()).toEqual(['walletsList', 'walletsList__selected']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.walletsList').classes()).toEqual(['walletsList']);
-
-  wr.unmount();
+  });
+  expect(wrapper.find('.walletsList').classes()).toEqual(['walletsList']);
 });
 
 describe('outer store changing', () => {

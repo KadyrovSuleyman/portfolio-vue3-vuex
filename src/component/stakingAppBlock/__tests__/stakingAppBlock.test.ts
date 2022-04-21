@@ -1,37 +1,19 @@
 import { mount, VueWrapper } from '@vue/test-utils';
-import { computed, ref } from 'vue';
 import { createStore, Store } from 'vuex';
 import StakingAppBlock from '../stakingAppBlock.vue';
 
-jest.mock('../adapter', () => {
-  const originalModule = jest.requireActual('../adapter');
-  return {
-    __esModule: true,
-    ...originalModule,
-    adapt: (store: Store<any>) => ({ ...store.state }),
-  };
-});
+jest.mock('../adapter');
+jest.mock('../actionsBlock/adapter.ts');
+jest.mock('../calculatorBlock/adapter.ts');
+jest.mock('../stakeInfoBlock/infoContainer/adapter.ts');
+jest.mock('../stakeInfoBlock/adapter.ts');
+jest.mock('../tariffsBlock/adapter.ts');
 
 let store: Store<any>;
 beforeEach(() => {
   store = createStore<any>({
-    modules: {
-      tariff: {
-        state: {
-          list: [],
-        },
-      },
-      wallet: {
-        state: {
-          isWalletConnected: false,
-          isWalletApproved: false,
-        },
-      },
-      stake: {
-        state: {
-          isStaked: false,
-        },
-      },
+    state: {
+      isStaked: false,
     },
     mutations: {
       change: (state, obj: { [name: string]: boolean | string }) => {
@@ -65,45 +47,24 @@ it('stakingAppBlock renders', () => {
 });
 
 it('watchs props changes', async () => {
-  const Div = {
-    props: [],
-
-    setup() {
-      const isSelected = ref(false);
-      const select = () => {
-        isSelected.value = !isSelected.value;
-      };
-      const mods = computed(() => ({ selected: isSelected.value }));
-
-      return {
-        isSelected,
-        select,
-        mods,
-      };
-    },
-    components: {
-      StakingAppBlock,
-    },
-
-    template: `
-      <div class='root'>
-        <StakingAppBlock :mods="mods"/>
-        <button class="test-btn" @click="select"></button>
-      </div>
-    `,
-  };
-  const wr = mount(Div, {
+  wrapper = mount(StakingAppBlock, {
     global: { plugins: [store] },
   });
-  expect(wr.find('.stakingAppBlock').classes()).toEqual(['stakingAppBlock']);
+  expect(wrapper.find('.stakingAppBlock').classes()).toEqual(['stakingAppBlock']);
 
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.stakingAppBlock').classes()).toEqual(['stakingAppBlock', 'stakingAppBlock__selected']);
+  await wrapper.setProps({
+    mods: {
+      selected: true,
+    },
+  });
+  expect(wrapper.find('.stakingAppBlock').classes()).toEqual(['stakingAppBlock', 'stakingAppBlock__selected']);
 
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.stakingAppBlock').classes()).toEqual(['stakingAppBlock']);
-
-  wr.unmount();
+  await wrapper.setProps({
+    mods: {
+      selected: false,
+    },
+  });
+  expect(wrapper.find('.stakingAppBlock').classes()).toEqual(['stakingAppBlock']);
 });
 
 it('watching outer store', async () => {

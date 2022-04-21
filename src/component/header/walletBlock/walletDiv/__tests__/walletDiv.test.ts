@@ -1,10 +1,10 @@
-import { mount } from '@vue/test-utils';
-import { computed, ref } from 'vue';
-import { createStore, Store } from 'vuex';
+import { mount, VueWrapper } from '@vue/test-utils';
+import { createStore } from 'vuex';
 import WalletDiv from '../walletDiv.vue';
 
-let wrapper = mount(WalletDiv, { global: { plugins: [createStore({})] } });
-wrapper.unmount();
+jest.mock('../adapter');
+
+let wrapper: VueWrapper<any>;
 afterEach(() => {
   wrapper.unmount();
 });
@@ -22,53 +22,22 @@ it('connectBlock renders', () => {
 });
 
 it('watchs props changes', async () => {
-  const Div = {
-    props: [],
+  wrapper = mount(WalletDiv, { global: { plugins: [createStore({})] } });
+  expect(wrapper.find('.walletDiv').classes()).toEqual(['walletDiv']);
 
-    setup() {
-      const isSelected = ref(false);
-      const select = () => {
-        isSelected.value = !isSelected.value;
-      };
-      const mods = computed(() => ({ selected: isSelected.value }));
-
-      return {
-        isSelected,
-        select,
-        mods,
-      };
+  await wrapper.setProps({
+    mods: {
+      selected: true,
     },
-    components: {
-      WalletDiv,
+  });
+  expect(wrapper.find('.walletDiv').classes()).toEqual(['walletDiv', 'walletDiv__selected']);
+
+  await wrapper.setProps({
+    mods: {
+      selected: false,
     },
-
-    template: `
-      <div class='root'>
-        <WalletDiv :mods="mods"/>
-        <button class="test-btn" @click="select"></button>
-      </div>
-    `,
-  };
-  const wr = mount(Div, { global: { plugins: [createStore({})] } });
-  expect(wr.find('.walletDiv').classes()).toEqual(['walletDiv']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.walletDiv').classes()).toEqual(['walletDiv', 'walletDiv__selected']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.walletDiv').classes()).toEqual(['walletDiv']);
-
-  wr.unmount();
-});
-
-// =========================================
-jest.mock('../adapter', () => {
-  const originalModule = jest.requireActual('../adapter.ts');
-  return {
-    __esModule: true,
-    ...originalModule,
-    default: (store: Store<any>) => ({ ...store.state }),
-  };
+  });
+  expect(wrapper.find('.walletDiv').classes()).toEqual(['walletDiv']);
 });
 
 describe('outer store', () => {

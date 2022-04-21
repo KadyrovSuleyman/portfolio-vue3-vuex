@@ -1,9 +1,9 @@
-import { mount } from '@vue/test-utils';
-import { computed, ref } from 'vue';
+import { mount, VueWrapper } from '@vue/test-utils';
 import NavPanel from '../navPanel.vue';
 
-let wrapper = mount(NavPanel);
-wrapper.unmount();
+jest.mock('../logic');
+
+let wrapper: VueWrapper<any>;
 afterEach(() => {
   wrapper.unmount();
 });
@@ -16,61 +16,24 @@ it('navButton renders', () => {
 });
 
 it('watchs props changes', async () => {
-  const Div = {
-    props: [],
+  wrapper = mount(NavPanel);
+  expect(wrapper.find('.navPanel').classes()).toEqual(['navPanel']);
 
-    setup() {
-      const isSelected = ref(false);
-      const select = () => {
-        isSelected.value = !isSelected.value;
-      };
-      const mods = computed(() => ({ selected: isSelected.value }));
-
-      return {
-        isSelected,
-        select,
-        mods,
-      };
+  await wrapper.setProps({
+    mods: {
+      selected: true,
     },
-    components: {
-      NavPanel,
+  });
+  expect(wrapper.find('.navPanel').classes()).toEqual(['navPanel', 'navPanel__selected']);
+
+  await wrapper.setProps({
+    mods: {
+      selected: false,
     },
+  });
+  expect(wrapper.find('.navPanel').classes()).toEqual(['navPanel']);
 
-    template: `
-      <div class='root'>
-        <NavPanel :mods="mods"/>
-        <button class="test-btn" @click="select"></button>
-      </div>
-    `,
-  };
-  const wr = mount(Div);
-  expect(wr.find('.navPanel').classes()).toEqual(['navPanel']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.navPanel').classes()).toEqual(['navPanel', 'navPanel__selected']);
-
-  await wr.find('.test-btn').trigger('click');
-  expect(wr.find('.navPanel').classes()).toEqual(['navPanel']);
-
-  wr.unmount();
-});
-
-// ============================
-
-jest.mock('../logic', () => {
-  const originalModule = jest.requireActual('../logic');
-
-  originalModule.navItems.value = {
-    Stacking: true,
-    Bridge: false,
-    SHO: false,
-    SHON: false,
-  };
-
-  return {
-    __esModule: true,
-    ...originalModule,
-  };
+  wrapper.unmount();
 });
 
 it('click handler works', async () => {
