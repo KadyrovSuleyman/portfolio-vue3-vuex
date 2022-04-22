@@ -23,7 +23,3 @@ export const isValidInput = (input: string) => {
 
   return reg.test(input);
 };
-
-export const calculateReward = (input: number, param: number) => (
-  Math.floor(input * param * 1000) / 1000
-);

@@ -5,6 +5,7 @@
   grid-auto-flow: column;
 
   justify-content: start;
+  align-items: center;
 
   column-gap: 12px;
 }
@@ -19,4 +20,8 @@
   justify-content: center;
 
   column-gap: 11px;
+}
+
+.actionsBlock-maxAmountSpan {
+  padding-left: 8px;
 }

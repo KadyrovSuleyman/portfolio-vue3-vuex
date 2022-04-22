@@ -8,6 +8,13 @@ const actions: ActionTree<StateT, any> = {
 
     store.state.from = new Date();
     store.state.to.setDate(store.state.to.getDate() + store.rootGetters['tariff/period']);
+
+    store.state.amountMin = store.rootGetters['tariff/amountMin'];
+    store.state.amountMax = store.rootGetters['tariff/amountMax'];
+  },
+
+  replenish: (store: ActionContext<StateT, any>, value: number) => {
+    store.commit('replenish', value);
   },
 };
 

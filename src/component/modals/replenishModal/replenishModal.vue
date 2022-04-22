@@ -1,12 +1,14 @@
 <script setup lang="ts">
 
-import { computed, ref, VueElement } from 'vue';
+import { computed } from 'vue';
 import Div from '@/element/div/div.vue';
 import Span from '@/element/span/span.vue';
 import Button from '@/element/button/button.vue';
 import propsObj from '@/element/propsObj';
 import { useStore } from 'vuex';
-import { adapt, generateCloseHandler, generateReplenishConfirmHandler } from './adapter';
+import {
+  adapt, generateCloseHandler, generateReplenishConfirmHandler, value, setValue,
+} from './adapter';
 import Calculator from './calculator/calculator.vue';
 
 // eslint-disable-next-line no-undef
@@ -50,7 +52,7 @@ const replenishConfirmHandler = generateReplenishConfirmHandler(store);
           </Span>
         </Div>
 
-        <Calculator :block="comp.elem" />
+        <Calculator :block="comp.elem" :value="value" :setValue="setValue"/>
 
         <Button :block="comp.elem" :elem="'replenish-button'"
           :onClick="replenishConfirmHandler"

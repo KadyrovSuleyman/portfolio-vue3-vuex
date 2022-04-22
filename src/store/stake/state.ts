@@ -7,8 +7,11 @@ export const state = {
   apy: 100,
   from: new Date(),
   to: new Date(),
+  amountMin: 0,
+  amountMax: 0,
 
-  isReplenishAvailable: false,
+  // isReplenishAvailable: false,
+
   isRestakeAvailable: false,
   restakeCountdown: '00:00:09',
 };

@@ -1,4 +1,5 @@
 import { mount, VueWrapper } from '@vue/test-utils';
+import { ref } from 'vue';
 import { createStore, Store } from 'vuex';
 import Calculator from '../calculator.vue';
 
@@ -11,8 +12,6 @@ beforeEach(() => {
   store = createStore<any>({
     state: {
       maxValue: 1000,
-      period: '30 Days',
-      rewardCalcParam: 0.4,
     },
     mutations: {
       change: (state, obj: { [name: string]: any }) => {
@@ -61,9 +60,15 @@ it('watchs props changes', async () => {
 });
 
 describe('watching outer store', () => {
+  const value = ref('');
+
   it('maxValue', async () => {
     wrapper = mount(Calculator, {
       global: { plugins: [store] },
+      props: {
+        value: value.value,
+        setValue: (newValue: string) => { value.value = newValue; },
+      },
     });
     expect(wrapper.find('.calculator').exists()).toBeTruthy();
 
@@ -72,17 +77,17 @@ describe('watching outer store', () => {
 
     const max = wrapper.find('.calculator-button');
     await max.trigger('click');
-    expect((input.element as HTMLInputElement).value).toBe(`${store.state.maxValue}`);
+    expect(value.value).toBe(`${store.state.maxValue}`);
 
     ((input.element as HTMLInputElement).value) = String(500);
     await input.trigger('input');
-    expect((input.element as HTMLInputElement).value).toBe('500');
+    expect(value.value).toBe('500');
 
     store.commit('change', {
       maxValue: 800,
     });
     await max.trigger('click');
     expect(store.state.maxValue).toBe(800);
-    expect((input.element as HTMLInputElement).value).toBe('800');
+    expect(value.value).toBe('800');
   });
 });

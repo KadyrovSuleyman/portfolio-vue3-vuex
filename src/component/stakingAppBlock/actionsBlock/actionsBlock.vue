@@ -41,7 +41,7 @@ const CALLBACK = computed(() => {
 
     <Button :block="comp.elem" :elem="'mainButton'"
       :mods="{ waiting: state.isWaiting, disabled: state.disabled }"
-      :onClick="CALLBACK" :disabled="state.disabled"
+      :onClick="CALLBACK" :disabled="state.disabled" v-if="!state.hidden"
     >
       <WaitingIcon
         v-if="state.isWaiting"
@@ -51,6 +51,10 @@ const CALLBACK = computed(() => {
         {{ mainButtonProps.text }}
       </Span>
     </Button>
+
+    <Span v-if="state.hidden" :block="comp.elem" :elem="'maxAmountSpan'">
+      You have max. amount TKN
+    </Span>
 
     <Button v-if="state.isStaked && state.isRestakeAvailable"
       :block="comp.elem" :elem="'unstakeButton'"

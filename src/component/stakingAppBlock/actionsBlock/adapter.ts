@@ -10,7 +10,7 @@ export const isWaiting = ref<boolean>(false);
 
 // export const isStaked = ref<boolean>(true);
 export const isRestakeAvailable = ref<boolean>(false);
-export const isReplenishAvailable = ref<boolean>(true);
+// export const isReplenishAvailable = ref<boolean>(true);
 
 export const restakeCountdown = ref<string>('00:00:09');
 
@@ -20,7 +20,7 @@ const adapt = (store: Store<any>) => ({
   isWalletApproved: store.state.wallet.isApproved,
   // isWaiting: store.state.isWaiting,
   isStaked: store.state.stake.isStaked,
-  // isReplenishAvailable: store.state.isReplenishAvailable,
+  isReplenishAvailable: store.getters['stake/isReplenishAllowed'],
   // isRestakeAvailable: store.state.isRestakeAvailable,
   // restakeCountdown: store.state.restakeCountdown,
 
@@ -28,7 +28,7 @@ const adapt = (store: Store<any>) => ({
   // isWalletApproved: isWalletApproved.value,
   isWaiting: isWaiting.value,
   // isStaked: isStaked.value,
-  isReplenishAvailable: isReplenishAvailable.value,
+  // isReplenishAvailable: isReplenishAvailable.value,
   isRestakeAvailable: isRestakeAvailable.value,
   restakeCountdown: restakeCountdown.value,
 
@@ -46,6 +46,12 @@ const adapt = (store: Store<any>) => ({
       && store.getters['stake/isInputValid']
     )
 
+    || store.getters['stake/isReplenishAllowed']
+  ),
+
+  hidden: (
+    store.state.stake.isStaked
+    && !store.getters['stake/isReplenishAllowed']
   ),
 });
 

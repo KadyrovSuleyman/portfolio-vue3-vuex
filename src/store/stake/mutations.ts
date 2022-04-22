@@ -11,6 +11,10 @@ const mutations: MutationTree<StateT> = {
     state.inputValue = newInput;
     state.staked = Number(newInput);
   },
+
+  replenish: (state: StateT, value: number) => {
+    state.staked += value;
+  },
 };
 
 export default mutations;

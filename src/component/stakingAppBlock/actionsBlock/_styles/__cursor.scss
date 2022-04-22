@@ -1,7 +1,10 @@
 .actionsBlock-mainButton,
 .actionsBlock-timeButton,
-.actionsBlock-unstakeButton,
-span
+.actionsBlock-unstakeButton
 {
   cursor: pointer;
+}
+
+.actionsBlock-maxAmountSpan {
+  cursor: default;
 }

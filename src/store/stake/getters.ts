@@ -23,6 +23,9 @@ const getters: GetterTree<StateT, any> = {
 
   from: (state: StateT) => formateDate(state.from) || '',
   to: (state: StateT) => formateDate(state.to) || '',
+
+  isReplenishAllowed: (state: StateT) => state.staked < state.amountMax,
+  replenishMax: (state: StateT) => state.amountMax - state.staked,
 };
 
 export default getters;

@@ -1,3 +1,6 @@
+@use '/src/modificators/__font/-family/montserrat' as *;
+@use '/src/modificators/__font/-weight/semi-bold' as *;
+
 .timeButton-span {
   font-size: 16px;
   font-weight: 700;
@@ -6,4 +9,13 @@
 .mainButton-span {
   font-size: 16px;
   font-weight: 700;
+}
+
+.actionsBlock-maxAmountSpan {
+  @include montserrat;
+  @include semi-bold;
+
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
 }
