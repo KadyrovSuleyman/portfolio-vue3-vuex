@@ -21,16 +21,16 @@ const adapt = (store: Store<any>) => ({
   // isWaiting: store.state.isWaiting,
   isStaked: store.state.stake.isStaked,
   isReplenishAvailable: store.getters['stake/isReplenishAllowed'],
-  // isRestakeAvailable: store.state.isRestakeAvailable,
-  // restakeCountdown: store.state.restakeCountdown,
+  isRestakeAvailable: store.getters['stake/isRestakeAllowed'],
+  restakeCountdown: store.getters['stake/countdown'],
 
   // isWalletConnected: isWalletConnected.value,
   // isWalletApproved: isWalletApproved.value,
   isWaiting: isWaiting.value,
   // isStaked: isStaked.value,
   // isReplenishAvailable: isReplenishAvailable.value,
-  isRestakeAvailable: isRestakeAvailable.value,
-  restakeCountdown: restakeCountdown.value,
+  // isRestakeAvailable: isRestakeAvailable.value,
+  // restakeCountdown: restakeCountdown.value,
 
   // disabled: !(
   //   store.getters['stake/isAllowed']
@@ -47,11 +47,16 @@ const adapt = (store: Store<any>) => ({
     )
 
     || store.getters['stake/isReplenishAllowed']
+
+    || store.getters['stake/isRestakeAllowed']
   ),
 
   hidden: (
     store.state.stake.isStaked
-    && !store.getters['stake/isReplenishAllowed']
+    && (
+      !store.getters['stake/isReplenishAllowed']
+      && !store.getters['stake/isRestakeAllowed']
+    )
   ),
 });
 

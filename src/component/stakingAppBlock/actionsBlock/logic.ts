@@ -67,5 +67,8 @@ const generateMainButtonProps = ({
     text: '',
   };
 };
-
 export default generateMainButtonProps;
+
+export const generateUnstakeHandler = (store: Store<any>) => () => {
+  store.dispatch('stake/unstake');
+};

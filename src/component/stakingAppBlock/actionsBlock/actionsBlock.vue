@@ -8,7 +8,7 @@ import propsObj from '@/element/propsObj';
 import { useStore } from 'vuex';
 import WaitingIcon from './waitingIcon/waitingIcon.vue';
 import adapt from './adapter';
-import generateMainButtonProps from './logic';
+import generateMainButtonProps, { generateUnstakeHandler } from './logic';
 
 // eslint-disable-next-line no-undef
 const props = defineProps({ ...propsObj });
@@ -25,6 +25,8 @@ const CALLBACK = computed(() => {
 
   return mainButtonProps.value.handler(store);
 });
+
+const unstakeClickHandler = generateUnstakeHandler(store);
 
 </script>
 
@@ -58,6 +60,7 @@ const CALLBACK = computed(() => {
 
     <Button v-if="state.isStaked && state.isRestakeAvailable"
       :block="comp.elem" :elem="'unstakeButton'"
+      :onClick="unstakeClickHandler"
     >
       <Span :block="'unstakeButton'">
         Unstake

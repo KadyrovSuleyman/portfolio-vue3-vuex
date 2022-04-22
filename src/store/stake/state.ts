@@ -10,10 +10,7 @@ export const state = {
   amountMin: 0,
   amountMax: 0,
 
-  // isReplenishAvailable: false,
-
-  isRestakeAvailable: false,
-  restakeCountdown: '00:00:09',
+  restakeCountdown: 0,
 };
 
 export type StateT = typeof state;

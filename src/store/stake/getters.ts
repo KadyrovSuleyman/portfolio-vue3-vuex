@@ -1,5 +1,5 @@
 import { GetterTree } from 'vuex';
-import { formateDate } from './date';
+import { formateDate, formateTimer } from './date';
 import { StateT } from './state';
 
 const getters: GetterTree<StateT, any> = {
@@ -26,6 +26,9 @@ const getters: GetterTree<StateT, any> = {
 
   isReplenishAllowed: (state: StateT) => state.staked < state.amountMax,
   replenishMax: (state: StateT) => state.amountMax - state.staked,
+
+  countdown: (state: StateT) => formateTimer(state.restakeCountdown),
+  isRestakeAllowed: (state: StateT) => state.restakeCountdown === 0,
 };
 
 export default getters;

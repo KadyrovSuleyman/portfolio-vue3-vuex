@@ -3,6 +3,7 @@ import { StateT } from './state';
 
 const mutations: MutationTree<StateT> = {
   stake: (state: StateT) => { state.isStaked = true; },
+  unstake: (state: StateT) => { state.isStaked = false; },
   input: (state: StateT, newInput: string) => {
     if (state.isStaked) {
       return;
@@ -14,6 +15,10 @@ const mutations: MutationTree<StateT> = {
 
   replenish: (state: StateT, value: number) => {
     state.staked += value;
+  },
+
+  mockCountdown: (state: StateT, msec: number) => {
+    state.restakeCountdown = msec;
   },
 };
 
