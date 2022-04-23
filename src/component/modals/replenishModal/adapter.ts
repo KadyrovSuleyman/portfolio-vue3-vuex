@@ -4,9 +4,22 @@ import { ref } from 'vue';
 import { Store } from 'vuex';
 
 export const value = ref('');
-export const setValue = (newValue: string) => { value.value = newValue; };
 
-export const adapt = (store: Store<any>) => ({
+export interface StateT {
+  isShown: boolean,
+  maxAmount: number,
+  availableAmount: number,
+
+  disabled: boolean,
+
+  value: string,
+  setValue: (newValue: string) => void,
+
+  hide: () => void,
+  replenish: () => void,
+}
+
+export const adapt = (store: Store<any>): StateT => ({
   isShown: store.state.modal.replenish,
   maxAmount: store.state.stake.amountMax,
   availableAmount: store.getters['stake/replenishMax'],
@@ -15,14 +28,10 @@ export const adapt = (store: Store<any>) => ({
     Number(value.value) > store.getters['stake/replenishMax']
     || Number(value.value) <= 0
   ),
+
+  value: value.value,
+  setValue: (newValue: string) => { value.value = newValue; },
+
+  hide: () => store.dispatch('modal/hide', MODAL.replenish),
+  replenish: () => store.dispatch('waiting/replenish', Number(value.value)),
 });
-
-export const generateCloseHandler = (store: Store<any>) => async () => {
-  await store.dispatch('modal/hide', MODAL.replenish);
-  value.value = '';
-};
-
-export const generateReplenishConfirmHandler = (store: Store<any>) => async () => {
-  await store.dispatch('waiting/replenish', Number(value.value));
-  value.value = '';
-};

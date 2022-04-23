@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { computed } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import Div from '@/element/div/div.vue';
 import propsObj from '@/element/propsObj';
 import Button from '@/element/button/button.vue';
@@ -11,6 +11,7 @@ import {
   isValidInput, validate, correctState,
 } from './logic';
 import adapt from './adapter';
+import { createMaxButtonClickHandler, createOnInputHandler, createOnKeyupHandler } from './handlers';
 
 // eslint-disable-next-line no-undef
 const props = defineProps({
@@ -27,32 +28,25 @@ const errorText = computed(() => validate(props.value || ''));
 const correct = computed(() => correctState(props.value || ''));
 
 const store = useStore();
-const state = computed(() => adapt(store));
+const state = computed(() => adapt(store, props));
 
-const onInput = (payload: KeyboardEvent) => {
-  const target = (payload.target as HTMLInputElement);
-  if (!isValidInput(target.value)) {
-    target.value = props.value || '';
-    return;
-  }
+const promtInput = ref(null) as any;
 
-  if (Number(target.value) > state.value.maxValue) {
-    target.value = String(state.value.maxValue);
-  }
-
-  props.setValue(target.value);
-};
-
-const onButtonClick = () => {
-  props.setValue(String(state.value.maxValue));
-};
+const onButtonClick = ref();
+const onKeyup = ref();
+onMounted(() => {
+  onButtonClick.value = createMaxButtonClickHandler(state, promtInput.value.input.element);
+  onKeyup.value = createOnKeyupHandler(state, promtInput.value.input.element);
+});
+const onInput = createOnInputHandler(state);
 
 </script>
 
 <template>
   <Div :block="props.block" :elem="comp.elem" :mods="props.mods">
     <PromtInput :block="comp.elem" :promtText="errorText" :correct="correct"
-      :text="props.value" :onInput="onInput" :placeholder="'0'"
+      :text="props.value" :onInput="onInput" :placeholder="'0'" ref="promtInput"
+      :onKeyup="onKeyup"
     />
     <Button :block="comp.elem" :onClick="onButtonClick">Max</Button>
   </Div>

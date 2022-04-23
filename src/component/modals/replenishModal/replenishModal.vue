@@ -6,10 +6,9 @@ import Span from '@/element/span/span.vue';
 import Button from '@/element/button/button.vue';
 import propsObj from '@/element/propsObj';
 import { useStore } from 'vuex';
-import {
-  adapt, generateCloseHandler, generateReplenishConfirmHandler, value, setValue,
-} from './adapter';
+import { adapt } from './adapter';
 import Calculator from './calculator/calculator.vue';
+import { createCloseHandler, createReplenishConfirmHandler } from './handlers';
 
 // eslint-disable-next-line no-undef
 const props = defineProps({
@@ -20,8 +19,9 @@ const comp = computed(() => ({ elem: props.elem || 'replenishModal' }));
 
 const store = useStore();
 const state = computed(() => adapt(store));
-const closeHandler = generateCloseHandler(store);
-const replenishConfirmHandler = generateReplenishConfirmHandler(store);
+
+const closeHandler = createCloseHandler(state);
+const replenishConfirmHandler = createReplenishConfirmHandler(state);
 
 </script>
 
@@ -52,7 +52,7 @@ const replenishConfirmHandler = generateReplenishConfirmHandler(store);
           </Span>
         </Div>
 
-        <Calculator :block="comp.elem" :value="value" :setValue="setValue"/>
+        <Calculator :block="comp.elem" :value="state.value" :setValue="state.setValue"/>
 
         <Button :block="comp.elem" :elem="'replenish-button'"
           :onClick="replenishConfirmHandler" :disabled="state.disabled"

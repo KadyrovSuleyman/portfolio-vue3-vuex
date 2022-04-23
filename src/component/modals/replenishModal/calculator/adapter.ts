@@ -1,8 +1,19 @@
 import { Store } from 'vuex';
 
-const adapt = (store: Store<any>) => ({
+export interface StateT {
+  value: string,
+  setValue: (input: string) => void,
+
+  maxValue: number,
+  replenish: (input: string) => Promise<any>,
+}
+
+const adapt = (store: Store<any>, props: any): StateT => ({
   maxValue: store.getters['stake/replenishMax'],
-  replenish: (input: string) => store.dispatch('stake/replenish', Number(input)),
+  replenish: (input: string) => store.dispatch('waiting/replenish', Number(input)),
+
+  value: props.value,
+  setValue: props.setValue,
 });
 
 export default adapt;
