@@ -5,8 +5,9 @@ import { useStore } from 'vuex';
 import propsObj from '@/element/propsObj';
 import Button from '@/element/button/button.vue';
 import Span from '@/element/span/span.vue';
-import { generateCloseHandler, adapt, generateNotificationClickHandler } from './adapter';
+import { adapt } from './adapter';
 import BaseNotification from '../baseNotification/baseNotification.vue';
+import createCloseHandler from './handlers';
 
 // eslint-disable-next-line no-undef
 const props = defineProps({
@@ -18,8 +19,7 @@ const comp = computed(() => ({ elem: props.elem || 'copied' }));
 const store = useStore();
 const state = computed(() => adapt(store));
 
-const closeHandler = generateCloseHandler(store);
-const notificationClickHandler = generateNotificationClickHandler(store);
+const closeHandler = createCloseHandler(state);
 
 </script>
 

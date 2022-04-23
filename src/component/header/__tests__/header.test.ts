@@ -9,10 +9,7 @@ afterEach(() => {
 
 it('navButton renders', () => {
   wrapper = mount(Header, { global: { plugins: [createStore({})] } });
-
-  expect(wrapper.find('header').classes()).toEqual(['header']);
-  expect(wrapper.find('.header-navPanel').classes()).toEqual(['header-navPanel']);
-  expect(wrapper.find('.header-walletBlock').classes()).toEqual(['header-walletBlock']);
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {

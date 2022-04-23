@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`connectBlock renders 1`] = `<div class="connectBlock"><button class="connectBlock-button"> Connect wallet </button></div>`;

@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`connectBlock renders 1`] = `<div class="addressBlock"><span class="addressBlock-span"></span><button class="addressBlock-button addressBlock-button__icon_copy"></button></div>`;

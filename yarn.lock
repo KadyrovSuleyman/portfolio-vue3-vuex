@@ -5363,8 +5363,8 @@ jest-runtime@^27.5.1:
 
 jest-serializer-vue@^2.0.2:
   version "2.0.2"
-  resolved "https://registry.npmmirror.com/jest-serializer-vue/-/jest-serializer-vue-2.0.2.tgz#b238ef286357ec6b480421bd47145050987d59b3"
-  integrity sha512-nK/YIFo6qe3i9Ge+hr3h4PpRehuPPGZFt8LDBdTHYldMb7ZWlkanZS8Ls7D8h6qmQP2lBQVDLP0DKn5bJ9QApQ==
+  resolved "https://registry.yarnpkg.com/jest-serializer-vue/-/jest-serializer-vue-2.0.2.tgz#b238ef286357ec6b480421bd47145050987d59b3"
+  integrity sha1-sjjvKGNX7GtIBCG9RxRQUJh9WbM=
   dependencies:
     pretty "2.0.0"
 

@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`navButton renders 1`] = `
+<div class="navButton"><a href="#" class="navButton-link"></a>
+  <div class="navButton-rectangle"></div>
+</div>
+`;

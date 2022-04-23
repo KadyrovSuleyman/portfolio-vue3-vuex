@@ -9,10 +9,7 @@ afterEach(() => {
 
 it('connectBlock renders', () => {
   wrapper = mount(ConnectBlock);
-
-  expect(wrapper.find('div').classes()).toEqual(['connectBlock']);
-  expect(wrapper.find('button').classes()).toEqual(['connectBlock-button']);
-  expect(wrapper.find('button').text()).toBe('Connect wallet');
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {

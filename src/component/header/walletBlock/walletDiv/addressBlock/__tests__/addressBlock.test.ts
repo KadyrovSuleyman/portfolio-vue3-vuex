@@ -1,5 +1,4 @@
 import { mount, VueWrapper } from '@vue/test-utils';
-import { ref } from 'vue';
 import { createStore } from 'vuex';
 import AddressBlock from '../addressBlock.vue';
 
@@ -10,10 +9,7 @@ afterEach(() => {
 
 it('connectBlock renders', () => {
   wrapper = mount(AddressBlock);
-
-  expect(wrapper.find('div').classes()).toEqual(['addressBlock']);
-  expect(wrapper.find('span').classes()).toEqual(['addressBlock-span']);
-  expect(wrapper.find('button').classes()).toEqual(['addressBlock-button', 'addressBlock-button__icon_copy']);
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {
@@ -61,32 +57,27 @@ it('click sends data to outer store', async () => {
 });
 
 it('watchs changes from outer store', async () => {
-  const Div = {
-    props: [],
-
-    setup() {
-      const text = ref('before');
-      const changeText = () => {
-        text.value = 'after';
-      };
-
+  const wr = mount({
+    data() {
       return {
-        text,
-        changeText,
+        text: 'before',
       };
+    },
+    methods: {
+      change() {
+        this.text = 'after';
+      },
     },
     components: {
       AddressBlock,
     },
-
     template: `
-      <div class='root'>
+      <div>
         <AddressBlock>{{ text }}</AddressBlock>
-        <button class="test-btn" @click="changeText"></button>
+        <button class="test-btn" @click="change"></button>
       </div>
     `,
-  };
-  const wr = mount(Div);
+  });
   expect(wr.find('span').text()).toBe('before');
 
   await wr.find('.test-btn').trigger('click');

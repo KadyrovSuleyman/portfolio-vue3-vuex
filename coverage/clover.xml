@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1650757902243" clover="3.2.0">
+  <project timestamp="1650757902243" name="All files">
+    <metrics statements="76" coveredstatements="73" conditionals="23" coveredconditionals="22" methods="21" coveredmethods="18" elements="120" coveredelements="113" complexity="0" loc="76" ncloc="76" packages="9" files="12" classes="12"/>
+    <package name="header">
+      <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <file name="header.vue" path="/home/kadyrov_suleyman/vue/gotbit-test-task/src/component/header/header.vue">
+        <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="11" count="4" type="cond" truecount="2" falsecount="0"/>
+      </file>
+    </package>
+    <package name="header.navPanel">
+      <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <file name="navPanel.vue" path="/home/kadyrov_suleyman/vue/gotbit-test-task/src/component/header/navPanel/navPanel.vue">
+        <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="12" count="8" type="cond" truecount="2" falsecount="0"/>
+      </file>
+    </package>
+    <package name="header.navPanel.navButton">
+      <metrics statements="5" coveredstatements="5" conditionals="8" coveredconditionals="7" methods="1" coveredmethods="1"/>
+      <file name="navButton.vue" path="/home/kadyrov_suleyman/vue/gotbit-test-task/src/component/header/navPanel/navButton/navButton.vue">
+        <metrics statements="5" coveredstatements="5" conditionals="8" coveredconditionals="7" methods="1" coveredmethods="1"/>
+        <line num="3" count="4" type="stmt"/>
+        <line num="4" count="4" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="20" count="43" type="stmt"/>
+      </file>
+    </package>
+    <package name="header.walletBlock">
+      <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+      <file name="adapter.ts" path="/home/kadyrov_suleyman/vue/gotbit-test-task/src/component/header/walletBlock/adapter.ts">
+        <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="header.walletBlock.connectBlock">
+      <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <file name="connectBlock.vue" path="/home/kadyrov_suleyman/vue/gotbit-test-task/src/component/header/walletBlock/connectBlock/connectBlock.vue">
+        <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="3" count="4" type="stmt"/>
+        <line num="4" count="4" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="20" count="11" type="cond" truecount="2" falsecount="0"/>
+      </file>
+    </package>
+    <package name="header.walletBlock.walletDiv.addressBlock">
+      <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <file name="addressBlock.vue" path="/home/kadyrov_suleyman/vue/gotbit-test-task/src/component/header/walletBlock/walletDiv/addressBlock/addressBlock.vue">
+        <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="20" count="9" type="cond" truecount="2" falsecount="0"/>
+      </file>
+    </package>
+    <package name="modals.baseNotification">
+      <metrics statements="14" coveredstatements="14" conditionals="3" coveredconditionals="3" methods="4" coveredmethods="4"/>
+      <file name="autoClose.ts" path="/home/kadyrov_suleyman/vue/gotbit-test-task/src/component/modals/baseNotification/autoClose.ts">
+        <metrics statements="7" coveredstatements="7" conditionals="1" coveredconditionals="1" methods="3" coveredmethods="3"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="cond" truecount="1" falsecount="0"/>
+        <line num="8" count="13" type="stmt"/>
+        <line num="9" count="13" type="stmt"/>
+        <line num="12" count="13" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+      </file>
+      <file name="baseNotification.vue" path="/home/kadyrov_suleyman/vue/gotbit-test-task/src/component/modals/baseNotification/baseNotification.vue">
+        <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="3" count="4" type="stmt"/>
+        <line num="4" count="4" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="18" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="11" type="stmt"/>
+      </file>
+    </package>
+    <package name="modals.connectWalletModal">
+      <metrics statements="16" coveredstatements="16" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
+      <file name="connectWalletModal.vue" path="/home/kadyrov_suleyman/vue/gotbit-test-task/src/component/modals/connectWalletModal/connectWalletModal.vue">
+        <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="18" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="5" type="stmt"/>
+        <line num="21" count="8" type="stmt"/>
+        <line num="22" count="5" type="stmt"/>
+      </file>
+      <file name="handlers.ts" path="/home/kadyrov_suleyman/vue/gotbit-test-task/src/component/modals/connectWalletModal/handlers.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="modals.copied">
+      <metrics statements="14" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="3"/>
+      <file name="copied.vue" path="/home/kadyrov_suleyman/vue/gotbit-test-task/src/component/modals/copied/copied.vue">
+        <metrics statements="11" coveredstatements="11" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="17" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="22" count="3" type="stmt"/>
+      </file>
+      <file name="handlers.ts" path="/home/kadyrov_suleyman/vue/gotbit-test-task/src/component/modals/copied/handlers.ts">
+        <metrics statements="3" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

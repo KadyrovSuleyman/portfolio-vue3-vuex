@@ -1,5 +1,4 @@
 import { mount, VueWrapper } from '@vue/test-utils';
-import { AUTOCLOSE_TIME } from '../autoClose';
 import Notification from '../baseNotification.vue';
 
 let wrapper: VueWrapper<any>;
@@ -13,11 +12,7 @@ it('baseNotification renders', () => {
       default: 'hello',
     },
   });
-
-  expect(wrapper.find('.notification').exists()).toBeTruthy();
-
-  expect(wrapper.find('.notification').text()).toBe('hello');
-  expect(wrapper.find('.notification-button').exists()).toBeTruthy();
+  expect(wrapper.element).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {
@@ -31,7 +26,10 @@ it('watchs props changes', async () => {
     },
   });
   await wrapper.vm.$nextTick();
-  expect(wrapper.find('.notification').classes()).toEqual(['notification', 'notification__selected']);
+  expect(wrapper.find('.notification').classes()).toEqual([
+    'notification',
+    'notification__selected',
+  ]);
 
   wrapper.setProps({
     ...wrapper.props,
@@ -41,33 +39,4 @@ it('watchs props changes', async () => {
   });
   await wrapper.vm.$nextTick();
   expect(wrapper.find('.notification').classes()).toEqual(['notification']);
-});
-
-it('baseNotification auto closes', () => {
-  jest.useFakeTimers();
-  const fakeCallback = jest.fn();
-  wrapper = mount(Notification, {
-    props: {
-      closeHandler: fakeCallback,
-    },
-  });
-  expect(wrapper.find('.notification').exists()).toBeTruthy();
-  expect(fakeCallback).toBeCalledTimes(0);
-
-  jest.advanceTimersByTime(AUTOCLOSE_TIME);
-  expect(fakeCallback).toBeCalledTimes(1);
-});
-
-it('closes', () => {
-  const fakeCallback = jest.fn();
-  wrapper = mount(Notification, {
-    props: {
-      closeHandler: fakeCallback,
-    },
-  });
-  expect(wrapper.find('.notification').exists()).toBeTruthy();
-  expect(fakeCallback).toBeCalledTimes(0);
-
-  wrapper.find('button').trigger('click');
-  expect(fakeCallback).toBeCalledTimes(1);
 });

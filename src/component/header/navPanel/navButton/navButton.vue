@@ -25,17 +25,16 @@ const comp = computed(() => ({
 </script>
 
 <template>
-  <Div :block="props.block" :elem="comp.elem"
-    :mods="{ ...props.mods, ...comp.selectedMod }">
-
-    <Link :URL="URL" :block="comp.elem"
-      :mods="comp.selectedMod"
-      :onClick="props.onClick">
+  <Div
+    :block="props.block"
+    :elem="comp.elem"
+    :mods="{ ...props.mods, ...comp.selectedMod }"
+  >
+    <Link :URL="URL" :block="comp.elem" :mods="comp.selectedMod" :onClick="props.onClick">
       <slot></slot>
     </Link>
 
-    <Div :block="comp.elem" :elem="'rectangle'"
-      :mods="comp.selectedMod" />
+    <Div :block="comp.elem" :elem="'rectangle'" :mods="comp.selectedMod" />
   </Div>
 </template>
 

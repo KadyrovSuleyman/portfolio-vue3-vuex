@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`navButton renders 1`] = `
+<div class="navPanel">
+  <div class="navPanel-navButton navPanel-navButton__selected"><a href="/stacking" class="navButton-link navButton-link__selected">Stacking</a>
+    <div class="navButton-rectangle navButton-rectangle__selected"></div>
+  </div>
+  <div class="navPanel-navButton"><a href="/bridge" class="navButton-link">Bridge</a>
+    <div class="navButton-rectangle"></div>
+  </div>
+  <div class="navPanel-navButton"><a href="/sho" class="navButton-link">SHO</a>
+    <div class="navButton-rectangle"></div>
+  </div>
+</div>
+`;

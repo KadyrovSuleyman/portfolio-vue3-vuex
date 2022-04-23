@@ -1,10 +1,12 @@
 import { Store } from 'vuex';
 import MODAL from '@/store/modal/types';
 
-export const adapt = (store: Store<any>) => ({
-  isShown: store.state.modal.connectWallet,
-});
+export interface StateT {
+  isShown: boolean,
+  hide: () => Promise<any>
+}
 
-export const generateCloseHandler = (store: Store<any>) => () => {
-  store.dispatch('modal/hide', MODAL.connectWallet);
-};
+export const adapt = (store: Store<any>): StateT => ({
+  isShown: store.state.modal.connectWallet,
+  hide: () => store.dispatch('modal/hide', MODAL.connectWallet),
+});

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`connectWalletModal renders 1`] = `
+<div class="app">
+  <transition-stub>
+    <!--v-if-->
+  </transition-stub>
+  <transition-stub>
+    <!--v-if-->
+  </transition-stub>
+</div>
+`;
+
+exports[`connectWalletModal renders 2`] = `
+<div class="app">
+  <transition-stub>
+    <div class="connectWalletModal"><span class="connectWalletModal-header"> Select the payment card that you want to use for payment </span><span class="connectWalletModal-explanation"> The selected wallet will be connected to your staking </span>
+      <div class="connectWalletModal-walletsList"></div><button class="connectWalletModal-button connectWalletModal-button__icon_cross"></button>
+    </div>
+  </transition-stub>
+  <transition-stub>
+    <div class="background"></div>
+  </transition-stub>
+</div>
+`;

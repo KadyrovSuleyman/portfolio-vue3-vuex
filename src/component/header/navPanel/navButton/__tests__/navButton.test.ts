@@ -8,10 +8,7 @@ afterEach(() => {
 
 it('navButton renders', () => {
   wrapper = mount(NavButton);
-
-  expect(wrapper.find('div').classes()).toEqual(['navButton']);
-  expect(wrapper.find('.navButton-link').classes()).toEqual(['navButton-link']);
-  expect(wrapper.find('.navButton-rectangle').classes()).toEqual(['navButton-rectangle']);
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {
