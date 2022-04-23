@@ -25,7 +25,7 @@ const generateMainButtonProps = ({
     return {
       text: 'Connect wallet',
       handler: (store: Store<any>) => () => {
-        store.dispatch('modal/show', MODAL.connectWallet);
+        store.dispatch('waiting/connectWallet');
       },
     };
   }
@@ -34,7 +34,7 @@ const generateMainButtonProps = ({
     return {
       text: 'Approve wallet',
       handler: (store: Store<any>) => () => {
-        store.dispatch('wallet/approve');
+        store.dispatch('waiting/approveWallet');
       },
     };
   }
@@ -43,7 +43,8 @@ const generateMainButtonProps = ({
     return {
       text: 'Stake',
       handler: (store: Store<any>) => () => {
-        store.dispatch('stake/stake');
+        // store.dispatch('stake/stake');
+        store.dispatch('waiting/stake');
       },
     };
   }

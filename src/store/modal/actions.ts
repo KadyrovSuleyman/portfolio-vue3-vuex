@@ -1,4 +1,4 @@
-import { ActionContext, ActionTree, Store } from 'vuex';
+import { ActionContext, ActionTree } from 'vuex';
 import { StateT } from './state';
 
 const actions: ActionTree<StateT, any> = {

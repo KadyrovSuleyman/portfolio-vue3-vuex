@@ -8,13 +8,16 @@ export const isWaiting = ref<boolean>(false);
 const adapt = (store: Store<any>) => ({
   isWalletConnected: store.getters['wallet/isConnected'],
   isWalletApproved: store.state.wallet.isApproved,
-  // isWaiting: store.state.isWaiting,
   isStaked: store.state.stake.isStaked,
   isReplenishAvailable: store.getters['stake/isReplenishAllowed'],
   isRestakeAvailable: store.getters['stake/isRestakeAllowed'],
   restakeCountdown: store.getters['stake/countdown'],
 
-  isWaiting: isWaiting.value,
+  isWaiting: (
+    store.state.waiting.connectWallet
+    || store.state.waiting.approveWallet
+    || store.state.waiting.stake
+  ),
 
   disabled: !(
     !store.getters['wallet/isConnected']

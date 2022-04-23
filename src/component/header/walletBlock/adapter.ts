@@ -6,5 +6,6 @@ export const adapt = (store: Store<any>) => ({
 });
 
 export const generateShowConnectWalletModal = (store: Store<any>) => () => {
-  store.dispatch('modal/show', MODAL.connectWallet);
+  // store.dispatch('modal/show', MODAL.connectWallet);
+  store.dispatch('waiting/connectWallet');
 };

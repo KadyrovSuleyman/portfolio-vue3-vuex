@@ -1,4 +1,3 @@
-import MODAL from '@/store/modal/types';
 import { ref } from 'vue';
 import { Store } from 'vuex';
 
@@ -10,6 +9,5 @@ export const adapt = (store: Store<any>) => ({
 });
 
 export const generateViewContractClickHandler = (store: Store<any>) => () => {
-  store.dispatch('modal/show', MODAL.transactionConfirmed);
   store.commit('stake/mockCountdown', 3000);
 };

@@ -25,8 +25,6 @@ const actions: ActionTree<StateT, any> = {
         clearTimeout(timerId);
       }
     }, 1000);
-
-    console.log({ ...store.state });
   },
 
   unstake: (store: ActionContext<StateT, any>) => {
@@ -64,8 +62,6 @@ const actions: ActionTree<StateT, any> = {
         clearTimeout(timerId);
       }
     }, 1000);
-
-    console.log({ ...store.state });
   },
 
   replenish: (store: ActionContext<StateT, any>, value: number) => {
