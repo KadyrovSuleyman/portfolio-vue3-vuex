@@ -7,7 +7,8 @@ import Span from '@/element/span/span.vue';
 import propsObj from '@/element/propsObj';
 import { useStore } from 'vuex';
 import AddressBlock from './addressBlock/addressBlock.vue';
-import adapt, { generateCopyClickHandler } from './adapter';
+import { adapt, generateCopyClickHandler } from './adapter';
+import reductAddress from './logic';
 
 // eslint-disable-next-line no-undef
 const props = defineProps({ ...propsObj });
@@ -23,7 +24,7 @@ const copyClickHandler = generateCopyClickHandler(store);
 <template>
   <Div :block="props.block" :elem="comp.elem" :mods="props.mods" >
     <AddressBlock :block="comp.elem" :onClick="copyClickHandler">
-      {{ state.address }}
+      {{ reductAddress(state.address) }}
     </AddressBlock>
     <Span :block="comp.elem">
       {{ state.balance }} {{ state.coinAbbreviation }}

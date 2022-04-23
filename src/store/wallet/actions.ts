@@ -1,6 +1,7 @@
-import { ActionContext, ActionTree, Store } from 'vuex';
+import { ActionContext, ActionTree } from 'vuex';
 import { StateT } from './state';
 import { WalletT } from './types.d';
+import account from '../account/__mocks__/account';
 
 const actions: ActionTree<StateT, any> = {
   'load-list': (store: ActionContext<StateT, any>, list: WalletT[]) => {
@@ -9,14 +10,7 @@ const actions: ActionTree<StateT, any> = {
 
   select: (store: ActionContext<StateT, any>, name: string) => {
     store.commit('select', name);
-
-    store.dispatch('account/load', {
-      address: 'scum',
-      balance: {
-        binance: 1.234,
-        ethereum: 2.123,
-      },
-    }, { root: true });
+    store.dispatch('account/load', account, { root: true });
   },
 
   approve: (store: ActionContext<StateT, any>) => {

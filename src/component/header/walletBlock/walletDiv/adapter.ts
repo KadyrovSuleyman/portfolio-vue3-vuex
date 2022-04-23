@@ -9,13 +9,9 @@ export const adapt = (store: Store<any>) => ({
   coinAbbreviation: store.getters['coin/abbreviation'],
 });
 
-export const generateCopyClickHandler = (store: Store<any>) => () => {
+export const generateCopyClickHandler = (store: Store<any>) => async () => {
   const state = adapt(store);
 
-  navigator.clipboard.writeText(state.address)
-    .then(() => { store.dispatch('modal/show', MODAL.copied); });
-
-  store.dispatch('coin/select', 'ethereum');
+  await navigator.clipboard.writeText(state.address);
+  await store.dispatch('modal/show', MODAL.copied);
 };
-
-export default adapt;
