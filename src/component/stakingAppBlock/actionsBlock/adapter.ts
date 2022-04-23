@@ -17,6 +17,8 @@ const adapt = (store: Store<any>) => ({
     store.state.waiting.connectWallet
     || store.state.waiting.approveWallet
     || store.state.waiting.stake
+    || store.state.waiting.restake
+    || store.state.waiting.unstake
   ),
 
   disabled: !(

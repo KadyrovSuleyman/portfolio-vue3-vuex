@@ -1,6 +1,11 @@
 .actionsBlock-mainButton,
-.actionsBlock-timeButton,
 .actionsBlock-unstakeButton
+{
+  cursor: pointer;
+}
+
+.mainButton-span,
+.unstakeButton-span
 {
   cursor: pointer;
 }

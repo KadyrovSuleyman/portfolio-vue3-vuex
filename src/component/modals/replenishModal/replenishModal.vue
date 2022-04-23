@@ -55,7 +55,7 @@ const replenishConfirmHandler = generateReplenishConfirmHandler(store);
         <Calculator :block="comp.elem" :value="value" :setValue="setValue"/>
 
         <Button :block="comp.elem" :elem="'replenish-button'"
-          :onClick="replenishConfirmHandler"
+          :onClick="replenishConfirmHandler" :disabled="state.disabled"
         >
           <Span :block="'replenish-button'" :elem="'span'">
             Replenish

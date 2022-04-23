@@ -4,6 +4,9 @@ enum WAIT {
   selectWallet = 'selectWallet',
   approveWallet = 'approveWallet',
   stake = 'stake',
+  replenish = 'replenish',
+  restake = 'restake',
+  unstake = 'unstake',
 }
 
 export default WAIT;

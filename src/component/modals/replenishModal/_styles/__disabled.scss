@@ -1,0 +1,8 @@
+.replenishModal-replenish-button__disabled {
+  opacity: 0.5;
+}
+
+.replenishModal-replenish-button__disabled,
+.replenishModal-replenish-button__disabled > * {
+  cursor: default;
+}

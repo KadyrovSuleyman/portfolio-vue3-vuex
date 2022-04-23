@@ -43,7 +43,6 @@ const generateMainButtonProps = ({
     return {
       text: 'Stake',
       handler: (store: Store<any>) => () => {
-        // store.dispatch('stake/stake');
         store.dispatch('waiting/stake');
       },
     };
@@ -53,7 +52,7 @@ const generateMainButtonProps = ({
     return {
       text: 'Restake',
       handler: (store: Store<any>) => () => {
-        store.dispatch('stake/restake');
+        store.dispatch('waiting/restake');
       },
     };
   }
@@ -74,5 +73,5 @@ const generateMainButtonProps = ({
 export default generateMainButtonProps;
 
 export const generateUnstakeHandler = (store: Store<any>) => () => {
-  store.dispatch('stake/unstake');
+  store.dispatch('waiting/unstake');
 };
