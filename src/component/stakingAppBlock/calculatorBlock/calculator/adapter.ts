@@ -12,6 +12,8 @@ const adapt = (store: Store<any>) => ({
   setText: (newInput: string) => store.commit('stake/input', newInput),
 
   reward: store.getters['stake/reward'],
+
+  submit: () => store.dispatch('waiting/stake'),
 });
 
 export default adapt;

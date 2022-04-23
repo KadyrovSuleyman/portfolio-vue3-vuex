@@ -3,11 +3,11 @@
 /* eslint-disable vuejs-accessibility/form-control-has-label */
 
 import { formateClassName } from '@/module/bem/index';
-import { computed, Ref } from 'vue';
+import { computed, ref, defineExpose } from 'vue';
 
 import propsObj from '../propsObj';
 
-type OnInputFuncT = (payload: Event) => void;
+type CallbackFuncT = (payload: Event) => void;
 // eslint-disable-next-line no-undef
 const props = defineProps({
   ...propsObj,
@@ -15,7 +15,11 @@ const props = defineProps({
   text: String,
   onInput: {
     type: Function,
-    default: (): OnInputFuncT => () => ({}),
+    default: (): CallbackFuncT => () => ({}),
+  },
+  onKeyup: {
+    type: Function,
+    default: (): CallbackFuncT => () => ({}),
   },
 
   disabled: Boolean,
@@ -25,7 +29,7 @@ const props = defineProps({
 
 const classNames = computed(() => {
   const {
-    mods, block, elem, text, onInput, placeholder, ...filtredProps
+    mods, block, elem, text, onInput, onKeyup, placeholder, ...filtredProps
   } = props;
 
   return formateClassName(block, elem || 'input', {
@@ -34,10 +38,15 @@ const classNames = computed(() => {
   });
 });
 
+const element = ref(null);
+defineExpose({
+  element,
+});
+
 </script>
 
 <template>
-  <input :value="text" @input="onInput" :type="props.type"
+  <input :value="text" @keyup="onKeyup" @input="onInput" :type="props.type" ref="element"
     :class="classNames" :placeholder="props.placeholder" :disabled="props.disabled" >
 </template>
 

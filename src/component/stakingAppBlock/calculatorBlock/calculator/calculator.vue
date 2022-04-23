@@ -1,15 +1,16 @@
 <script setup lang="ts">
 
-import { computed } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import Div from '@/element/div/div.vue';
 import propsObj from '@/element/propsObj';
 import Button from '@/element/button/button.vue';
 import Span from '@/element/span/span.vue';
 import { useStore } from 'vuex';
 import PromtInput from './promtInput/promtInput.vue';
-import { isValidInput, validate, correctState } from './logic';
+import { validate, correctState } from './logic';
 import adapt from './adapter';
 import { inputValueWatcher } from './watchers';
+import { createMaxButtonClickHandler, createOnInputHandler, createOnKeyupHandler } from './handlers';
 
 // eslint-disable-next-line no-undef
 const props = defineProps({ ...propsObj });
@@ -21,23 +22,14 @@ const state = computed(() => adapt(store));
 const errorText = computed(() => validate(state.value.text, state.value.minValue));
 const correct = computed(() => correctState(state.value.text, state.value.minValue));
 
-const onInput = (payload: KeyboardEvent) => {
-  const target = (payload.target as HTMLInputElement);
-  if (!isValidInput(target.value)) {
-    target.value = state.value.text;
-    return;
-  }
+const promtInput = ref(null) as any;
 
-  if (Number(target.value) > state.value.maxValue) {
-    target.value = String(state.value.maxValue);
-  }
-
-  state.value.setText(target.value);
-};
-
-const onButtonClick = () => {
-  state.value.setText(String(state.value.maxValue));
-};
+const onButtonClick = ref<() => void>();
+onMounted(() => {
+  onButtonClick.value = createMaxButtonClickHandler(state, promtInput.value.input.element);
+});
+const onInput = createOnInputHandler(state);
+const onKeyup = createOnKeyupHandler(state);
 
 inputValueWatcher(state);
 
@@ -45,8 +37,8 @@ inputValueWatcher(state);
 
 <template>
   <Div :block="props.block" :elem="comp.elem" :mods="props.mods">
-    <PromtInput :block="comp.elem" :promtText="errorText" :correct="correct"
-      :text="state.text" :onInput="onInput" :disabled="state.disabled"
+    <PromtInput :block="comp.elem" :promtText="errorText" :correct="correct" ref="promtInput"
+      :text="state.text" :onInput="onInput" :disabled="state.disabled" :onKeyup="onKeyup"
     />
     <Button :block="comp.elem" :onClick="onButtonClick" :disabled="state.disabled">
       Max
