@@ -76,6 +76,7 @@ describe('watching outer store', () => {
     wrapper = mount(Calculator, {
       global: { plugins: [store] },
     });
+    await wrapper.vm.$nextTick();
     expect(wrapper.find('.calculator').exists()).toBeTruthy();
 
     const input = wrapper.find('.promtInput-input');

@@ -3,7 +3,9 @@ import { createStore } from 'vuex';
 import WalletBlock from '../walletBlock.vue';
 
 jest.mock('../adapter');
+
 jest.mock('../walletDiv/adapter.ts');
+jest.mock('../walletDiv/logic.ts');
 
 let wrapper: VueWrapper<any>;
 afterEach(() => {

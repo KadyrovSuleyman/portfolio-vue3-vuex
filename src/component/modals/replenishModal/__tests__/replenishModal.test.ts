@@ -2,17 +2,25 @@
 import { mount, VueWrapper } from '@vue/test-utils';
 import { createStore, Store } from 'vuex';
 import Modal from '../replenishModal.vue';
+import { value } from '../adapter';
 
 jest.mock('../adapter.ts');
 
 let store: Store<any>;
 beforeEach(() => {
+  value.value = '';
   store = createStore<any>({
     state: {
       isShown: false,
       maxAmount: 1000,
       availableAmount: 40,
       replenishCount: 0,
+
+      value: value.value,
+      setValue: (newValue: string) => { value.value = newValue; },
+
+      hide: () => { store.state.isShown = false; },
+      replenish: () => { store.state.replenishCount += 1; },
     },
     mutations: {
       change: (state, obj: { [name: string]: boolean | string }) => {

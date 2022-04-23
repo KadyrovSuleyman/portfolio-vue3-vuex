@@ -70,6 +70,7 @@ describe('watching outer store', () => {
         setValue: (newValue: string) => { value.value = newValue; },
       },
     });
+    await wrapper.vm.$nextTick();
     expect(wrapper.find('.calculator').exists()).toBeTruthy();
 
     const input = wrapper.find('.promtInput-input');
@@ -78,10 +79,20 @@ describe('watching outer store', () => {
     const max = wrapper.find('.calculator-button');
     await max.trigger('click');
     expect(value.value).toBe(`${store.state.maxValue}`);
+    await wrapper.setProps({
+      ...wrapper.props,
+      value: value.value,
+    });
+    expect(wrapper.find('input').element.value).toBe(`${store.state.maxValue}`);
 
     ((input.element as HTMLInputElement).value) = String(500);
     await input.trigger('input');
     expect(value.value).toBe('500');
+    await wrapper.setProps({
+      ...wrapper.props,
+      value: value.value,
+    });
+    expect(wrapper.find('input').element.value).toBe('500');
 
     store.commit('change', {
       maxValue: 800,
@@ -89,5 +100,10 @@ describe('watching outer store', () => {
     await max.trigger('click');
     expect(store.state.maxValue).toBe(800);
     expect(value.value).toBe('800');
+    await wrapper.setProps({
+      ...wrapper.props,
+      value: value.value,
+    });
+    expect(wrapper.find('input').element.value).toBe('800');
   });
 });

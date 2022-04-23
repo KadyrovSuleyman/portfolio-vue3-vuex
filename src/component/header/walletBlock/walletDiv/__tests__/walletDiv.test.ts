@@ -3,6 +3,7 @@ import { createStore } from 'vuex';
 import WalletDiv from '../walletDiv.vue';
 
 jest.mock('../adapter');
+jest.mock('../logic');
 
 let wrapper: VueWrapper<any>;
 afterEach(() => {
