@@ -24,11 +24,11 @@ const getters: GetterTree<StateT, any> = {
   from: (state: StateT) => formateDate(state.from) || '',
   to: (state: StateT) => formateDate(state.to) || '',
 
-  isReplenishAllowed: (state: StateT) => state.staked < state.amountMax,
+  isReplenishAllowed: (state: StateT) => state.isStaked && (state.staked < state.amountMax),
   replenishMax: (state: StateT) => state.amountMax - state.staked,
 
   countdown: (state: StateT) => formateTimer(state.restakeCountdown),
-  isRestakeAllowed: (state: StateT) => state.restakeCountdown === 0,
+  isRestakeAllowed: (state: StateT) => state.isStaked && (state.restakeCountdown === 0),
 };
 
 export default getters;

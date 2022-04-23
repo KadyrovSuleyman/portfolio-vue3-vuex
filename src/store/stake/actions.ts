@@ -44,6 +44,30 @@ const actions: ActionTree<StateT, any> = {
     store.rootState.tariff.index = -1;
   },
 
+  restake: (store: ActionContext<StateT, any>) => {
+    store.commit('stake');
+
+    const prevPeriod = Number(store.state.to) - Number(store.state.from);
+    store.state.from = new Date(Number(store.state.to));
+    store.state.to = new Date(Number(store.state.from) + prevPeriod);
+
+    store.state.amountMin = store.rootGetters['tariff/amountMin'];
+    store.state.amountMax = store.rootGetters['tariff/amountMax'];
+
+    store.state.restakeCountdown = Number(store.state.to) - Number(store.state.from);
+
+    let timerId = setTimeout(function tick() {
+      timerId = setTimeout(tick, 1000);
+      store.state.restakeCountdown -= 1000;
+      if (store.state.restakeCountdown <= 0) {
+        store.state.restakeCountdown = 0;
+        clearTimeout(timerId);
+      }
+    }, 1000);
+
+    console.log({ ...store.state });
+  },
+
   replenish: (store: ActionContext<StateT, any>, value: number) => {
     store.commit('replenish', value);
   },

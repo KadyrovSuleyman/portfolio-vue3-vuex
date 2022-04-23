@@ -51,6 +51,9 @@ const generateMainButtonProps = ({
   if (isRestakeAvailable) {
     return {
       text: 'Restake',
+      handler: (store: Store<any>) => () => {
+        store.dispatch('stake/restake');
+      },
     };
   }
 
