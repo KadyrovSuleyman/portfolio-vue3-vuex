@@ -1,0 +1,5 @@
+@use '/src/elements/Span/__type/default' as span;
+
+.replenishModal-header {
+  @include span.default;
+}

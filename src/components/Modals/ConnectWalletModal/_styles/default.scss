@@ -1,0 +1,9 @@
+@use '/src/elements/Span/__type/default' as span;
+
+.connectWalletModal-header {
+  @include span.default;
+}
+
+.connectWalletModal-explanation {
+  @include span.default;
+}
