@@ -1,9 +1,9 @@
 import { computed, Ref, ref } from 'vue';
-import { StateListT } from '../adapter';
-import generate from '../logic';
+// import { StateListT } from '../adapter';
+import generate from '../handlers';
 
 describe('generateMainButtonText works', () => {
-  let state: Ref<StateListT>;
+  let state: Ref<any>;
   beforeEach(() => {
     state = ref({
       isWalletConnected: false,

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`calculatorBlock renders 1`] = `
+<div class="calculatorBlock">
+  <div class="calculatorBlock-infoBlock">
+    <div class="infoBlock-div infoBlock-div__icon_warning"></div><span class="infoBlock-span"> To perform actions on the page, connect your wallet </span>
+  </div>
+</div>
+`;

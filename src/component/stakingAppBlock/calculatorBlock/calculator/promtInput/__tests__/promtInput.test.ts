@@ -9,9 +9,7 @@ afterEach(() => {
 
 it('promtInput renders', () => {
   wrapper = mount(PromtInput);
-
-  expect(wrapper.find('.promtInput').classes()).toEqual(['promtInput']);
-  expect(wrapper.find('.promtInput-input').exists()).toBeTruthy();
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {
@@ -23,7 +21,10 @@ it('watchs props changes', async () => {
       selected: true,
     },
   });
-  expect(wrapper.find('.promtInput').classes()).toEqual(['promtInput', 'promtInput__selected']);
+  expect(wrapper.find('.promtInput').classes()).toEqual([
+    'promtInput',
+    'promtInput__selected',
+  ]);
 
   await wrapper.setProps({
     mods: {
@@ -90,13 +91,19 @@ it('error shows', async () => {
   await wrapper.setProps({
     correct: 'true',
   });
-  expect(wrapper.find('.promtInput').classes()).toEqual(['promtInput', 'promtInput__correct_true']);
+  expect(wrapper.find('.promtInput').classes()).toEqual([
+    'promtInput',
+    'promtInput__correct_true',
+  ]);
   expect(wrapper.find('.promtInput-span').exists()).toBeFalsy();
 
   await wrapper.setProps({
     correct: 'false',
   });
-  expect(wrapper.find('.promtInput').classes()).toEqual(['promtInput', 'promtInput__correct_false']);
+  expect(wrapper.find('.promtInput').classes()).toEqual([
+    'promtInput',
+    'promtInput__correct_false',
+  ]);
   expect(wrapper.find('.promtInput-span').classes())
     .toEqual(['promtInput-span', 'promtInput-span__correct_false']);
 

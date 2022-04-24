@@ -35,8 +35,7 @@ it('waitingIcon renders', () => {
   wrapper = mount(ActionsBlock, {
     global: { plugins: [store] },
   });
-
-  expect(wrapper.find('.actionsBlock').classes()).toEqual(['actionsBlock']);
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {
@@ -48,7 +47,10 @@ it('watchs props changes', async () => {
   await wrapper.setProps(
     { mods: { selected: true } },
   );
-  expect(wrapper.find('.actionsBlock').classes()).toEqual(['actionsBlock', 'actionsBlock__selected']);
+  expect(wrapper.find('.actionsBlock').classes()).toEqual([
+    'actionsBlock',
+    'actionsBlock__selected',
+  ]);
 
   await wrapper.setProps(
     { mods: { selected: false } },
@@ -79,18 +81,12 @@ it('main button watch the store', async () => {
     isReplenishAvailable: false,
   });
   await wrapper.vm.$nextTick();
-  expect(wrapper.find('.timeButton-span').exists()).toBeFalsy();
-  expect(wrapper.find('.unstakeButton-span').exists()).toBeTruthy();
-  expect(wrapper.find('.mainButton-span').text()).toBe('Restake');
-  expect(wrapper.find('.unstakeButton-span').text()).toBe('Unstake');
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 
   store.commit('change', {
     isRestakeAvailable: false,
     isReplenishAvailable: true,
   });
   await wrapper.vm.$nextTick();
-  expect(wrapper.find('.timeButton-span').exists()).toBeTruthy();
-  expect(wrapper.find('.unstakeButton-span').exists()).toBeFalsy();
-  expect(wrapper.find('.mainButton-span').text()).toBe('Replenish');
-  expect(wrapper.find('.timeButton-span').text()).toBe('00:00:09');
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });

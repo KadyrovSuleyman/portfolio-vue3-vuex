@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`promtInput renders 1`] = `
+<div class="promtInput"><input class="promtInput-input">
+  <!--v-if-->
+</div>
+`;

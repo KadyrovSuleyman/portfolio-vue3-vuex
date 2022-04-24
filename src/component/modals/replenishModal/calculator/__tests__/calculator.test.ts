@@ -32,10 +32,7 @@ it('calculator renders', () => {
     global: { plugins: [store] },
   });
 
-  expect(wrapper.find('.calculator').classes()).toEqual(['calculator']);
-
-  expect(wrapper.find('.calculator-promtInput').exists()).toBeTruthy();
-  expect(wrapper.find('.calculator-button').exists()).toBeTruthy();
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {

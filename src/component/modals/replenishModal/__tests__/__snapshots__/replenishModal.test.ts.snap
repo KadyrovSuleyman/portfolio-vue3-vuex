@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`replenishModal renders 1`] = `
+<div class="app">
+  <transition-stub>
+    <!--v-if-->
+  </transition-stub>
+  <transition-stub>
+    <!--v-if-->
+  </transition-stub>
+</div>
+`;
+
+exports[`replenishModal renders 2`] = `
+<div class="app">
+  <transition-stub>
+    <div class="replenishModal"><span class="replenishModal-header"> Replenish </span>
+      <div class="replenishModal-div"><span class="replenishModal-span"> Max. amount = </span><span class="replenishModal-tkn-span">1000 TKN </span></div>
+      <div class="replenishModal-div"><span class="replenishModal-span"> Available amount = </span><span class="replenishModal-tkn-span">40 TKN </span></div>
+      <div class="replenishModal-calculator">
+        <div class="calculator-promtInput"><input class="promtInput-input" placeholder="0">
+          <!--v-if-->
+        </div><button class="calculator-button">Max</button>
+      </div><button class="replenishModal-replenish-button"><span class="replenish-button-span"> Replenish </span></button><button class="replenishModal-close-button replenishModal-close-button__icon_cross"></button>
+    </div>
+  </transition-stub>
+  <transition-stub>
+    <div class="background"></div>
+  </transition-stub>
+</div>
+`;

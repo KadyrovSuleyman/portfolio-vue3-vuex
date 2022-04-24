@@ -1,11 +1,21 @@
-import { ref } from 'vue';
 import { Store } from 'vuex';
 
-export type StateListT = { [name: string]: boolean | string };
+export interface StateT {
+  isWalletConnected: boolean,
+  isWalletApproved: boolean,
+  isStaked: boolean,
+  isReplenishAvailable: boolean,
+  isRestakeAvailable: boolean,
+  restakeCountdown: string,
 
-export const isWaiting = ref<boolean>(false);
+  isWaiting: boolean,
 
-const adapt = (store: Store<any>) => ({
+  disabled: boolean,
+
+  hidden: boolean,
+}
+
+const adapt = (store: Store<any>): StateT => ({
   isWalletConnected: store.getters['wallet/isConnected'],
   isWalletApproved: store.state.wallet.isApproved,
   isStaked: store.state.stake.isStaked,

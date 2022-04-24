@@ -1,8 +1,9 @@
 import { ComputedRef } from 'vue';
 import { isValidInput } from './logic';
+import { StateT } from './adapter';
 
 export const createMaxButtonClickHandler = (
-  state: ComputedRef<any>,
+  state: ComputedRef<StateT>,
   inputRef: HTMLInputElement,
 ) => () => {
   state.value.setText(String(state.value.maxValue));
@@ -10,7 +11,7 @@ export const createMaxButtonClickHandler = (
 };
 
 export const createOnInputHandler = (
-  state: ComputedRef<any>,
+  state: ComputedRef<StateT>,
 ) => (payload: KeyboardEvent) => {
   const target = (payload.target as HTMLInputElement);
 
@@ -27,7 +28,7 @@ export const createOnInputHandler = (
 };
 
 export const createOnKeyupHandler = (
-  state: ComputedRef<any>,
+  state: ComputedRef<StateT>,
 ) => (payload: KeyboardEvent) => {
   if (payload.key === 'Enter') {
     state.value.submit();

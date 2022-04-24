@@ -1,9 +1,8 @@
-import { mount } from '@vue/test-utils';
+import { mount, VueWrapper } from '@vue/test-utils';
 import Link from '@/element/link/link.vue';
 import { createStore } from 'vuex';
 
-let wrapper = mount(Link, {});
-wrapper.unmount();
+let wrapper: VueWrapper<any>;
 afterEach(() => {
   wrapper.unmount();
 });
@@ -14,7 +13,7 @@ it('link renders', () => {
   const link = wrapper.get('a');
 
   expect(link).not.toBeNull();
-  expect(link.html()).toBe('<a href="#" class="link"></a>');
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 describe('link formates classes correctly', () => {
@@ -80,7 +79,11 @@ describe('link formates classes correctly', () => {
     const link = wrapper.get('a');
 
     expect(link).not.toBeNull();
-    expect(link.classes()).toEqual(['link', 'link__enabled', 'link__theme_dark']);
+    expect(link.classes()).toEqual([
+      'link',
+      'link__enabled',
+      'link__theme_dark',
+    ]);
   });
 
   it('with all bem props', () => {
@@ -99,7 +102,11 @@ describe('link formates classes correctly', () => {
     const link = wrapper.get('a');
 
     expect(link).not.toBeNull();
-    expect(link.classes()).toEqual(['parent-custom', 'parent-custom__enabled', 'parent-custom__theme_dark']);
+    expect(link.classes()).toEqual([
+      'parent-custom',
+      'parent-custom__enabled',
+      'parent-custom__theme_dark',
+    ]);
   });
 });
 

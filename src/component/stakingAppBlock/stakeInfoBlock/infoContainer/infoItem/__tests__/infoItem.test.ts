@@ -9,10 +9,7 @@ afterEach(() => {
 
 it('infoItem renders', () => {
   wrapper = mount(InfoItem);
-  expect(wrapper.find('.infoItem').exists()).toBeTruthy();
-
-  expect(wrapper.find('.infoItem-header').exists()).toBeTruthy();
-  expect(wrapper.find('.infoItem-value').exists()).toBeTruthy();
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {

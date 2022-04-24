@@ -1,6 +1,22 @@
 import { Store } from 'vuex';
 
-const adapt = (store: Store<any>) => ({
+export interface StateT {
+  maxValue: number,
+  minValue: number,
+  period: number,
+  apy: number,
+
+  disabled: boolean,
+
+  text: string,
+  setText: (newInput: string) => void,
+
+  reward: number,
+
+  submit: () => Promise<any>,
+}
+
+const adapt = (store: Store<any>): StateT => ({
   maxValue: store.getters['tariff/amountMax'],
   minValue: store.getters['tariff/amountMin'],
   period: store.getters['tariff/period'],

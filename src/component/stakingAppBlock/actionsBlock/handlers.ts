@@ -1,6 +1,6 @@
 import { Store } from 'vuex';
 import MODAL from '@/store/modal/types';
-import { StateListT } from './adapter';
+import { StateT } from './adapter';
 
 export type MainButtonPropsT = {
   text?: string,
@@ -14,7 +14,7 @@ const generateMainButtonProps = ({
   isStaked,
   isReplenishAvailable,
   isRestakeAvailable,
-}: StateListT): MainButtonPropsT => {
+}: StateT): MainButtonPropsT => {
   if (isWaiting) {
     return {
       text: 'Waiting',

@@ -10,9 +10,7 @@ afterEach(() => {
 
 it('promtInput renders', () => {
   wrapper = mount(PromtInput);
-
-  expect(wrapper.find('.promtInput').classes()).toEqual(['promtInput']);
-  expect(wrapper.find('.promtInput-input').exists()).toBeTruthy();
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {

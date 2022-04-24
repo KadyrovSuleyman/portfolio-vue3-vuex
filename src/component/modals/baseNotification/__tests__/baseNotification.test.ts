@@ -12,7 +12,7 @@ it('baseNotification renders', () => {
       default: 'hello',
     },
   });
-  expect(wrapper.element).toMatchSnapshot();
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {

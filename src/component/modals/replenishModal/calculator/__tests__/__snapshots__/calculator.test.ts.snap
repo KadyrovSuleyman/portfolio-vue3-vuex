@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`calculator renders 1`] = `
+<div class="calculator">
+  <div class="calculator-promtInput"><input class="promtInput-input" placeholder="0">
+    <!--v-if-->
+  </div><button class="calculator-button">Max</button>
+</div>
+`;

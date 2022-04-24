@@ -4,6 +4,7 @@ import WalletDiv from '../walletDiv.vue';
 
 jest.mock('../adapter');
 jest.mock('../logic');
+jest.mock('../handlers');
 
 let wrapper: VueWrapper<any>;
 afterEach(() => {
@@ -12,14 +13,7 @@ afterEach(() => {
 
 it('connectBlock renders', () => {
   wrapper = mount(WalletDiv, { global: { plugins: [createStore({})] } });
-
-  expect(wrapper.find('div').classes()).toEqual(['walletDiv']);
-  expect(wrapper.find('.walletDiv-addressBlock').classes()).toEqual(['walletDiv-addressBlock']);
-  expect(wrapper.find('.walletDiv-span').classes()).toEqual(['walletDiv-span']);
-  expect(wrapper.find('.walletDiv-button__icon_coin').classes())
-    .toEqual(['walletDiv-button', 'walletDiv-button__icon_coin']);
-  expect(wrapper.find('.walletDiv-button__icon_chevron').classes())
-    .toEqual(['walletDiv-button', 'walletDiv-button__icon_chevron']);
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {
@@ -105,4 +99,22 @@ describe('outer store', () => {
     expect(wrapper.find('.addressBlock-span').text()).toBe('second-address');
     expect(wrapper.find('.walletDiv-span').text()).toBe('second-balance');
   });
+});
+
+it('copy button click', async () => {
+  const store = createStore({
+    state: {
+      showModal: jest.fn(),
+    },
+  });
+
+  wrapper = mount(WalletDiv, {
+    global: {
+      plugins: [store],
+    },
+  });
+
+  expect(store.state.showModal).toBeCalledTimes(0);
+  await wrapper.find('.addressBlock-button').trigger('click');
+  expect(store.state.showModal).toBeCalledTimes(1);
 });

@@ -1,9 +1,8 @@
-import { mount } from '@vue/test-utils';
+import { mount, VueWrapper } from '@vue/test-utils';
 import Span from '@/element/span/span.vue';
 import { ref } from 'vue';
 
-let wrapper = mount(Span, {});
-wrapper.unmount();
+let wrapper: VueWrapper<any>;
 afterEach(() => {
   wrapper.unmount();
 });
@@ -14,7 +13,7 @@ it('span renders', () => {
   const span = wrapper.get('span');
 
   expect(span).not.toBeNull();
-  expect(span.html()).toBe('<span class="span"></span>');
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 describe('span formates classes correctly', () => {
@@ -80,7 +79,11 @@ describe('span formates classes correctly', () => {
     const span = wrapper.get('span');
 
     expect(span).not.toBeNull();
-    expect(span.classes()).toEqual(['span', 'span__enabled', 'span__theme_dark']);
+    expect(span.classes()).toEqual([
+      'span',
+      'span__enabled',
+      'span__theme_dark',
+    ]);
   });
 
   it('with all bem props', () => {
@@ -99,7 +102,11 @@ describe('span formates classes correctly', () => {
     const span = wrapper.get('span');
 
     expect(span).not.toBeNull();
-    expect(span.classes()).toEqual(['parent-custom', 'parent-custom__enabled', 'parent-custom__theme_dark']);
+    expect(span.classes()).toEqual([
+      'parent-custom',
+      'parent-custom__enabled',
+      'parent-custom__theme_dark',
+    ]);
   });
 });
 

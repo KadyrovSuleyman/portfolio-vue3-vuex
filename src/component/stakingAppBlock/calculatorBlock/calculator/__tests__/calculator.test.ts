@@ -40,14 +40,7 @@ it('calculator renders', () => {
   wrapper = mount(Calculator, {
     global: { plugins: [store] },
   });
-
-  expect(wrapper.find('.calculator').classes()).toEqual(['calculator']);
-
-  expect(wrapper.find('.calculator-promtInput').exists()).toBeTruthy();
-  expect(wrapper.find('.calculator-button').exists()).toBeTruthy();
-  expect(wrapper.find('.calculator-div').exists()).toBeTruthy();
-  expect(wrapper.find('.calculator-periodSpan').exists()).toBeTruthy();
-  expect(wrapper.find('.calculator-rewardSpan').exists()).toBeFalsy();
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {
@@ -61,7 +54,10 @@ it('watchs props changes', async () => {
       selected: true,
     },
   });
-  expect(wrapper.find('.calculator').classes()).toEqual(['calculator', 'calculator__selected']);
+  expect(wrapper.find('.calculator').classes()).toEqual([
+    'calculator',
+    'calculator__selected',
+  ]);
 
   await wrapper.setProps({
     mods: {

@@ -8,10 +8,7 @@ afterEach(() => {
 
 it('waitingIcon renders', () => {
   wrapper = mount(WaitingIcon);
-
-  expect(wrapper.find('.waitingIcon').classes()).toEqual(['waitingIcon']);
-  expect(wrapper.find('.fill').exists()).toBeTruthy();
-  expect(wrapper.find('.active').exists()).toBeTruthy();
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {
@@ -23,7 +20,10 @@ it('watchs props changes', async () => {
       selected: true,
     },
   });
-  expect(wrapper.find('.waitingIcon').classes()).toEqual(['waitingIcon', 'waitingIcon__selected']);
+  expect(wrapper.find('.waitingIcon').classes()).toEqual([
+    'waitingIcon',
+    'waitingIcon__selected',
+  ]);
 
   await wrapper.setProps({
     mods: {

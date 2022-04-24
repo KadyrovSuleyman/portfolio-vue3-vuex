@@ -33,8 +33,7 @@ it('calculatorBlock renders', () => {
   wrapper = mount(CalculatorBlock, {
     global: { plugins: [store] },
   });
-
-  expect(wrapper.find('.calculatorBlock').classes()).toEqual(['calculatorBlock']);
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {
@@ -48,7 +47,10 @@ it('watchs props changes', async () => {
       selected: true,
     },
   });
-  expect(wrapper.find('.calculatorBlock').classes()).toEqual(['calculatorBlock', 'calculatorBlock__selected']);
+  expect(wrapper.find('.calculatorBlock').classes()).toEqual([
+    'calculatorBlock',
+    'calculatorBlock__selected',
+  ]);
 
   await wrapper.setProps({
     mods: {

@@ -42,13 +42,7 @@ it('app renders', () => {
   wrapper = mount(App, {
     global: { plugins: [store] },
   });
-
-  expect(wrapper.find('.app').classes()).toEqual(['app']);
-
-  expect(wrapper.find('.app-header').exists()).toBeTruthy();
-  expect(wrapper.find('.app-headerBorder').exists()).toBeTruthy();
-  expect(wrapper.find('.app-stakingAppBlock').exists()).toBeTruthy();
-  expect(wrapper.find('.app-footer').exists()).toBeTruthy();
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {

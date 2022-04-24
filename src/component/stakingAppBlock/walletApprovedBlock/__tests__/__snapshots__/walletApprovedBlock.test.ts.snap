@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`walletApprovedBlock renders 1`] = `
+<div class="walletApprovedBlock"><span class="walletApprovedBlock-span"> Wallet approved </span>
+  <div class="walletApprovedBlock-div walletApprovedBlock-div__icon_check"></div>
+</div>
+`;

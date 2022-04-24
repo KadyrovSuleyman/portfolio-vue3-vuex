@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`calculator renders 1`] = `
+<div class="calculator">
+  <div class="calculator-promtInput"><input class="promtInput-input">
+    <!--v-if-->
+  </div><button class="calculator-button"> Max </button>
+  <div class="calculator-div"><span class="calculator-periodSpan"> Reward for 30 Days: </span>
+    <!--v-if-->
+  </div>
+</div>
+`;

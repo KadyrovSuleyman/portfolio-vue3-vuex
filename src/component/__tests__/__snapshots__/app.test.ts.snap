@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`app renders 1`] = `
+<div data-v-app="">
+  <div class="app">
+    <header class="app-header">
+      <div class="header-navPanel">
+        <div class="navPanel-navButton navPanel-navButton__selected"><a href="/stacking" class="navButton-link navButton-link__selected">Stacking</a>
+          <div class="navButton-rectangle navButton-rectangle__selected"></div>
+        </div>
+        <div class="navPanel-navButton"><a href="/bridge" class="navButton-link">Bridge</a>
+          <div class="navButton-rectangle"></div>
+        </div>
+        <div class="navPanel-navButton"><a href="/sho" class="navButton-link">SHO</a>
+          <div class="navButton-rectangle"></div>
+        </div>
+      </div>
+      <div class="header-walletBlock">
+        <div class="walletBlock-connectBlock"><button class="connectBlock-button"> Connect wallet </button></div>
+      </div>
+    </header>
+    <div class="app-headerBorder"></div>
+    <div class="app-stakingAppBlock"><span class="stakingAppBlock-header"> Staking App </span>
+      <!--v-if-->
+      <div class="stakingAppBlock-tariffsBlock"></div>
+      <div class="stakingAppBlock-calculatorBlock">
+        <div class="calculatorBlock-infoBlock">
+          <div class="infoBlock-div infoBlock-div__icon_warning"></div><span class="infoBlock-span"> To perform actions on the page, connect your wallet </span>
+        </div>
+      </div>
+      <div class="stakingAppBlock-actionsBlock">
+        <!--v-if--><button class="actionsBlock-mainButton">
+          <!--v-if--><span class="mainButton-span">Connect wallet</span>
+        </button>
+        <!--v-if-->
+        <!--v-if-->
+      </div>
+      <!--v-if--><button class="stakingAppBlock-viewContractButton"><span class="viewContractButton-span"> View contract </span></button>
+    </div>
+    <div class="app-footer"></div>
+  </div>
+  <!--teleport start-->
+  <!--teleport end-->
+  <!--teleport start-->
+  <!--teleport end-->
+  <!--teleport start-->
+  <!--teleport end-->
+  <!--teleport start-->
+  <!--teleport end-->
+</div>
+`;

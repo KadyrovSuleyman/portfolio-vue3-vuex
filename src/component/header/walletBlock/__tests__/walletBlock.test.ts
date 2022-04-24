@@ -14,8 +14,7 @@ afterEach(() => {
 
 it('walletBlock renders', () => {
   wrapper = mount(WalletBlock, { global: { plugins: [createStore({})] } });
-
-  expect(wrapper.find('div').classes()).toEqual(['walletBlock']);
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {
@@ -42,10 +41,7 @@ it('watchs props changes', async () => {
 it('walletBlock if wallet connected, connectBlock if dont', async () => {
   const store = createStore({
     state: {
-      connect: false,
-    },
-    mutations: {
-      changeConnection: (state) => { state.connect = !state.connect; },
+      isWalletConnect: false,
     },
   });
 
@@ -58,13 +54,15 @@ it('walletBlock if wallet connected, connectBlock if dont', async () => {
   expect(wrapper.find('.walletBlock-walletDiv').exists()).toBeFalsy();
   expect(wrapper.find('.walletBlock-connectBlock').exists()).toBeTruthy();
 
-  store.commit('changeConnection');
+  store.state.isWalletConnect = true;
   await wrapper.vm.$nextTick();
   expect(wrapper.find('.walletBlock-walletDiv').exists()).toBeTruthy();
   expect(wrapper.find('.walletBlock-connectBlock').exists()).toBeFalsy();
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 
-  store.commit('changeConnection');
+  store.state.isWalletConnect = false;
   await wrapper.vm.$nextTick();
   expect(wrapper.find('.walletBlock-walletDiv').exists()).toBeFalsy();
   expect(wrapper.find('.walletBlock-connectBlock').exists()).toBeTruthy();
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });

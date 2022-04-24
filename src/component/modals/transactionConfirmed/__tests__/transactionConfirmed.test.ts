@@ -10,22 +10,16 @@ beforeEach(() => {
   store = createStore<any>({
     state: {
       isShown: false,
-      notificationClickCount: 0,
-    },
-    mutations: {
-      change: (state, obj: { [name: string]: boolean | string }) => {
-        Object.keys(obj).forEach((index) => {
-          state[index] = obj[index];
-        });
-      },
+      hide: () => { store.state.isShown = false; },
     },
   });
 });
 
+let element: HTMLElement;
 beforeEach(() => {
-  const el = document.createElement('div');
-  el.className = 'app';
-  document.body.appendChild(el);
+  element = document.createElement('div');
+  element.className = 'app';
+  document.body.appendChild(element);
 });
 afterEach(() => {
   document.body.outerHTML = '';
@@ -46,18 +40,10 @@ it('transactionConfirmed renders', async () => {
 
   expect(wrapper.findComponent('.transactionConfirmed-notification').exists()).toBeFalsy();
 
-  store.commit('change', {
-    isShown: true,
-  });
+  store.state.isShown = true;
   await wrapper.vm.$nextTick();
   expect(store.state.isShown).toBeTruthy();
-
-  expect(wrapper.findComponent('.transactionConfirmed-notification').exists()).toBeTruthy();
-
-  expect(wrapper.findComponent('.transactionConfirmed-button').exists()).toBeTruthy();
-  expect(wrapper.findComponent('.transactionConfirmed-span').exists()).toBeTruthy();
-  expect(wrapper.findComponent('.transactionConfirmed-span').text())
-    .toBe('Transaction confirmed! Click here to see it');
+  expect(element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {
@@ -100,9 +86,7 @@ it('closes', async () => {
 
   expect(wrapper.findComponent('.transactionConfirmed-notification').exists()).toBeFalsy();
 
-  store.commit('change', {
-    isShown: true,
-  });
+  store.state.isShown = true;
   await wrapper.vm.$nextTick();
   expect(store.state.isShown).toBeTruthy();
   expect(wrapper.findComponent('.transactionConfirmed-notification').exists()).toBeTruthy();
@@ -121,19 +105,21 @@ it('notification clicks', async () => {
     },
   });
 
+  store.replaceState({
+    hide: jest.fn(),
+  });
+
   expect(wrapper.findComponent('.transactionConfirmed-notification').exists()).toBeFalsy();
 
-  store.commit('change', {
-    isShown: true,
-  });
+  store.state.isShown = true;
   await wrapper.vm.$nextTick();
   expect(store.state.isShown).toBeTruthy();
   expect(wrapper.findComponent('.transactionConfirmed-notification').exists()).toBeTruthy();
-  expect(store.state.notificationClickCount).toBe(0);
+  expect(store.state.hide).toBeCalledTimes(0);
 
   await wrapper.findComponent('.transactionConfirmed-button').trigger('click');
-  expect(store.state.notificationClickCount).toBe(1);
+  expect(store.state.hide).toBeCalledTimes(1);
 
   await wrapper.findComponent('.transactionConfirmed-button').trigger('click');
-  expect(store.state.notificationClickCount).toBe(2);
+  expect(store.state.hide).toBeCalledTimes(2);
 });

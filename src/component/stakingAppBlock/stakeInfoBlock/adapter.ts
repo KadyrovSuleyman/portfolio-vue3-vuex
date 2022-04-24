@@ -1,6 +1,10 @@
 import { Store } from 'vuex';
 
-const adapt = (store: Store<any>) => ({
+export interface StateT {
+  income: number,
+}
+
+const adapt = (store: Store<any>): StateT => ({
   income: store.getters['stake/reward'],
 });
 

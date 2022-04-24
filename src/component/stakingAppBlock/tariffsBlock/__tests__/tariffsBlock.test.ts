@@ -34,7 +34,18 @@ beforeEach(() => {
         30: undefined,
         90: undefined,
         150: undefined,
-      } as { [period: number]: string | undefined },
+      },
+      select: (period: number) => {
+        if (store.state.selectList[period] === 'true') {
+          Object.keys(store.state.selectList).forEach((key) => {
+            store.state.selectList[Number(key)] = undefined;
+          });
+          return;
+        }
+        Object.keys(store.state.selectList).forEach((key) => {
+          store.state.selectList[Number(key)] = Number(key) === period ? 'true' : 'false';
+        });
+      },
     },
     mutations: {
       add: (state, item: TariffT) => { state.list.push(item); },
@@ -44,18 +55,6 @@ beforeEach(() => {
         state.list[index].apy = 505;
         state.list[index].amountMin = 505;
         state.list[index].amountMax = 505;
-      },
-      select: (state, period: number) => {
-        if (state.selectList[period] === 'true') {
-          Object.keys(state.selectList).forEach((key) => {
-            state.selectList[Number(key)] = undefined;
-          });
-          return;
-        }
-
-        Object.keys(state.selectList).forEach((key) => {
-          state.selectList[Number(key)] = Number(key) === period ? 'true' : 'false';
-        });
       },
     },
   });
@@ -69,8 +68,7 @@ afterEach(() => {
 // ===========================
 it('tariffsBlock renders', () => {
   wrapper = mount(TariffsBlock, { global: { plugins: [store] } });
-
-  expect(wrapper.find('.tariffsBlock').classes()).toEqual(['tariffsBlock']);
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {
@@ -82,7 +80,10 @@ it('watchs props changes', async () => {
       selected: true,
     },
   });
-  expect(wrapper.find('.tariffsBlock').classes()).toEqual(['tariffsBlock', 'tariffsBlock__selected']);
+  expect(wrapper.find('.tariffsBlock').classes()).toEqual([
+    'tariffsBlock',
+    'tariffsBlock__selected',
+  ]);
 
   await wrapper.setProps({
     mods: {

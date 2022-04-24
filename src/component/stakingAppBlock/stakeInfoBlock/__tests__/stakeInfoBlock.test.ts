@@ -30,14 +30,7 @@ it('stakeInfoBlock renders', () => {
   wrapper = mount(StakeInfoBlock, {
     global: { plugins: [store] },
   });
-
-  expect(wrapper.find('.stakeInfoBlock').exists()).toBeTruthy();
-
-  expect(wrapper.find('.stakeInfoBlock-infoContainer').exists()).toBeTruthy();
-
-  expect(wrapper.find('.stakeInfoBlock-div').exists()).toBeTruthy();
-  expect(wrapper.find('.stakeInfoBlock-incomeSpan').exists()).toBeTruthy();
-  expect(wrapper.find('.stakeInfoBlock-promtSpan').exists()).toBeTruthy();
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {
@@ -52,7 +45,10 @@ it('watchs props changes', async () => {
       selected: true,
     },
   });
-  expect(wrapper.find('.stakeInfoBlock').classes()).toEqual(['stakeInfoBlock', 'stakeInfoBlock__selected']);
+  expect(wrapper.find('.stakeInfoBlock').classes()).toEqual([
+    'stakeInfoBlock',
+    'stakeInfoBlock__selected',
+  ]);
 
   await wrapper.setProps({
     ...wrapper.props,

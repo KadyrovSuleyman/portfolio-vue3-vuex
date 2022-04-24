@@ -35,15 +35,7 @@ it('stakingAppBlock renders', () => {
   wrapper = mount(StakingAppBlock, {
     global: { plugins: [store] },
   });
-
-  expect(wrapper.find('.stakingAppBlock').exists()).toBeTruthy();
-  expect(wrapper.find('.stakingAppBlock-header').exists()).toBeTruthy();
-  expect(wrapper.find('.stakingAppBlock-calculatorBlock')
-    .exists()).toBeTruthy();
-  expect(wrapper.find('.stakingAppBlock-actionsBlock')
-    .exists()).toBeTruthy();
-  expect(wrapper.find('.stakingAppBlock-viewContractButton')
-    .exists()).toBeTruthy();
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {
@@ -57,7 +49,10 @@ it('watchs props changes', async () => {
       selected: true,
     },
   });
-  expect(wrapper.find('.stakingAppBlock').classes()).toEqual(['stakingAppBlock', 'stakingAppBlock__selected']);
+  expect(wrapper.find('.stakingAppBlock').classes()).toEqual([
+    'stakingAppBlock',
+    'stakingAppBlock__selected',
+  ]);
 
   await wrapper.setProps({
     mods: {
@@ -71,39 +66,29 @@ it('watching outer store', async () => {
   wrapper = mount(StakingAppBlock, {
     global: { plugins: [store] },
   });
-  expect(wrapper.find('.stakingAppBlock').exists()).toBeTruthy();
-
-  expect(wrapper.find('.stakingAppBlock-walletApprovedBlock').exists()).toBeFalsy();
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 
   store.commit('change', {
     isWalletApproved: true,
   });
   await wrapper.vm.$nextTick();
-  expect(wrapper.find('.stakingAppBlock-walletApprovedBlock').exists()).toBeTruthy();
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 
   store.commit('change', {
     isWalletApproved: false,
   });
   await wrapper.vm.$nextTick();
-  expect(wrapper.find('.stakingAppBlock-walletApprovedBlock').exists()).toBeFalsy();
-
-  expect(wrapper.find('.stakingAppBlock-stakeInfoBlock').exists()).toBeFalsy();
-  expect(wrapper.find('.stakingAppBlock-bgImg').exists()).toBeFalsy();
-  expect(wrapper.find('.stakingAppBlock-tariffsBlock').exists()).toBeTruthy();
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 
   store.commit('change', {
     isStaked: true,
   });
   await wrapper.vm.$nextTick();
-  expect(wrapper.find('.stakingAppBlock-stakeInfoBlock').exists()).toBeTruthy();
-  expect(wrapper.find('.stakingAppBlock-bgImg').exists()).toBeTruthy();
-  expect(wrapper.find('.stakingAppBlock-tariffsBlock').exists()).toBeFalsy();
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 
   store.commit('change', {
     isStaked: false,
   });
   await wrapper.vm.$nextTick();
-  expect(wrapper.find('.stakingAppBlock-stakeInfoBlock').exists()).toBeFalsy();
-  expect(wrapper.find('.stakingAppBlock-bgImg').exists()).toBeFalsy();
-  expect(wrapper.find('.stakingAppBlock-tariffsBlock').exists()).toBeTruthy();
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });

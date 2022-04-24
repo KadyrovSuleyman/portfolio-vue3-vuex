@@ -1,9 +1,8 @@
-import { mount } from '@vue/test-utils';
+import { mount, VueWrapper } from '@vue/test-utils';
 import Input from '@/element/input/input.vue';
 import { ref } from 'vue';
 
-let wrapper = mount(Input, {});
-wrapper.unmount();
+let wrapper: VueWrapper<any>;
 afterEach(() => {
   wrapper.unmount();
 });
@@ -14,7 +13,7 @@ it('input renders', () => {
   const input = wrapper.get('input');
 
   expect(input).not.toBeNull();
-  expect(input.html()).toBe('<input class="input">');
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 describe('input formates classes correctly', () => {
@@ -80,7 +79,11 @@ describe('input formates classes correctly', () => {
     const input = wrapper.get('input');
 
     expect(input).not.toBeNull();
-    expect(input.classes()).toEqual(['input', 'input__enabled', 'input__theme_dark']);
+    expect(input.classes()).toEqual([
+      'input',
+      'input__enabled',
+      'input__theme_dark',
+    ]);
   });
 
   it('with all bem props', () => {
@@ -99,7 +102,11 @@ describe('input formates classes correctly', () => {
     const input = wrapper.get('input');
 
     expect(input).not.toBeNull();
-    expect(input.classes()).toEqual(['parent-custom', 'parent-custom__enabled', 'parent-custom__theme_dark']);
+    expect(input.classes()).toEqual([
+      'parent-custom',
+      'parent-custom__enabled',
+      'parent-custom__theme_dark',
+    ]);
   });
 });
 

@@ -32,15 +32,7 @@ it('infoContainer renders', () => {
   wrapper = mount(InfoContainer, {
     global: { plugins: [store] },
   });
-
-  expect(wrapper.find('.infoContainer').exists()).toBeTruthy();
-  expect(wrapper.findAll('.infoContainer-infoItem').length).toBe(4);
-
-  const items = wrapper.findAll('.infoContainer-infoItem');
-  expect(items[0].find('.infoItem-header').text()).toBe('From');
-  expect(items[1].find('.infoItem-header').text()).toBe('To');
-  expect(items[2].find('.infoItem-header').text()).toBe('Staked');
-  expect(items[3].find('.infoItem-header').text()).toBe('APY');
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {
@@ -55,7 +47,10 @@ it('watchs props changes', async () => {
       selected: true,
     },
   });
-  expect(wrapper.find('.infoContainer').classes()).toEqual(['infoContainer', 'infoContainer__selected']);
+  expect(wrapper.find('.infoContainer').classes()).toEqual([
+    'infoContainer',
+    'infoContainer__selected',
+  ]);
 
   await wrapper.setProps({
     ...wrapper.props,

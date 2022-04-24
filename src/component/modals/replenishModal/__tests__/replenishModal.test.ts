@@ -32,10 +32,11 @@ beforeEach(() => {
   });
 });
 
+let element: HTMLElement;
 beforeEach(() => {
-  const el = document.createElement('div');
-  el.className = 'app';
-  document.body.appendChild(el);
+  element = document.createElement('div');
+  element.className = 'app';
+  document.body.appendChild(element);
 });
 afterEach(() => {
   document.body.outerHTML = '';
@@ -54,8 +55,7 @@ it('replenishModal renders', async () => {
     },
   });
 
-  expect(wrapper.findComponent('.replenishModal').exists()).toBeFalsy();
-  expect(wrapper.findComponent('.background').exists()).toBeFalsy();
+  expect(element.outerHTML).toMatchSnapshot();
 
   store.commit('change', {
     isShown: true,
@@ -63,16 +63,7 @@ it('replenishModal renders', async () => {
   await wrapper.vm.$nextTick();
   expect(store.state.isShown).toBeTruthy();
 
-  expect(wrapper.findComponent('.replenishModal').exists()).toBeTruthy();
-
-  expect(wrapper.findComponent('.replenishModal-header').exists()).toBeTruthy();
-  expect(wrapper.findAllComponents('.replenishModal-span').length).toBe(2);
-  expect(wrapper.findAllComponents('.replenishModal-tkn-span').length).toBe(2);
-  expect(wrapper.findComponent('.replenishModal-calculator').exists()).toBeTruthy();
-  expect(wrapper.findComponent('.replenishModal-replenish-button').exists()).toBeTruthy();
-  expect(wrapper.findComponent('.replenishModal-close-button').exists()).toBeTruthy();
-
-  expect(wrapper.findComponent('.background').exists()).toBeTruthy();
+  expect(element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {

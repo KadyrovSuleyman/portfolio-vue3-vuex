@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`infoContainer renders 1`] = `
+<div class="infoContainer">
+  <div class="infoContainer-infoItem"><span class="infoItem-header">From</span><span class="infoItem-value"> </span></div>
+  <div class="infoContainer-infoItem"><span class="infoItem-header">To</span><span class="infoItem-value"> </span></div>
+  <div class="infoContainer-infoItem"><span class="infoItem-header">Staked</span><span class="infoItem-value"> 0</span></div>
+  <div class="infoContainer-infoItem"><span class="infoItem-header">APY</span><span class="infoItem-value"> </span></div>
+</div>
+`;

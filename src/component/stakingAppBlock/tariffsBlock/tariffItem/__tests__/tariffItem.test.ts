@@ -8,14 +8,7 @@ afterEach(() => {
 
 it('tariffItem renders', () => {
   wrapper = mount(TariffItem);
-
-  expect(wrapper.find('.tariffItem').classes()).toEqual(['tariffItem']);
-  expect(wrapper.find('.tariffItem-period').classes()).toEqual(['tariffItem-period']);
-  expect(wrapper.find('.tariffItem-apyDiv').classes()).toEqual(['tariffItem-apyDiv']);
-  expect(wrapper.find('.tariffItem-apy').classes()).toEqual(['tariffItem-apy']);
-  expect(wrapper.find('.tariffItem-question').classes())
-    .toEqual(['tariffItem-question', 'tariffItem-question__icon_question']);
-  expect(wrapper.find('.tariffItem-amount').classes()).toEqual(['tariffItem-amount']);
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {
@@ -28,7 +21,10 @@ it('watchs props changes', async () => {
       selected: true,
     },
   });
-  expect(wrapper.find('.tariffItem').classes()).toEqual(['tariffItem', 'tariffItem__selected']);
+  expect(wrapper.find('.tariffItem').classes()).toEqual([
+    'tariffItem',
+    'tariffItem__selected',
+  ]);
 
   await wrapper.setProps({
     ...wrapper.props,
@@ -68,12 +64,18 @@ it('watchs selected props change', async () => {
   await wrapper.setProps({
     selected: 'true',
   });
-  expect(wrapper.find('.tariffItem').classes()).toEqual(['tariffItem', 'tariffItem__selected_true']);
+  expect(wrapper.find('.tariffItem').classes()).toEqual([
+    'tariffItem',
+    'tariffItem__selected_true',
+  ]);
 
   await wrapper.setProps({
     selected: 'false',
   });
-  expect(wrapper.find('.tariffItem').classes()).toEqual(['tariffItem', 'tariffItem__selected_false']);
+  expect(wrapper.find('.tariffItem').classes()).toEqual([
+    'tariffItem',
+    'tariffItem__selected_false',
+  ]);
 
   await wrapper.setProps({
     selected: undefined,

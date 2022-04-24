@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`waitingIcon renders 1`] = `
+<div class="waitingIcon">
+  <div class="fill"></div>
+  <div class="active"></div>
+</div>
+`;

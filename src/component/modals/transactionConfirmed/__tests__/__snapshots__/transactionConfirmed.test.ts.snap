@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`transactionConfirmed renders 1`] = `
+<div class="app">
+  <transition-stub>
+    <div class="transactionConfirmed-notification"><button class="transactionConfirmed-button"><span class="transactionConfirmed-span"> Transaction confirmed! Click here to see it </span></button><button class="notification-button notification-button__icon_cross_white"></button></div>
+  </transition-stub>
+</div>
+`;

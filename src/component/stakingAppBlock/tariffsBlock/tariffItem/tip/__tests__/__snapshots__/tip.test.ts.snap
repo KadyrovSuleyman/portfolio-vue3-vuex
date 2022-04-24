@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tip renders 1`] = `
+<div class="tip">
+  <div class="tip-triangle"></div>
+  <div class="tip-div"><span class="tip-span"></span></div>
+</div>
+`;

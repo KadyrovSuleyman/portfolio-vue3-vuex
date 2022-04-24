@@ -1,8 +1,7 @@
-import { mount } from '@vue/test-utils';
+import { mount, VueWrapper } from '@vue/test-utils';
 import Div from '@/element/div/div.vue';
 
-let wrapper = mount(Div, {});
-wrapper.unmount();
+let wrapper: VueWrapper<any>;
 afterEach(() => {
   wrapper.unmount();
 });
@@ -13,7 +12,7 @@ it('div renders', () => {
   const div = wrapper.get('div');
 
   expect(div).not.toBeNull();
-  expect(div.html()).toBe('<div class="div"></div>');
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 describe('div formates classes correctly', () => {
@@ -79,7 +78,11 @@ describe('div formates classes correctly', () => {
     const div = wrapper.get('div');
 
     expect(div).not.toBeNull();
-    expect(div.classes()).toEqual(['div', 'div__enabled', 'div__theme_dark']);
+    expect(div.classes()).toEqual([
+      'div',
+      'div__enabled',
+      'div__theme_dark',
+    ]);
   });
 
   it('with all bem props', () => {
@@ -98,7 +101,11 @@ describe('div formates classes correctly', () => {
     const div = wrapper.get('div');
 
     expect(div).not.toBeNull();
-    expect(div.classes()).toEqual(['parent-custom', 'parent-custom__enabled', 'parent-custom__theme_dark']);
+    expect(div.classes()).toEqual([
+      'parent-custom',
+      'parent-custom__enabled',
+      'parent-custom__theme_dark',
+    ]);
   });
 });
 

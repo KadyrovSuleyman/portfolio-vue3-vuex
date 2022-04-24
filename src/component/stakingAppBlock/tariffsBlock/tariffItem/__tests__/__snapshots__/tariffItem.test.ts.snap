@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tariffItem renders 1`] = `
+<div class="tariffItem">
+  <!--v-if--><span class="tariffItem-period"> Days </span>
+  <div class="tariffItem-apyDiv"><span class="tariffItem-apy"> APY: % </span>
+    <div class="tariffItem-question tariffItem-question__icon_question"></div>
+  </div><span class="tariffItem-amount"> Amount:  -  TKN </span>
+</div>
+`;

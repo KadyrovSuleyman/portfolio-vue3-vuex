@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tariffsBlock renders 1`] = `
+<div class="tariffsBlock">
+  <div class="tariffsBlock-tariffItem">
+    <!--v-if--><span class="tariffItem-period">30 Days </span>
+    <div class="tariffItem-apyDiv"><span class="tariffItem-apy"> APY: 103.23% </span>
+      <div class="tariffItem-question tariffItem-question__icon_question"></div>
+    </div><span class="tariffItem-amount"> Amount: 100 - 299 TKN </span>
+  </div>
+  <div class="tariffsBlock-tariffItem">
+    <!--v-if--><span class="tariffItem-period">90 Days </span>
+    <div class="tariffItem-apyDiv"><span class="tariffItem-apy"> APY: 116.86% </span>
+      <div class="tariffItem-question tariffItem-question__icon_question"></div>
+    </div><span class="tariffItem-amount"> Amount: 100 - 299 TKN </span>
+  </div>
+  <div class="tariffsBlock-tariffItem">
+    <!--v-if--><span class="tariffItem-period">150 Days </span>
+    <div class="tariffItem-apyDiv"><span class="tariffItem-apy"> APY: 129.97% </span>
+      <div class="tariffItem-question tariffItem-question__icon_question"></div>
+    </div><span class="tariffItem-amount"> Amount: 500 - 1000 TKN </span>
+  </div>
+</div>
+`;

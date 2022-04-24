@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`stakingAppBlock renders 1`] = `
+<div class="stakingAppBlock"><span class="stakingAppBlock-header"> Staking App </span>
+  <!--v-if-->
+  <div class="stakingAppBlock-tariffsBlock"></div>
+  <div class="stakingAppBlock-calculatorBlock">
+    <div class="calculatorBlock-infoBlock">
+      <div class="infoBlock-div infoBlock-div__icon_warning"></div><span class="infoBlock-span"> To perform actions on the page, connect your wallet </span>
+    </div>
+  </div>
+  <div class="stakingAppBlock-actionsBlock">
+    <!--v-if--><button class="actionsBlock-mainButton">
+      <!--v-if--><span class="mainButton-span">Connect wallet</span>
+    </button>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+  <!--v-if--><button class="stakingAppBlock-viewContractButton"><span class="viewContractButton-span"> View contract </span></button>
+</div>
+`;
+
+exports[`watching outer store 1`] = `
+<div class="stakingAppBlock"><span class="stakingAppBlock-header"> Staking App </span>
+  <!--v-if-->
+  <div class="stakingAppBlock-tariffsBlock"></div>
+  <div class="stakingAppBlock-calculatorBlock">
+    <div class="calculatorBlock-infoBlock">
+      <div class="infoBlock-div infoBlock-div__icon_warning"></div><span class="infoBlock-span"> To perform actions on the page, connect your wallet </span>
+    </div>
+  </div>
+  <div class="stakingAppBlock-actionsBlock">
+    <!--v-if--><button class="actionsBlock-mainButton">
+      <!--v-if--><span class="mainButton-span">Connect wallet</span>
+    </button>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+  <!--v-if--><button class="stakingAppBlock-viewContractButton"><span class="viewContractButton-span"> View contract </span></button>
+</div>
+`;
+
+exports[`watching outer store 2`] = `
+<div class="stakingAppBlock"><span class="stakingAppBlock-header"> Staking App </span>
+  <div class="stakingAppBlock-walletApprovedBlock"><span class="walletApprovedBlock-span"> Wallet approved </span>
+    <div class="walletApprovedBlock-div walletApprovedBlock-div__icon_check"></div>
+  </div>
+  <div class="stakingAppBlock-tariffsBlock"></div>
+  <div class="stakingAppBlock-calculatorBlock">
+    <div class="calculatorBlock-infoBlock">
+      <div class="infoBlock-div infoBlock-div__icon_warning"></div><span class="infoBlock-span"> To perform actions on the page, connect your wallet </span>
+    </div>
+  </div>
+  <div class="stakingAppBlock-actionsBlock">
+    <!--v-if--><button class="actionsBlock-mainButton">
+      <!--v-if--><span class="mainButton-span">Connect wallet</span>
+    </button>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+  <!--v-if--><button class="stakingAppBlock-viewContractButton"><span class="viewContractButton-span"> View contract </span></button>
+</div>
+`;
+
+exports[`watching outer store 3`] = `
+<div class="stakingAppBlock"><span class="stakingAppBlock-header"> Staking App </span>
+  <!--v-if-->
+  <div class="stakingAppBlock-tariffsBlock"></div>
+  <div class="stakingAppBlock-calculatorBlock">
+    <div class="calculatorBlock-infoBlock">
+      <div class="infoBlock-div infoBlock-div__icon_warning"></div><span class="infoBlock-span"> To perform actions on the page, connect your wallet </span>
+    </div>
+  </div>
+  <div class="stakingAppBlock-actionsBlock">
+    <!--v-if--><button class="actionsBlock-mainButton">
+      <!--v-if--><span class="mainButton-span">Connect wallet</span>
+    </button>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+  <!--v-if--><button class="stakingAppBlock-viewContractButton"><span class="viewContractButton-span"> View contract </span></button>
+</div>
+`;
+
+exports[`watching outer store 4`] = `
+<div class="stakingAppBlock"><span class="stakingAppBlock-header"> Staking App </span>
+  <!--v-if-->
+  <div class="stakingAppBlock-stakeInfoBlock">
+    <div class="stakeInfoBlock-div"><span class="stakeInfoBlock-incomeSpan"></span><span class="stakeInfoBlock-promtSpan"> TKN earned </span></div>
+    <div class="stakeInfoBlock-infoContainer">
+      <div class="infoContainer-infoItem"><span class="infoItem-header">isStaked</span><span class="infoItem-value"> true</span></div>
+      <div class="infoContainer-infoItem"><span class="infoItem-header">isWalletApproved</span><span class="infoItem-value"> false</span></div>
+    </div>
+  </div>
+  <!--v-if-->
+  <div class="stakingAppBlock-actionsBlock"><button class="actionsBlock-timeButton"><span class="timeButton-span"></span></button><button class="actionsBlock-mainButton">
+      <!--v-if--><span class="mainButton-span">Connect wallet</span>
+    </button>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+  <div class="stakingAppBlock-bgImg"></div><button class="stakingAppBlock-viewContractButton"><span class="viewContractButton-span"> View contract </span></button>
+</div>
+`;
+
+exports[`watching outer store 5`] = `
+<div class="stakingAppBlock"><span class="stakingAppBlock-header"> Staking App </span>
+  <!--v-if-->
+  <div class="stakingAppBlock-tariffsBlock"></div>
+  <div class="stakingAppBlock-calculatorBlock">
+    <div class="calculatorBlock-infoBlock">
+      <div class="infoBlock-div infoBlock-div__icon_warning"></div><span class="infoBlock-span"> To perform actions on the page, connect your wallet </span>
+    </div>
+  </div>
+  <div class="stakingAppBlock-actionsBlock">
+    <!--v-if--><button class="actionsBlock-mainButton">
+      <!--v-if--><span class="mainButton-span">Connect wallet</span>
+    </button>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+  <!--v-if--><button class="stakingAppBlock-viewContractButton"><span class="viewContractButton-span"> View contract </span></button>
+</div>
+`;

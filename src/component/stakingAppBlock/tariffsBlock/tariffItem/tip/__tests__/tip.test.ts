@@ -8,11 +8,7 @@ afterEach(() => {
 
 it('tip renders', () => {
   wrapper = mount(Tip);
-
-  expect(wrapper.find('.tip').classes()).toEqual(['tip']);
-  expect(wrapper.find('.tip-triangle').classes()).toEqual(['tip-triangle']);
-  expect(wrapper.find('.tip-div').classes()).toEqual(['tip-div']);
-  expect(wrapper.find('.tip-span').classes()).toEqual(['tip-span']);
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {

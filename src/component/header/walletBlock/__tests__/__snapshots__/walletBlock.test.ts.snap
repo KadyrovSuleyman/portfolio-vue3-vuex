@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`walletBlock if wallet connected, connectBlock if dont 1`] = `
+<div class="walletBlock">
+  <div class="walletBlock-walletDiv">
+    <div class="walletDiv-addressBlock"><span class="addressBlock-span"></span><button class="addressBlock-button addressBlock-button__icon_copy"></button></div><span class="walletDiv-span"> </span><button class="walletDiv-button walletDiv-button__icon_coin"><img></button><button class="walletDiv-button walletDiv-button__icon_chevron"></button>
+  </div>
+</div>
+`;
+
+exports[`walletBlock if wallet connected, connectBlock if dont 2`] = `
+<div class="walletBlock">
+  <div class="walletBlock-connectBlock"><button class="connectBlock-button"> Connect wallet </button></div>
+</div>
+`;
+
+exports[`walletBlock renders 1`] = `
+<div class="walletBlock">
+  <div class="walletBlock-connectBlock"><button class="connectBlock-button"> Connect wallet </button></div>
+</div>
+`;

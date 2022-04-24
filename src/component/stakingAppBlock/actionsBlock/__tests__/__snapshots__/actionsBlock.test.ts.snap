@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`main button watch the store 1`] = `
+<div class="actionsBlock">
+  <!--v-if--><button class="actionsBlock-mainButton">
+    <!--v-if--><span class="mainButton-span">Restake</span>
+  </button>
+  <!--v-if--><button class="actionsBlock-unstakeButton"><span class="unstakeButton-span"> Unstake </span></button>
+</div>
+`;
+
+exports[`main button watch the store 2`] = `
+<div class="actionsBlock"><button class="actionsBlock-timeButton"><span class="timeButton-span">00:00:09</span></button><button class="actionsBlock-mainButton">
+    <!--v-if--><span class="mainButton-span">Replenish</span>
+  </button>
+  <!--v-if-->
+  <!--v-if-->
+</div>
+`;
+
+exports[`waitingIcon renders 1`] = `
+<div class="actionsBlock">
+  <!--v-if--><button class="actionsBlock-mainButton">
+    <!--v-if--><span class="mainButton-span">Connect wallet</span>
+  </button>
+  <!--v-if-->
+  <!--v-if-->
+</div>
+`;

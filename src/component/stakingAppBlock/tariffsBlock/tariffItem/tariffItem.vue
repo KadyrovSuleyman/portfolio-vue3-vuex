@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /* eslint-disable vuejs-accessibility/mouse-events-have-key-events */
-import { computed, defineComponent, ref } from 'vue';
+import { computed, ref } from 'vue';
 import Div from '@/element/div/div.vue';
 import Span from '@/element/span/span.vue';
 import propsObj from '@/element/propsObj';

@@ -6,8 +6,7 @@ import propsObj from '@/element/propsObj';
 import { useStore } from 'vuex';
 import TariffItem from './tariffItem/tariffItem.vue';
 import adapt from './adapter';
-import { clickHandlerGenerator } from './logic';
-
+import createClickHandler from './handlers';
 // eslint-disable-next-line no-undef
 const props = defineProps({ ...propsObj });
 const comp = computed(() => ({ elem: props.elem || 'tariffsBlock' }));
@@ -15,9 +14,9 @@ const comp = computed(() => ({ elem: props.elem || 'tariffsBlock' }));
 const store = useStore();
 const state = computed(() => adapt(store));
 
-const clickHandler = clickHandlerGenerator({
+const clickHandler = createClickHandler({
   className: `${props.block ? `${props.block}-` : ''}${comp.value.elem}`,
-  store,
+  state,
 });
 
 </script>

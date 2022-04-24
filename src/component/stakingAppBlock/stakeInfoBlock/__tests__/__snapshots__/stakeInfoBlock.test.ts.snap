@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`stakeInfoBlock renders 1`] = `
+<div class="stakeInfoBlock">
+  <div class="stakeInfoBlock-div"><span class="stakeInfoBlock-incomeSpan">0</span><span class="stakeInfoBlock-promtSpan"> TKN earned </span></div>
+  <div class="stakeInfoBlock-infoContainer">
+    <div class="infoContainer-infoItem"><span class="infoItem-header">income</span><span class="infoItem-value"> 0</span></div>
+  </div>
+</div>
+`;

@@ -1,13 +1,13 @@
-import { ref } from 'vue';
 import { Store } from 'vuex';
 
-export const isStaked = ref<boolean>(true);
+export interface StateT {
+  isWalletApproved: boolean,
+  isStaked: boolean,
+  viewContract: () => void,
+}
 
-export const adapt = (store: Store<any>) => ({
+export const adapt = (store: Store<any>): StateT => ({
   isWalletApproved: store.state.wallet.isApproved,
   isStaked: store.state.stake.isStaked,
+  viewContract: () => store.commit('stake/mockCountdown', 3000),
 });
-
-export const generateViewContractClickHandler = (store: Store<any>) => () => {
-  store.commit('stake/mockCountdown', 3000);
-};

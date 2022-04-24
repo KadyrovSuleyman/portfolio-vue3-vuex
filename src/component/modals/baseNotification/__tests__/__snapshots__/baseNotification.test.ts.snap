@@ -1,19 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`baseNotification renders 1`] = `
-<div
-  class="notification"
->
-  
-  
-  hello
-  
-  <button
-    class="notification-button notification-button__icon_cross_white"
-  >
-    
-    
-  </button>
-  
-</div>
-`;
+exports[`baseNotification renders 1`] = `<div class="notification">hello<button class="notification-button notification-button__icon_cross_white"></button></div>`;

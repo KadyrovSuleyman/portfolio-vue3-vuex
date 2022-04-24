@@ -6,7 +6,8 @@ import propsObj from '@/element/propsObj';
 import { useStore } from 'vuex';
 import WalletDiv from './walletDiv/walletDiv.vue';
 import ConnectBlock from './connectBlock/connectBlock.vue';
-import { adapt, generateShowConnectWalletModal } from './adapter';
+import { adapt } from './adapter';
+import createShowConnectWalletModal from './handlers';
 
 // eslint-disable-next-line no-undef
 const props = defineProps({ ...propsObj });
@@ -15,7 +16,7 @@ const comp = computed(() => ({ elem: props.elem || 'walletBlock' }));
 const store = useStore();
 const state = computed(() => adapt(store));
 
-const showConnectWalletModal = generateShowConnectWalletModal(store);
+const showConnectWalletModal = createShowConnectWalletModal(state);
 
 </script>
 

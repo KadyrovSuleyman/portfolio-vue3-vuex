@@ -1,10 +1,9 @@
-import { mount } from '@vue/test-utils';
+import { mount, VueWrapper } from '@vue/test-utils';
 import Button from '@/element/button/button.vue';
 import { createStore } from 'vuex';
 import { computed, ref } from 'vue';
 
-let wrapper = mount(Button, {});
-wrapper.unmount();
+let wrapper: VueWrapper<any>;
 afterEach(() => {
   wrapper.unmount();
 });
@@ -15,7 +14,7 @@ it('button renders', () => {
   const button = wrapper.get('button');
 
   expect(button).not.toBeNull();
-  expect(button.html()).toBe('<button class="button"></button>');
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 describe('button formates classes correctly', () => {
@@ -81,7 +80,11 @@ describe('button formates classes correctly', () => {
     const button = wrapper.get('button');
 
     expect(button).not.toBeNull();
-    expect(button.classes()).toEqual(['button', 'button__enabled', 'button__theme_dark']);
+    expect(button.classes()).toEqual([
+      'button',
+      'button__enabled',
+      'button__theme_dark',
+    ]);
   });
 
   it('with all bem props', () => {
@@ -100,7 +103,11 @@ describe('button formates classes correctly', () => {
     const button = wrapper.get('button');
 
     expect(button).not.toBeNull();
-    expect(button.classes()).toEqual(['parent-custom', 'parent-custom__enabled', 'parent-custom__theme_dark']);
+    expect(button.classes()).toEqual([
+      'parent-custom',
+      'parent-custom__enabled',
+      'parent-custom__theme_dark',
+    ]);
   });
 });
 

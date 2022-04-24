@@ -8,7 +8,7 @@ import propsObj from '@/element/propsObj';
 import { useStore } from 'vuex';
 import WaitingIcon from './waitingIcon/waitingIcon.vue';
 import adapt from './adapter';
-import generateMainButtonProps, { generateUnstakeHandler } from './logic';
+import generateMainButtonProps, { generateUnstakeHandler } from './handlers';
 
 // eslint-disable-next-line no-undef
 const props = defineProps({ ...propsObj });

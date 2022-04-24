@@ -9,10 +9,7 @@ afterEach(() => {
 
 it('infoBlock renders', () => {
   wrapper = mount(InfoBlock);
-
-  expect(wrapper.find('.infoBlock').classes()).toEqual(['infoBlock']);
-  expect(wrapper.find('.infoBlock-div').classes()).toEqual(['infoBlock-div', 'infoBlock-div__icon_warning']);
-  expect(wrapper.find('.infoBlock-span').classes()).toEqual(['infoBlock-span']);
+  expect(wrapper.element.outerHTML).toMatchSnapshot();
 });
 
 it('watchs props changes', async () => {
