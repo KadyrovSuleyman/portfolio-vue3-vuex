@@ -4,6 +4,12 @@
 
 Кнопка Vuew contract сбрасывает кулдаун на повторную ставку до 3 секунд
 
+## Ссылка на деплой
+https://portfolio-vue3-vuex.netlify.app/
+
+## Ссылка на макет
+https://www.figma.com/file/GkeK0k5LIAjk5JmEV1ZjVG/Test-Staking?node-id=1%3A1599
+
 ## Используемые технологии
 
 - TypeScript - основной язык разработки
@@ -12,9 +18,6 @@
 - Sass - препроцессор стилей
 - ESLint - статический анализ кода
 - Jest и Vue Test Utils - юнит-тестирование
-
-## Ссылка на макет
-https://www.figma.com/file/GkeK0k5LIAjk5JmEV1ZjVG/Test-Staking?node-id=1%3A1599
 
 ## Установка проекта
 ```
