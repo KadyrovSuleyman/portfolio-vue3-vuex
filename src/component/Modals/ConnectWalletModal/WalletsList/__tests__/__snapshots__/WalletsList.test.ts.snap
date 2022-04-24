@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`outer store changing adding item 1`] = `
+<div class="walletsList">
+  <div class="walletsList-walletsListItem"><img class="walletsListItem-icon" alt="" src="icon/metaMask.svg"><span class="walletsListItem-span">MetaMask</span></div>
+  <div class="walletsList-walletsListItem"><img class="walletsListItem-icon" alt="" src="icon/walletconnect.svg"><span class="walletsListItem-span">Walletconnect</span></div>
+  <div class="walletsList-walletsListItem"><img class="walletsListItem-icon" alt="" src="scum icon"><span class="walletsListItem-span">scum name</span></div>
+</div>
+`;
+
+exports[`outer store changing changing item 1`] = `
+<div class="walletsList">
+  <div class="walletsList-walletsListItem"><img class="walletsListItem-icon" alt="" src="changed icon"><span class="walletsListItem-span">changed name</span></div>
+  <div class="walletsList-walletsListItem"><img class="walletsListItem-icon" alt="" src="icon/walletconnect.svg"><span class="walletsListItem-span">Walletconnect</span></div>
+</div>
+`;
+
+exports[`walletsList renders 1`] = `
+<div class="walletsList">
+  <div class="walletsList-walletsListItem"><img class="walletsListItem-icon" alt="" src="icon/metaMask.svg"><span class="walletsListItem-span">MetaMask</span></div>
+  <div class="walletsList-walletsListItem"><img class="walletsListItem-icon" alt="" src="icon/walletconnect.svg"><span class="walletsListItem-span">Walletconnect</span></div>
+</div>
+`;

@@ -1,23 +1,23 @@
 import { mount, VueWrapper } from '@vue/test-utils';
 import { createStore, Store } from 'vuex';
-import App from '../app.vue';
+import App from '../App.vue';
 
-jest.mock('../stakingAppBlock/adapter');
-jest.mock('../stakingAppBlock/actionsBlock/adapter.ts');
-jest.mock('../stakingAppBlock/calculatorBlock/adapter.ts');
-jest.mock('../stakingAppBlock/stakeInfoBlock/infoContainer/adapter.ts');
-jest.mock('../stakingAppBlock/stakeInfoBlock/adapter.ts');
-jest.mock('../stakingAppBlock/tariffsBlock/adapter.ts');
+jest.mock('../StakingAppBlock/adapter');
+jest.mock('../StakingAppBlock/ActionsBlock/adapter.ts');
+jest.mock('../StakingAppBlock/CalculatorBlock/adapter.ts');
+jest.mock('../StakingAppBlock/StakeInfoBlock/InfoContainer/adapter.ts');
+jest.mock('../StakingAppBlock/StakeInfoBlock/adapter.ts');
+jest.mock('../StakingAppBlock/TariffsBlock/adapter.ts');
 
-jest.mock('../header/walletBlock/walletDiv/adapter.ts');
-jest.mock('../header/walletBlock/adapter.ts');
+jest.mock('../Header/WalletBlock/WalletDiv/adapter.ts');
+jest.mock('../Header/WalletBlock/adapter.ts');
 
-jest.mock('../modals/connectWalletModal/walletsList/adapter.ts');
-jest.mock('../modals/connectWalletModal/adapter.ts');
-jest.mock('../modals/copied/adapter.ts');
-jest.mock('../modals/replenishModal/calculator/adapter.ts');
-jest.mock('../modals/replenishModal/adapter.ts');
-jest.mock('../modals/transactionConfirmed/adapter.ts');
+jest.mock('../Modals/ConnectWalletModal/WalletsList/adapter.ts');
+jest.mock('../Modals/ConnectWalletModal/adapter.ts');
+jest.mock('../Modals/Copied/adapter.ts');
+jest.mock('../Modals/ReplenishModal/Calculator/adapter.ts');
+jest.mock('../Modals/ReplenishModal/adapter.ts');
+jest.mock('../Modals/TransactionConfirmed/adapter.ts');
 
 let store: Store<any>;
 beforeEach(() => {
