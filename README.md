@@ -1,32 +1,32 @@
-# Тестовый проект для gotbit.io (в разработке)
+# Тестовый проект для gotbit.io
+
+Вся работа с внешним апи замокана, ожидания загрузок имитированы
+
+Кнопка Vuew contract сбрасывает кулдаун на повторную ставку до 3 секунд
+
+## Используемые технологии
+
+- TypeScript - основной язык разработки
+- Vue 3 - используемый фреймворк
+- Vuex - контроль состояния приложения
+- Sass - препроцессор стилей
+- ESLint - статический анализ кода
+- Jest и Vue Test Utils - юнит-тестирование
 
 ## Ссылка на макет
 https://www.figma.com/file/GkeK0k5LIAjk5JmEV1ZjVG/Test-Staking?node-id=1%3A1599
 
-## Project setup
+## Установка проекта
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### Компиляция и хот-релоад для разработки
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Run unit tests
+### Запуск юнит-тестирования и замер покрытия
 ```
 yarn test
 ```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
