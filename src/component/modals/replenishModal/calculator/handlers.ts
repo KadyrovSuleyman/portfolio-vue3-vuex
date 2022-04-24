@@ -33,6 +33,6 @@ export const createOnKeyupHandler = (
 ) => async (payload: KeyboardEvent) => {
   if (payload.key === 'Enter') {
     await state.value.replenish(inputRef.value);
-    inputRef.value = '';
+    state.value.setValue('');
   }
 };

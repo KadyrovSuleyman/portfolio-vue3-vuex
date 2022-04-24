@@ -15,8 +15,8 @@ export interface StateT {
   value: string,
   setValue: (newValue: string) => void,
 
-  hide: () => void,
-  replenish: () => void,
+  hide: () => Promise<any>,
+  replenish: () => Promise<any>,
 }
 
 export const adapt = (store: Store<any>): StateT => ({
