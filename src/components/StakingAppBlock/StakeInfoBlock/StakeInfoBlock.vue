@@ -6,14 +6,14 @@ import Div from '@/elements/Div/Div.vue';
 import Span from '@/elements/Span/Span.vue';
 import { useStore } from 'vuex';
 import InfoContainer from './InfoContainer/InfoContainer.vue';
-import adapt from './adapter';
+import adaptState from './state';
 
 // eslint-disable-next-line no-undef
 const props = defineProps({ ...propsObj });
 const comp = computed(() => ({ elem: props.elem || 'stakeInfoBlock' }));
 
 const store = useStore();
-const state = computed(() => adapt(store));
+const state = computed(() => adaptState(store));
 
 </script>
 

@@ -2,8 +2,8 @@ import { mount, VueWrapper } from '@vue/test-utils';
 import { createStore, Store } from 'vuex';
 import CalculatorBlock from '../CalculatorBlock.vue';
 
-jest.mock('../adapter');
-jest.mock('../Calculator/adapter.ts');
+jest.mock('../state');
+jest.mock('../Calculator/state.ts');
 jest.mock('../Calculator/logic.ts');
 
 let wrapper: VueWrapper<any>;

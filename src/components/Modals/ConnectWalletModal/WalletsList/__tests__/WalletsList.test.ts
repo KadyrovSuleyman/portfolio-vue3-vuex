@@ -2,7 +2,7 @@ import { mount, VueWrapper } from '@vue/test-utils';
 import { createStore, Store } from 'vuex';
 import WalletsList from '../WalletsList.vue';
 
-jest.mock('../adapter.ts');
+jest.mock('../state.ts');
 
 let store: Store<any>;
 let wrapper: VueWrapper<any>;

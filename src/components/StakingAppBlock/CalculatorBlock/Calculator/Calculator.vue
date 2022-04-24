@@ -8,7 +8,7 @@ import Span from '@/elements/Span/Span.vue';
 import { useStore } from 'vuex';
 import PromtInput from './PromtInput/PromtInput.vue';
 import { validate, correctState } from './logic';
-import adapt from './adapter';
+import adaptState from './state';
 import { inputValueWatcher } from './watchers';
 import { createMaxButtonClickHandler, createOnInputHandler, createOnKeyupHandler } from './handlers';
 
@@ -17,7 +17,7 @@ const props = defineProps({ ...propsObj });
 const comp = computed(() => ({ elem: props.elem || 'calculator' }));
 
 const store = useStore();
-const state = computed(() => adapt(store));
+const state = computed(() => adaptState(store));
 
 const errorText = computed(() => validate(state.value.text, state.value.minValue));
 const correct = computed(() => correctState(state.value.text, state.value.minValue));

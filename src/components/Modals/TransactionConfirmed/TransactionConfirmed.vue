@@ -5,7 +5,7 @@ import { useStore } from 'vuex';
 import propsObj from '@/elements/propsObj';
 import Button from '@/elements/Button/Button.vue';
 import Span from '@/elements/Span/Span.vue';
-import { adapt } from './adapter';
+import { adaptState } from './state';
 import BaseNotification from '../BaseNotification/BaseNotification.vue';
 import { createCloseHandler, createNotificationClickHandler } from './handlers';
 
@@ -17,7 +17,7 @@ const props = defineProps({
 const comp = computed(() => ({ elem: props.elem || 'transactionConfirmed' }));
 
 const store = useStore();
-const state = computed(() => adapt(store));
+const state = computed(() => adaptState(store));
 
 const closeHandler = createCloseHandler(state);
 const notificationClickHandler = createNotificationClickHandler(state);

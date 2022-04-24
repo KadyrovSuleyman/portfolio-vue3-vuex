@@ -7,7 +7,7 @@ import Span from '@/elements/Span/Span.vue';
 import propsObj from '@/elements/propsObj';
 import { useStore } from 'vuex';
 import WaitingIcon from './WaitingIcon/WaitingIcon.vue';
-import adapt from './adapter';
+import adaptState from './state';
 import generateMainButtonProps, { generateUnstakeHandler } from './handlers';
 
 // eslint-disable-next-line no-undef
@@ -15,8 +15,8 @@ const props = defineProps({ ...propsObj });
 const comp = computed(() => ({ elem: props.elem || 'actionsBlock' }));
 
 const store = useStore();
-const state = computed(() => adapt(store));
-const mainButtonProps = computed(() => generateMainButtonProps(adapt(store)));
+const state = computed(() => adaptState(store));
+const mainButtonProps = computed(() => generateMainButtonProps(adaptState(store)));
 
 const CALLBACK = computed(() => {
   if (!mainButtonProps.value.handler) {

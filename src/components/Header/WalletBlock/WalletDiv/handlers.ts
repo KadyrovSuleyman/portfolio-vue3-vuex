@@ -1,5 +1,5 @@
 import { ComputedRef } from 'vue';
-import { StateT } from './adapter';
+import { StateT } from './state';
 
 const createCopyClickHandler = (state: ComputedRef<StateT>) => async () => {
   await navigator.clipboard.writeText(state.value.address);

@@ -3,7 +3,7 @@ import { mount, VueWrapper } from '@vue/test-utils';
 import { createStore, Store } from 'vuex';
 import Notification from '../Copied.vue';
 
-jest.mock('../adapter.ts');
+jest.mock('../state.ts');
 
 let store: Store<any>;
 beforeEach(() => {

@@ -6,14 +6,14 @@ import propsObj from '@/elements/propsObj';
 import { useStore } from 'vuex';
 import Calculator from './Calculator/Calculator.vue';
 import InfoBlock from './InfoBlock/InfoBlock.vue';
-import adapt from './adapter';
+import adaptState from './state';
 
 // eslint-disable-next-line no-undef
 const props = defineProps({ ...propsObj });
 const comp = computed(() => ({ elem: props.elem || 'calculatorBlock' }));
 
 const store = useStore();
-const state = computed(() => adapt(store));
+const state = computed(() => adaptState(store));
 
 </script>
 

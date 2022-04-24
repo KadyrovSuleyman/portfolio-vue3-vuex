@@ -5,14 +5,14 @@ import Div from '@/elements/Div/Div.vue';
 import propsObj from '@/elements/propsObj';
 import { useStore } from 'vuex';
 import TariffItem from './TariffItem/TariffItem.vue';
-import adapt from './adapter';
+import adaptState from './state';
 import createClickHandler from './handlers';
 // eslint-disable-next-line no-undef
 const props = defineProps({ ...propsObj });
 const comp = computed(() => ({ elem: props.elem || 'tariffsBlock' }));
 
 const store = useStore();
-const state = computed(() => adapt(store));
+const state = computed(() => adaptState(store));
 
 const clickHandler = createClickHandler({
   className: `${props.block ? `${props.block}-` : ''}${comp.value.elem}`,

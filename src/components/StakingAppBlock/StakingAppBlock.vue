@@ -11,7 +11,7 @@ import TariffsBlock from './TariffsBlock/TariffsBlock.vue';
 import CalculatorBlock from './CalculatorBlock/CalculatorBlock.vue';
 import ActionsBlock from './ActionsBlock/ActionsBlock.vue';
 import StakeInfoBlock from './StakeInfoBlock/StakeInfoBlock.vue';
-import { adapt } from './adapter';
+import { adaptState } from './state';
 import createViewContractClickHandler from './handlers';
 
 // eslint-disable-next-line no-undef
@@ -19,7 +19,7 @@ const props = defineProps({ ...propsObj });
 const comp = computed(() => ({ elem: props.elem || 'stakingAppBlock' }));
 
 const store = useStore();
-const state = computed(() => adapt(store));
+const state = computed(() => adaptState(store));
 
 const viewContractClickHandler = createViewContractClickHandler(state);
 

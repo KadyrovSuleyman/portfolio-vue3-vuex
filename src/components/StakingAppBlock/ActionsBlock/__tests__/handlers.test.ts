@@ -1,5 +1,5 @@
 import { computed, Ref, ref } from 'vue';
-// import { StateListT } from '../adapter';
+// import { StateListT } from '../state';
 import generate from '../handlers';
 
 describe('generateMainButtonText works', () => {

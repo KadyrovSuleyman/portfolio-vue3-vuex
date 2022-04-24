@@ -4,7 +4,7 @@ import propsObj from '@/elements/propsObj';
 import { computed } from 'vue';
 import Div from '@/elements/Div/Div.vue';
 import { useStore } from 'vuex';
-import adapt from './adapter';
+import adaptState from './state';
 import InfoItem from './InfoItem/InfoItem.vue';
 
 // eslint-disable-next-line no-undef
@@ -12,7 +12,7 @@ const props = defineProps({ ...propsObj });
 const comp = computed(() => ({ elem: props.elem || 'infoContainer' }));
 
 const store = useStore();
-const state = computed(() => adapt(store));
+const state = computed(() => adaptState(store));
 
 const keys = computed(() => Object.keys(state.value));
 

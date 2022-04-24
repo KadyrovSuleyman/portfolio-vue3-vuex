@@ -1,5 +1,5 @@
 import { ComputedRef } from 'vue';
-import { StateT } from './adapter';
+import { StateT } from './state';
 
 export const createCloseHandler = (state: ComputedRef<StateT>) => async () => {
   await state.value.hide();

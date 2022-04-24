@@ -4,7 +4,7 @@ import { computed } from 'vue';
 import Div from '@/elements/Div/Div.vue';
 import propsObj from '@/elements/propsObj';
 import { useStore } from 'vuex';
-import adapt from './adapter';
+import adaptState from './state';
 import WalletsListItem from './WalletsListItem/WalletsListItem.vue';
 import { clickHandlerGenerator } from './logic';
 
@@ -13,7 +13,7 @@ const props = defineProps({ ...propsObj });
 const comp = computed(() => ({ elem: props.elem || 'walletsList' }));
 
 const store = useStore();
-const state = computed(() => adapt(store));
+const state = computed(() => adaptState(store));
 
 const clickHandler = clickHandlerGenerator(
   store,

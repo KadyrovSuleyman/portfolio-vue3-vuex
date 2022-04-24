@@ -1,6 +1,6 @@
 import { Store } from 'vuex';
 import MODAL from '@/store/modal/types';
-import { StateT } from './adapter';
+import { StateT } from './state';
 
 export type MainButtonPropsT = {
   text?: string,

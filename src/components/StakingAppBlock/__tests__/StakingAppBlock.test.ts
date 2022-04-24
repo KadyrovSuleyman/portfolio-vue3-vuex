@@ -2,12 +2,12 @@ import { mount, VueWrapper } from '@vue/test-utils';
 import { createStore, Store } from 'vuex';
 import StakingAppBlock from '../StakingAppBlock.vue';
 
-jest.mock('../adapter');
-jest.mock('../ActionsBlock/adapter.ts');
-jest.mock('../CalculatorBlock/adapter.ts');
-jest.mock('../StakeInfoBlock/InfoContainer/adapter.ts');
-jest.mock('../StakeInfoBlock/adapter.ts');
-jest.mock('../TariffsBlock/adapter.ts');
+jest.mock('../state');
+jest.mock('../ActionsBlock/state.ts');
+jest.mock('../CalculatorBlock/state.ts');
+jest.mock('../StakeInfoBlock/InfoContainer/state.ts');
+jest.mock('../StakeInfoBlock/state.ts');
+jest.mock('../TariffsBlock/state.ts');
 
 let store: Store<any>;
 beforeEach(() => {

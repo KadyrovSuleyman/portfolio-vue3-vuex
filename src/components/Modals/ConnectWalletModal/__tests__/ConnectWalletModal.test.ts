@@ -3,8 +3,8 @@ import { mount, VueWrapper } from '@vue/test-utils';
 import { createStore, Store } from 'vuex';
 import Modal from '../ConnectWalletModal.vue';
 
-jest.mock('../adapter.ts');
-jest.mock('../WalletsList/adapter.ts');
+jest.mock('../state.ts');
+jest.mock('../WalletsList/state.ts');
 
 let store: Store<any>;
 beforeEach(() => {

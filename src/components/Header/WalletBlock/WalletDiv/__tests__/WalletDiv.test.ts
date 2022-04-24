@@ -2,7 +2,7 @@ import { mount, VueWrapper } from '@vue/test-utils';
 import { createStore } from 'vuex';
 import WalletDiv from '../WalletDiv.vue';
 
-jest.mock('../adapter');
+jest.mock('../state');
 jest.mock('../logic');
 jest.mock('../handlers');
 

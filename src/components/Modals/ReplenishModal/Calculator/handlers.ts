@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { ComputedRef } from 'vue';
 import { isValidInput } from './logic';
-import { StateT } from './adapter';
+import { StateT } from './state';
 
 export const createMaxButtonClickHandler = (
   state: ComputedRef<StateT>,

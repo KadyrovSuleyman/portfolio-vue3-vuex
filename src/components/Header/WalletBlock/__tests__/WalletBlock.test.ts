@@ -2,9 +2,9 @@ import { mount, VueWrapper } from '@vue/test-utils';
 import { createStore } from 'vuex';
 import WalletBlock from '../WalletBlock.vue';
 
-jest.mock('../adapter');
+jest.mock('../state');
 
-jest.mock('../WalletDiv/adapter.ts');
+jest.mock('../WalletDiv/state.ts');
 jest.mock('../WalletDiv/logic.ts');
 
 let wrapper: VueWrapper<any>;

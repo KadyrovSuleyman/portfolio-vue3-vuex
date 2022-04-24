@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { createStore, Store } from 'vuex';
 import Calculator from '../Calculator.vue';
 
-jest.mock('../adapter');
+jest.mock('../state');
 
 let store: Store<any>;
 let wrapper: VueWrapper<any>;

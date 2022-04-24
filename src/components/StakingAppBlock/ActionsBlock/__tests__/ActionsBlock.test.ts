@@ -2,7 +2,7 @@ import { mount, VueWrapper } from '@vue/test-utils';
 import { createStore, Store } from 'vuex';
 import ActionsBlock from '../ActionsBlock.vue';
 
-jest.mock('../adapter');
+jest.mock('../state');
 
 let wrapper: VueWrapper<any>;
 afterEach(() => {

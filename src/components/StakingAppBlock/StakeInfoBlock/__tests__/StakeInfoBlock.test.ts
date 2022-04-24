@@ -2,8 +2,8 @@ import { mount, VueWrapper } from '@vue/test-utils';
 import { createStore, Store } from 'vuex';
 import StakeInfoBlock from '../StakeInfoBlock.vue';
 
-jest.mock('../adapter');
-jest.mock('../InfoContainer/adapter.ts');
+jest.mock('../state');
+jest.mock('../InfoContainer/state.ts');
 
 let store: Store<any>;
 beforeEach(() => {

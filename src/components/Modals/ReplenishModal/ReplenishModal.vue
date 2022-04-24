@@ -6,7 +6,7 @@ import Span from '@/elements/Span/Span.vue';
 import Button from '@/elements/Button/Button.vue';
 import propsObj from '@/elements/propsObj';
 import { useStore } from 'vuex';
-import { adapt } from './adapter';
+import { adaptState } from './state';
 import Calculator from './Calculator/Calculator.vue';
 import { createCloseHandler, createReplenishConfirmHandler } from './handlers';
 
@@ -18,7 +18,7 @@ const props = defineProps({
 const comp = computed(() => ({ elem: props.elem || 'replenishModal' }));
 
 const store = useStore();
-const state = computed(() => adapt(store));
+const state = computed(() => adaptState(store));
 
 const closeHandler = createCloseHandler(state);
 const replenishConfirmHandler = createReplenishConfirmHandler(state);

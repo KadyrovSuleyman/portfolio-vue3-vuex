@@ -7,7 +7,7 @@ import Button from '@/elements/Button/Button.vue';
 import propsObj from '@/elements/propsObj';
 import { useStore } from 'vuex';
 import WalletsList from './WalletsList/WalletsList.vue';
-import { adapt } from './adapter';
+import { adaptState } from './state';
 import createCloseHandler from './handlers';
 
 // eslint-disable-next-line no-undef
@@ -18,7 +18,7 @@ const props = defineProps({
 const comp = computed(() => ({ elem: props.elem || 'connectWalletModal' }));
 
 const store = useStore();
-const state = computed(() => adapt(store));
+const state = computed(() => adaptState(store));
 const closeHandler = createCloseHandler(state);
 
 </script>

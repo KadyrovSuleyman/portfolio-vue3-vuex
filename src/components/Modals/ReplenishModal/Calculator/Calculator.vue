@@ -10,7 +10,7 @@ import PromtInput from './PromtInput/PromtInput.vue';
 import {
   isValidInput, validate, correctState,
 } from './logic';
-import adapt from './adapter';
+import adaptState from './state';
 import { createMaxButtonClickHandler, createOnInputHandler, createOnKeyupHandler } from './handlers';
 
 // eslint-disable-next-line no-undef
@@ -28,7 +28,7 @@ const errorText = computed(() => validate(props.value || ''));
 const correct = computed(() => correctState(props.value || ''));
 
 const store = useStore();
-const state = computed(() => adapt(store, props));
+const state = computed(() => adaptState(store, props));
 
 const promtInput = ref(null) as any;
 

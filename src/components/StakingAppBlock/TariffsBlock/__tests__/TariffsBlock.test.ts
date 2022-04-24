@@ -3,7 +3,7 @@ import { createStore, Store } from 'vuex';
 import { TariffT } from '@/store/tariff/types.d';
 import TariffsBlock from '../TariffsBlock.vue';
 
-jest.mock('../adapter');
+jest.mock('../state');
 jest.mock('../logic');
 
 let store: Store<any>;

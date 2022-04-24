@@ -7,7 +7,7 @@ import Span from '@/elements/Span/Span.vue';
 import propsObj from '@/elements/propsObj';
 import { useStore } from 'vuex';
 import AddressBlock from './AddressBlock/AddressBlock.vue';
-import { adapt } from './adapter';
+import { adaptState } from './state';
 import reductAddress from './logic';
 import createCopyClickHandler from './handlers';
 
@@ -16,7 +16,7 @@ const props = defineProps({ ...propsObj });
 const comp = computed(() => ({ elem: props.elem || 'walletDiv' }));
 
 const store = useStore();
-const state = computed(() => adapt(store));
+const state = computed(() => adaptState(store));
 
 const copyClickHandler = createCopyClickHandler(state);
 

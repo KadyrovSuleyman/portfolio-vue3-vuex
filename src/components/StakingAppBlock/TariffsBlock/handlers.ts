@@ -1,6 +1,6 @@
 import { ComputedRef } from 'vue';
 import { extractNumber, getSelectListKey } from './logic';
-import { StateT } from './adapter';
+import { StateT } from './state';
 
 const createClickHandler = ({ state, className = 'tariffItem' } : {
   className: string,
